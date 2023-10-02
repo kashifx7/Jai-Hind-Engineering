@@ -1,0 +1,49 @@
+:root {
+    /*
+     --Cotton-Red: #c53211;
+    --Clean-Deep-Grey: #2e3830;
+    --Khaki: #e6dbc9; 
+    */
+
+    /* 
+    --Sand-Tan: #e1b382
+    Sand Tan Shadow: #c89666
+    Night Blue: #2d545e
+    Night Blue Shadow: #12343b
+ */
+    --color-1: #2d545e;
+    --color-3: #e1b382;
+    --color-2: #c89666;
+    --color-4: #12343b;
+}
+
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto, sans-serif;
+}
+
+header {
+    width: 100%;
+    height: auto;
+    background-color: var(--color-1);
+}
+
+.main-body {
+    background-color: var(--color-2);
+    width: 100%;
+    height: auto;
+    /* margin: 0px 20px; */
+}
+
+footer {
+    background-color: var(--color-3);
+    width: 100%;
+    height: auto;
+}
+
+.contact-us{
+    height: 600px;
+    background-color: var(--color-4);
+}

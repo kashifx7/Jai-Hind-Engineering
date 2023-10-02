@@ -1,0 +1,112 @@
+header {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-left {
+    color: var(--color-2);
+    font-size: 2rem;
+    font-style: Roboto;
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.header-left p{
+    margin: 16px 0px;
+}
+
+.heading-container{
+    position: relative;
+}
+
+.heading-container .since-txt{
+    position: absolute;
+    font-size: 0.9rem;
+    z-index: 4;
+    right: 0;
+    top:44px;
+    bottom: 0px;
+}
+
+
+.header-right {
+    align-items: center;
+    height: 100%;
+    width: 60%;
+}
+
+.header-right ul {
+    /* padding-top: 35px; */
+    padding: 9px 30px;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-right ul li a {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: white;
+}
+
+ul li a:hover {
+    font-size: 1.42rem;
+    color: var(--color-2);
+    cursor: pointer;
+}
+
+/* @media screen and (min-width:1px) and (max-width:890px)  */
+@media screen and (min-width:1px) and (max-width:890px) 
+{
+    header {
+        flex-direction: column;
+    }
+
+    .header-left {
+        height: 100%;
+        width: 100%;
+    }
+
+    .header-left {
+        font-size: 1.6rem;
+    }
+
+    /* making header right side bar at bottom */
+    .header-right {
+        padding: 0px;
+        position: fixed;
+        background-color: var(--color-1);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: auto;
+        width: 100%;
+        z-index: 5;
+        align-items: center;
+    }
+
+    .header-right ul li a {
+        font-size: 1.3rem;
+    }
+  
+    ul li a:hover {
+        font-size: 1.32rem;
+    }
+
+    .heading-container .since-txt{
+        
+        font-size: 0.8rem;
+        bottom: 0;
+        top: 40px;
+    }
+
+}
