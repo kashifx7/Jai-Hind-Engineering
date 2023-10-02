@@ -10,6 +10,7 @@ footer {
 @media screen and (min-width:1px) and (max-width:890px)
  {
     .footer-bottom {
+        font-size: 0.85rem;
         margin-bottom: 90px;
     }
  }

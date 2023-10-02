@@ -49,7 +49,7 @@ img {
     padding: 25%;
 }
 
-.profile-container div {
+.profile-container .div-border{
     position: relative;
 }
 
@@ -71,13 +71,28 @@ img {
         width: 90%;
     }
 
-    .section-one-right {
+    .section-one-left .div-container h2
+    {
+        font-size: 0.9rem;
+    }
 
+    .section-one-left .div-container p{
+        font-size: 0.8rem;
+    }
+
+    .section-one-right {
         width: 100%;
     }
 
     .profile-container {
         padding: 15% 35%;
+    }
+    .section-one-right .profile-text {
+        left: 55px;
+    }
+
+    .profile-text{
+        font-size: 0.7rem;
     }
 }
 
