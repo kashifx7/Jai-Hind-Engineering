@@ -28,6 +28,102 @@
             --color-2: #c89666;
             --color-4: #12343b;
         }
+
+        .section-two {
+            /* background-color: lightcoral; */
+            padding: 4%;
+        }
+
+        .container {
+            /* background-color: lightblue; */
+            margin: 10px 0px;
+            margin-bottom: 40px;    
+        }
+
+        .slider-wrapper {
+            position: relative;
+            /* max-width: 48rem; */
+            margin: 0;
+        }
+
+        .slider {
+            display: flex;
+            aspect-ratio: 16/7;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+            border-radius: 0.5rem;
+            /* overflow-x: hidden; */
+            /* overflow: auto; */
+            
+        }
+
+        .slider img {
+            /* flex: 1 0 100%; */
+            scroll-snap-align: start;
+            object-fit: cover;
+        }
+
+        .section-two h3 {
+            color: var(--color-4);
+            margin: 0px;
+            font-size: 2rem;
+        }
+
+        .section-two h2 {
+            color: var(--color-1);
+            margin: 0px;
+            font-size: 1.88rem;
+        }
+
+        .slider-nav {
+            display: flex;
+            column-gap: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+           
+        }
+
+        .slider-nav a {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.75;
+            transition: opacity ease 250ms;
+        }
+
+        .slider-nav a:hover {
+            opacity: 1;
+        }
+
+        @media screen and (min-width:1px) and (max-width:890px) {
+            .section-two {
+                padding: 3%;
+            }
+
+            .section-two h2 {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+
+            .slider {
+           
+            aspect-ratio: 16/9;
+            }
+
+            .section-two h3
+            {
+                font-size: 1.27rem;
+            }
+
+            .section-two h2
+            {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 
@@ -46,7 +142,7 @@
             <ul>
                 <li><a href="/#home">Home </a></li>
                 <li><a href="/#about-us">About Us </a></li>
-                <li><a href="">Products</a></li>
+                <li><a href="/#products">Products</a></li>
                 <li><a href="/#contact-us-id">Contact Us </a></li>
             </ul>
         </div>
@@ -58,11 +154,12 @@
     <div class="main-body " id="home">
 
 
-        <div class="section-one">
+        <!-- SECTION-1 -->
+        <div class="section-one" id="about-us">
 
             <div class="section-one-left">
-                <div class="div-container" id="about-us">
-                    <h2>About Us</h2>
+                <div class="div-container" >
+                    <h3>About Us</h3>
                     <p>
                         Welcome to JAI Hind Engineering Workers –
                         Crafting Excellence in Cooling Solutions
@@ -95,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="section-one-right">
+            <div class="section-one-right" >
                 <div class="profile-container">
                     <div class="div-border">
                         <img class="profile" src="IMG/profile-Rick.jpeg" alt="Founder">
@@ -106,21 +203,94 @@
 
         </div>
 
-        <div class="section-two">
+
+
+        <!-- SECTION-2 -->
+        <div class="section-two " id="products">
+            <h3> Our Products</h3>
+
+            <div class="big-containers">
+                <!-- Container-1 -->
+                <h2> Fridge</h2>
+                <div class="container">
+                    <div class=" slider-wrapper">
+                        <div class="slider">
+    
+                            <img id="slide-1" src="IMG/image-1.jpeg" alt="">
+                            <img id="slide-2" src="IMG/image-2.jpeg" alt="">
+                            <img id="slide-3" src="IMG/image-3.jpeg" alt="">
+                            <img id="slide-4" src="IMG/image-4.jpeg" alt="">
+    
+                        </div>
+                        <div class="slider-nav">
+                            <a href="#slide-1"></a>
+                            <a href="#slide-2"></a>
+                            <a href="#slide-3"></a>
+                            <a href="#slide-4"></a>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <!-- Container-2 -->
+                <h2> Sweet-Counter</h2>
+                <div class="container">
+                    <div class=" slider-wrapper">
+                        <div class="slider">
+    
+                            <img id="slide-1" src="IMG/counter-1.jpeg" alt="">
+                            <img id="slide-2" src="IMG/counter-2.jpeg" alt="">
+                            <img id="slide-3" src="IMG/counter-3.jpeg" alt="">
+                            <img id="slide-4" src="IMG/counter-4.jpeg" alt="">
+    
+                        </div>
+                        <div class="slider-nav">
+                            <a href="#slide-1"></a>
+                            <a href="#slide-2"></a>
+                            <a href="#slide-3"></a>
+                            <a href="#slide-4"></a>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <!-- Container-3 -->
+                <h2> Ice-Cream-Machine</h2>
+                <div class="container">
+                    <div class=" slider-wrapper">
+                        <div class="slider">
+    
+                            <img id="slide-1" src="IMG/ice-cream-machine-1.jpeg" alt="">
+                            <img id="slide-2" src="IMG/ice-cream-machine-2.jpeg" alt="">
+                            <img id="slide-3" src="IMG/ice-cream-machine-3.jpeg" alt="">
+                            <img id="slide-4" src="IMG/ice-cream-machine-4.jpeg" alt="">
+    
+                        </div>
+                        <div class="slider-nav">
+                            <a href="#slide-1"></a>
+                            <a href="#slide-2"></a>
+                            <a href="#slide-3"></a>
+                            <a href="#slide-4"></a>
+                        </div>
+    
+                    </div>
+                </div>
+
+            </div>
+
 
         </div>
-    </div>
 
 
-    <div class="contact-us" id="contact-us-id">
+        <div class="contact-us" id="contact-us-id">
 
 
-    </div>
+        </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-bottom">Copyrights &#169 | All rights reserved</div>
-    </footer>
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-bottom">Copyrights &#169 | All rights reserved</div>
+        </footer>
 </body>
 
 </html>
