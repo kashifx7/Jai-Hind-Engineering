@@ -36,10 +36,16 @@
     font-size: 2rem;
 }
 
-.contact-us h2 ,.contact-us a{
+.contact-us h2 ,
+.contact-us a,
+.contact-us p{
     color: var(--color-3);
     margin: 0px;
     font-size: 1.88rem;
+}
+
+.contact-us a{
+    text-decoration: none;
 }
 
 @media screen and (min-width:1px) and (max-width:890px) {
@@ -54,7 +60,6 @@
     }
     
     .contact-us a{
-        text-decoration: none;
         font-size: 0.9rem;
     }
     .div-container{
@@ -66,7 +71,7 @@
     .contact-us .div-container .contact-us-left,
     .contact-us .div-container .contact-us-right {
         
-        width:88%;
+        width:98%;
         height: auto;
     }
 
