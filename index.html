@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/section-one.css">
+    <link rel="stylesheet" href="CSS/section-two.css">
+    <link rel="stylesheet" href="CSS/contact-us.css">
 
     <!-- Font Links -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,100 +31,73 @@
             --color-4: #12343b;
         }
 
-        .section-two {
-            /* background-color: lightcoral; */
-            padding: 4%;
+        .contact-us {
+            padding: 2%;
+            /* background-color: aqua; */
+            height: auto;
+
         }
 
-        .container {
-            /* background-color: lightblue; */
-            margin: 10px 0px;
-            margin-bottom: 40px;    
-        }
-
-        .slider-wrapper {
-            position: relative;
-            /* max-width: 48rem; */
-            margin: 0;
-        }
-
-        .slider {
+        .contact-us .div-container {
+            padding: 2%;
+            /* background-color: aqua; */
+            height: auto;
             display: flex;
-            aspect-ratio: 16/7;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
-            border-radius: 0.5rem;
-            /* overflow-x: hidden; */
-            /* overflow: auto; */
+        }
+
+        .contact-us .div-container .contact-us-left,
+        .contact-us .div-container .contact-us-right {
+            width: 50%;
+            height: auto;
+            margin: 2%;
+        }
+        
+        /* BORDER */
+        /* .contact-us-left,
+        .contact-us .div-container 
+        {
+            padding: 2%;
+            border: 2px solid white;
+            border-radius: 1%;
             
         }
-
-        .slider img {
-            /* flex: 1 0 100%; */
-            scroll-snap-align: start;
-            object-fit: cover;
-        }
-
-        .section-two h3 {
-            color: var(--color-4);
+        */
+        .contact-us h3 {
+            margin-bottom: 2%;
+            color: var(--color-2);
             margin: 0px;
             font-size: 2rem;
         }
 
-        .section-two h2 {
-            color: var(--color-1);
+        .contact-us h2 ,.contact-us a{
+            color: var(--color-3);
             margin: 0px;
             font-size: 1.88rem;
         }
 
-        .slider-nav {
-            display: flex;
-            column-gap: 1.25rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-           
-        }
-
-        .slider-nav a {
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            background-color: #fff;
-            opacity: 0.75;
-            transition: opacity ease 250ms;
-        }
-
-        .slider-nav a:hover {
-            opacity: 1;
-        }
-
         @media screen and (min-width:1px) and (max-width:890px) {
-            .section-two {
-                padding: 3%;
-            }
 
-            .section-two h2 {
-                font-size: 0.9rem;
-                margin-bottom: 8px;
-            }
 
-            .slider {
-           
-            aspect-ratio: 16/9;
-            }
-
-            .section-two h3
-            {
+            .contact-us h3 {
                 font-size: 1.27rem;
             }
 
-            .section-two h2
-            {
-                font-size: 1.2rem;
+            .contact-us h2 ,.contact-us a{
+                font-size: 1.1rem;
             }
+            .div-container{
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .contact-us .div-container .contact-us-left,
+            .contact-us .div-container .contact-us-right {
+                
+                width:75%;
+                height: auto;
+            }
+
         }
     </style>
 </head>
@@ -140,10 +115,10 @@
         </div>
         <div class="header-right">
             <ul>
-                <li><a href="/#home">Home </a></li>
-                <li><a href="/#about-us">About Us </a></li>
-                <li><a href="/#products">Products</a></li>
-                <li><a href="/#contact-us-id">Contact Us </a></li>
+                <li><a href="#home">Home </a></li>
+                <li><a href="#about-us">About Us </a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact-us-id">Contact Us </a></li>
             </ul>
         </div>
     </header>
@@ -158,7 +133,7 @@
         <div class="section-one" id="about-us">
 
             <div class="section-one-left">
-                <div class="div-container" >
+                <div class="div-container">
                     <h3>About Us</h3>
                     <p>
                         Welcome to JAI Hind Engineering Workers –
@@ -192,7 +167,7 @@
                 </div>
             </div>
 
-            <div class="section-one-right" >
+            <div class="section-one-right">
                 <div class="profile-container">
                     <div class="div-border">
                         <img class="profile" src="IMG/profile-Rick.jpeg" alt="Founder">
@@ -211,16 +186,16 @@
 
             <div class="big-containers">
                 <!-- Container-1 -->
-                <h2> Fridge</h2>
                 <div class="container">
+                    <h2> Fridge</h2>
                     <div class=" slider-wrapper">
                         <div class="slider">
-    
+
                             <img id="slide-1" src="IMG/image-1.jpeg" alt="">
                             <img id="slide-2" src="IMG/image-2.jpeg" alt="">
                             <img id="slide-3" src="IMG/image-3.jpeg" alt="">
                             <img id="slide-4" src="IMG/image-4.jpeg" alt="">
-    
+
                         </div>
                         <div class="slider-nav">
                             <a href="#slide-1"></a>
@@ -228,21 +203,21 @@
                             <a href="#slide-3"></a>
                             <a href="#slide-4"></a>
                         </div>
-    
+
                     </div>
                 </div>
-    
+
                 <!-- Container-2 -->
-                <h2> Sweet-Counter</h2>
                 <div class="container">
+                    <h2> Sweet-Counter</h2>
                     <div class=" slider-wrapper">
                         <div class="slider">
-    
+
                             <img id="slide-1" src="IMG/counter-1.jpeg" alt="">
                             <img id="slide-2" src="IMG/counter-2.jpeg" alt="">
                             <img id="slide-3" src="IMG/counter-3.jpeg" alt="">
                             <img id="slide-4" src="IMG/counter-4.jpeg" alt="">
-    
+
                         </div>
                         <div class="slider-nav">
                             <a href="#slide-1"></a>
@@ -250,21 +225,21 @@
                             <a href="#slide-3"></a>
                             <a href="#slide-4"></a>
                         </div>
-    
+
                     </div>
                 </div>
-    
+
                 <!-- Container-3 -->
-                <h2> Ice-Cream-Machine</h2>
                 <div class="container">
+                    <h2> Ice-Cream-Machine</h2>
                     <div class=" slider-wrapper">
                         <div class="slider">
-    
+
                             <img id="slide-1" src="IMG/ice-cream-machine-1.jpeg" alt="">
                             <img id="slide-2" src="IMG/ice-cream-machine-2.jpeg" alt="">
                             <img id="slide-3" src="IMG/ice-cream-machine-3.jpeg" alt="">
                             <img id="slide-4" src="IMG/ice-cream-machine-4.jpeg" alt="">
-    
+
                         </div>
                         <div class="slider-nav">
                             <a href="#slide-1"></a>
@@ -272,7 +247,7 @@
                             <a href="#slide-3"></a>
                             <a href="#slide-4"></a>
                         </div>
-    
+
                     </div>
                 </div>
 
@@ -280,17 +255,33 @@
 
 
         </div>
+    </div>
 
 
-        <div class="contact-us" id="contact-us-id">
-
-
+    <div class="contact-us" id="contact-us-id">
+        <div class="div-container">
+            <div class="contact-us-left">
+                <h3>Contact-Us</h3>
+                <h2>E-mail: <a href="mailto:jaihindengineeringworkers@gmail.com" target="_blank"> jaihindengineeringworkers@gmail.com</a></h2>
+                <h2>E-mail: <a href="mailto:jaihindengineeringworker@gmail.com" target="_blank">jaihindengineeringworker@gmail.com</a></h2>
+                <h2>Mobile: +91-2144564XXX</h2>
+                <h2>Mobile: +91-2144567XXX</h2>
+            </div>
+            <div class="contact-us-right">
+                <h3>Address</h3>
+                <h2> Badhmandi Chauraha , Allahabad Road , Sultanpur (UP)</h2>
+                <h2>Pincode: 228001</h2>
+                <h2></h2>
+                <h2></h2>
+            </div>
         </div>
 
-        <!-- FOOTER -->
-        <footer>
-            <div class="footer-bottom">Copyrights &#169 | All rights reserved</div>
-        </footer>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-bottom">Copyrights &#169 | All rights reserved</div>
+    </footer>
 </body>
 
 </html>
