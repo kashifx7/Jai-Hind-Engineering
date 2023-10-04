@@ -7,12 +7,12 @@
     /* background-color: lightblue; */
     /* margin: 10px 0px; */
     /* margin-bottom: 40px;     */
-    
-        margin: 2%;
-        padding: 2%;
-        border: 2px solid #12343b;
-        border-radius: 1%;
-    
+
+    margin: 2%;
+    padding: 2%;
+    border: 2px solid #12343b;
+    border-radius: 1%;
+
 }
 
 .slider-wrapper {
@@ -31,7 +31,7 @@
     border-radius: 0.5rem;
     /* overflow-x: hidden; */
     /* overflow: auto; */
-    
+
 }
 
 .slider img {
@@ -58,7 +58,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
-   
+
 }
 
 .slider-nav a {
@@ -85,17 +85,12 @@
     }
 
     .slider {
-   
-    aspect-ratio: 16/9;
+        aspect-ratio: 16/9;
     }
 
-    .section-two h3
-    {
-        font-size: 1.27rem;
+    .section-two h3 {
+        font-size: 1rem;
     }
 
-    .section-two h2
-    {
-        font-size: 1.2rem;
-    }
+
 }
