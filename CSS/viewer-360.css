@@ -1,0 +1,472 @@
+/* ==========================================================================
+   INTERACTIVE 360° / 3D PRODUCT INSPECTOR STAGE
+   ========================================================================== */
+
+.viewer-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #151f33 0%, #080c15 70%);
+  border-top: 1px solid var(--color-steel-border);
+  border-bottom: 1px solid var(--color-steel-border);
+  overflow: hidden;
+}
+
+.viewer-wrapper {
+  background: #0b101c;
+  border: 1px solid var(--color-steel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Stage Header Bar */
+.viewer-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  background: #080c16;
+  border-bottom: 1px solid var(--color-steel-border);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.viewer-product-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.viewer-product-btn {
+  background: var(--color-slate-surface);
+  border: 1px solid var(--color-steel-border);
+  color: var(--color-metal-muted);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewer-product-btn:hover {
+  color: #ffffff;
+  border-color: var(--color-metal-muted);
+}
+
+.viewer-product-btn.active {
+  background: var(--color-amber-glow);
+  color: var(--color-amber);
+  border-color: var(--color-amber);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+.viewer-mode-switch {
+  display: flex;
+  align-items: center;
+  background: #04060b;
+  border: 1px solid var(--color-steel-border);
+  border-radius: var(--radius-xs);
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-metal-muted);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background: var(--color-slate-surface);
+  color: #ffffff;
+  border: 1px solid var(--color-steel-light);
+}
+
+.mode-btn.cad-mode.active {
+  background: var(--color-cryo-glow);
+  color: var(--color-cryo);
+  border-color: rgba(14, 165, 233, 0.4);
+}
+
+/* Stage Viewport Area */
+.viewer-stage {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background: radial-gradient(circle at center, #111a2e 0%, #060911 85%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: grab;
+  overflow: hidden;
+}
+
+.viewer-stage.grabbing {
+  cursor: grabbing;
+}
+
+/* Turntable Canvas / Image Viewport */
+.turntable-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.turntable-image-frame {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  transition: transform 0.08s ease-out, filter 0.15s ease;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.85));
+  pointer-events: none;
+}
+
+/* Subtle Stainless Steel Surface Sheen & Floor Reflection */
+.turntable-pedestal {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  height: 25px;
+  background: radial-gradient(ellipse at center, rgba(14, 165, 233, 0.2) 0%, rgba(245, 158, 11, 0.05) 40%, transparent 75%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Drag Gesture Hint */
+.drag-hint-pill {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-metal-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+  animation: pulseHint 2.5s infinite;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* 3D WebGL Canvas Layer */
+.cad-webgl-canvas {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cad-webgl-canvas.active {
+  display: block;
+}
+
+/* 3D Future Slot Badge */
+.future-3d-banner {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 5;
+  background: rgba(11, 16, 28, 0.88);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-xs);
+  padding: 0.5rem 0.85rem;
+  max-width: 380px;
+}
+
+.future-3d-banner .badge {
+  margin-bottom: 0.25rem;
+}
+
+.future-3d-text {
+  font-size: 0.76rem;
+  color: var(--color-metal-muted);
+  line-height: 1.4;
+}
+
+.future-3d-text code {
+  color: var(--color-cryo);
+  background: rgba(14, 165, 233, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
+}
+
+/* Interactive Hotspot Pins */
+.hotspot-pin {
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.hotspot-dot {
+  width: 22px;
+  height: 22px;
+  background: var(--color-amber);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.8);
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.hotspot-dot::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-amber);
+  animation: pulseRings 2s infinite;
+}
+
+@keyframes pulseRings {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.hotspot-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  border: 1px solid var(--color-amber-border);
+  border-radius: var(--radius-xs);
+  padding: 0.75rem 1rem;
+  width: 240px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hotspot-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #0f172a transparent transparent transparent;
+}
+
+.hotspot-pin:hover .hotspot-tooltip,
+.hotspot-pin.active .hotspot-tooltip {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.tooltip-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-amber);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.tooltip-title {
+  font-size: 0.92rem;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.tooltip-desc {
+  font-size: 0.78rem;
+  color: var(--color-metal-muted);
+  line-height: 1.4;
+}
+
+/* Stage Bottom Controls Bar */
+.viewer-controls-bar {
+  background: #080c16;
+  border-top: 1px solid var(--color-steel-border);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.controls-main-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Scrubbing Slider */
+.angle-scrubber-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 280px;
+}
+
+.angle-scrubber-slider {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-steel-border);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.angle-scrubber-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-amber);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+  transition: transform 0.15s ease;
+}
+
+.angle-scrubber-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.angle-readout {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-amber);
+  min-width: 75px;
+  text-align: right;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-amber-border);
+}
+
+/* Quick Angle Presets */
+.angle-presets-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  background: var(--color-slate-surface);
+  border: 1px solid var(--color-steel-border);
+  color: var(--color-metal-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+  color: #ffffff;
+  border-color: var(--color-metal-muted);
+}
+
+.preset-btn.active {
+  background: var(--color-slate-hover);
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+}
+
+/* Secondary Action Buttons (Auto-Rotate, Wireframe, Reset) */
+.controls-aux-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.control-icon-btn {
+  background: var(--color-slate-surface);
+  border: 1px solid var(--color-steel-border);
+  color: var(--color-steel-silver);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-icon-btn:hover {
+  background: var(--color-slate-hover);
+  color: #ffffff;
+  border-color: var(--color-metal-muted);
+}
+
+.control-icon-btn.active {
+  background: var(--color-amber-glow);
+  color: var(--color-amber);
+  border-color: var(--color-amber);
+}
+
+.control-icon-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 768px) {
+  .viewer-stage {
+    height: 380px;
+  }
+  
+  .controls-main-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

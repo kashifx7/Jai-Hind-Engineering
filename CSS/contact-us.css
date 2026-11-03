@@ -1,0 +1,295 @@
+/* ==========================================================================
+   CONTACT US & CUSTOM FABRICATION QUOTE DIALOG MODAL
+   ========================================================================== */
+
+.contact-section {
+  position: relative;
+  background: #090e1a;
+  border-top: 1px solid var(--color-steel-border);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+}
+
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Contact Info Column */
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-info-card {
+  background: var(--color-slate-surface);
+  border: 1px solid var(--color-steel-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+
+.contact-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.contact-block:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon-box {
+  width: 44px;
+  height: 44px;
+  background: var(--color-amber-glow);
+  border: 1px solid var(--color-amber-border);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-amber);
+  flex-shrink: 0;
+}
+
+.contact-icon-box svg {
+  width: 22px;
+  height: 22px;
+}
+
+.contact-text-box h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+  color: #ffffff;
+}
+
+.contact-text-box p {
+  color: var(--color-metal-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+.contact-text-box a {
+  color: var(--color-steel-silver);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.contact-text-box a:hover {
+  color: var(--color-amber);
+}
+
+/* Factory Location Map Card */
+.factory-location-card {
+  background: #060911;
+  border: 1px solid var(--color-steel-border);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-amber);
+  margin-bottom: 0.5rem;
+}
+
+.location-address {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.location-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-cryo);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.location-action-link:hover {
+  color: #38bdf8;
+  transform: translateX(4px);
+}
+
+/* Quick Inquiry Form */
+.inquiry-form-card {
+  background: var(--color-slate-surface);
+  border: 1px solid var(--color-steel-border);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.form-header-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.form-header-subtitle {
+  font-size: 0.92rem;
+  color: var(--color-metal-muted);
+  margin-bottom: 1.75rem;
+}
+
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 580px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-group label {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-steel-silver);
+}
+
+.form-input, .form-select, .form-textarea {
+  background: #0b111e;
+  border: 1px solid var(--color-steel-border);
+  border-radius: var(--radius-xs);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--color-amber);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.form-select option {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* ==========================================================================
+   HTML5 <dialog> MODAL STYLES (Modern Web Guidance Compliant)
+   ========================================================================== */
+
+dialog.modal-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 90%;
+  max-width: 680px;
+  background: #0f172a;
+  border: 1px solid var(--color-amber-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(245, 158, 11, 0.2);
+  padding: 0;
+  color: var(--color-metal-text);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+dialog.modal-dialog::backdrop {
+  background: rgba(4, 7, 14, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: #090e1a;
+  border-bottom: 1px solid var(--color-steel-border);
+}
+
+.modal-header h3 {
+  font-size: 1.35rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: 1px solid var(--color-steel-border);
+  color: var(--color-metal-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--color-slate-surface);
+  color: #ffffff;
+  border-color: var(--color-metal-muted);
+}
+
+.modal-body {
+  padding: 2rem;
+  max-height: calc(85vh - 120px);
+  overflow-y: auto;
+}
+
+.calculator-preview-box {
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px dashed rgba(14, 165, 233, 0.35);
+  border-radius: var(--radius-xs);
+  padding: 1rem;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-cryo);
+}
