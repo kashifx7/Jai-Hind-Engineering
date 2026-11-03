@@ -1,47 +1,47 @@
 /**
  * JAI HIND ENGINEERING WORKS - 360° & 3D PRODUCT INSPECTOR
  * Features:
- * - 360 Turntable multi-angle image scrubber (drag, slider, presets)
+ * - 360 Turntable multi-angle image scrubber using HD imagery
  * - Interactive technical hotspot inspection pins
- * - Multi-product switching (Fridges, Counters, Ice Cream Units)
- * - 3D CAD WebGL canvas mode (with procedural 3D model & slot for future .GLB/.GLTF files)
+ * - Multi-product switching (Fridges, Counters, Ice Cream & Cone Maker, Defridgers)
+ * - 3D CAD WebGL canvas mode (procedural 3D model & slot for future .GLB/.GLTF files)
  */
 
 (function () {
   'use strict';
 
-  // Product configurations & angle frame mappings
+  // Product configurations & HD angle frame mappings
   const PRODUCTS_DATA = {
     fridge: {
       name: 'Commercial Display Refrigerator (JHE-CR-450)',
       category: 'Commercial Refrigeration',
       frames: [
-        { minAngle: 315, maxAngle: 45, src: 'IMG/image-1.jpeg', label: 'Front Elevation (0°)' },
+        { minAngle: 315, maxAngle: 45, src: 'IMG/major-fridge.jpg', label: 'Front HD Showcase (0°)' },
         { minAngle: 45, maxAngle: 135, src: 'IMG/image-2.jpeg', label: 'Isometric Quarter Angle (45°)' },
-        { minAngle: 135, maxAngle: 225, src: 'IMG/image-3.jpeg', label: 'Side Profile & Heat Sink (90°-180°)' },
-        { minAngle: 225, maxAngle: 315, src: 'IMG/image-4.jpeg', label: 'Internal Shelves & Coil (270°)' }
+        { minAngle: 135, maxAngle: 225, src: 'IMG/image-3.jpeg', label: 'Side Heat Dissipation (90°-180°)' },
+        { minAngle: 225, maxAngle: 315, src: 'IMG/image-4.jpeg', label: 'Internal Shelves & Air Curtain (270°)' }
       ],
       hotspots: [
         {
           id: 1,
           x: 50,
-          y: 20,
+          y: 22,
           tag: 'Digital Control',
           title: 'Sub-Zero Microprocessor Hub',
           desc: 'High-precision temperature display with auto-defrost cycle programming.'
         },
         {
           id: 2,
-          x: 72,
+          x: 75,
           y: 45,
-          tag: 'Hygiene & Build',
+          tag: 'Food Safety',
           title: 'Food-Grade SS-304 Non-Magnetic',
           desc: '1.2mm heavy gauge sheet metal with corrosion-resistant brushed hairline finish.'
         },
         {
           id: 3,
           x: 48,
-          y: 82,
+          y: 80,
           tag: 'Compressor Unit',
           title: 'Embraco Tropicalized Hermetic',
           desc: 'Eco-safe R-134a refrigerant engineered for peak 48°C ambient Indian summers.'
@@ -49,12 +49,12 @@
       ]
     },
     counter: {
-      name: 'Curved Glass Refrigerated Sweet Counter (JHE-SC-800)',
+      name: 'Curved Glass Sweet & Bakery Counter (JHE-SC-800)',
       category: 'Display Counters',
       frames: [
-        { minAngle: 315, maxAngle: 45, src: 'IMG/counter-1.jpeg', label: 'Front Showcase View (0°)' },
+        { minAngle: 315, maxAngle: 45, src: 'IMG/major-counter.jpg', label: 'Front Bakery & Mithai View (0°)' },
         { minAngle: 45, maxAngle: 135, src: 'IMG/counter-2.jpeg', label: 'Isometric Display Angle (45°)' },
-        { minAngle: 135, maxAngle: 225, src: 'IMG/counter-3.jpeg', label: 'Side Service Deck (90°-180°)' },
+        { minAngle: 135, maxAngle: 225, src: 'IMG/counter-3.jpeg', label: 'Side Service Profile (90°-180°)' },
         { minAngle: 225, maxAngle: 315, src: 'IMG/counter-4.jpeg', label: 'Internal Stainless Steel Pan Wells (270°)' }
       ],
       hotspots: [
@@ -68,9 +68,9 @@
         },
         {
           id: 2,
-          x: 28,
-          y: 65,
-          tag: 'Illumination',
+          x: 30,
+          y: 60,
+          tag: 'Warm Lighting',
           title: 'High-CRI 3000K Golden LED',
           desc: 'Food-safe warm illumination designed specifically for sweets & confectionery.'
         },
@@ -85,19 +85,19 @@
       ]
     },
     icecream: {
-      name: 'Industrial Soft Serve & Hardener (JHE-IC-320)',
+      name: 'Soft Serve & Cone Cream Dispenser (JHE-IC-320)',
       category: 'Ice Cream Machinery',
       frames: [
-        { minAngle: 315, maxAngle: 45, src: 'IMG/ice-cream-machine-1.jpeg', label: 'Front Dispenser Face (0°)' },
-        { minAngle: 45, maxAngle: 135, src: 'IMG/ice-cream-machine-2.jpeg', label: 'Isometric Angle (45°)' },
-        { minAngle: 135, maxAngle: 225, src: 'IMG/ice-cream-machine-3.jpeg', label: 'Side Louver Cooling View (90°-180°)' },
-        { minAngle: 225, maxAngle: 315, src: 'IMG/ice-cream-machine-4.jpeg', label: 'Hopper & Compressor Intake (270°)' }
+        { minAngle: 315, maxAngle: 45, src: 'IMG/major-icecream.jpg', label: 'Soft Serve Dispenser (0°)' },
+        { minAngle: 45, maxAngle: 135, src: 'IMG/major-cone-maker.jpg', label: 'Cone Making Station (45°)' },
+        { minAngle: 135, maxAngle: 225, src: 'IMG/ice-cream-machine-3.jpeg', label: 'Flash Hardener Unit (90°-180°)' },
+        { minAngle: 225, maxAngle: 315, src: 'IMG/ice-cream-machine-4.jpeg', label: 'Batch Churning Engine (270°)' }
       ],
       hotspots: [
         {
           id: 1,
           x: 50,
-          y: 30,
+          y: 28,
           tag: 'Twin Hoppers',
           title: 'Dual SS-304 Freezing Cylinders',
           desc: 'Independent refrigeration circuits for dual flavor dispensing.'
@@ -119,6 +119,34 @@
           desc: 'High CFM industrial condenser motor with washable lint filter.'
         }
       ]
+    },
+    defriger: {
+      name: 'Sub-Zero Cryo Deep Freezer (JHE-DF-500)',
+      category: 'Deep Storage Freezers',
+      frames: [
+        { minAngle: 315, maxAngle: 45, src: 'IMG/major-defriger.jpg', label: 'Front Hard-Top View (0°)' },
+        { minAngle: 45, maxAngle: 135, src: 'IMG/image-3.jpeg', label: 'Deep Storage Cavity (45°)' },
+        { minAngle: 135, maxAngle: 225, src: 'IMG/image-2.jpeg', label: 'External Condenser Grid (90°-180°)' },
+        { minAngle: 225, maxAngle: 315, src: 'IMG/major-fridge.jpg', label: 'Multi-Compartment View (270°)' }
+      ],
+      hotspots: [
+        {
+          id: 1,
+          x: 50,
+          y: 35,
+          tag: 'Sub-Zero Temp',
+          title: '-24°C Cryogenic Deep Chilling',
+          desc: 'R-404A refrigerant circuit with 70mm injected PUF insulation for 14-hour retention.'
+        },
+        {
+          id: 2,
+          x: 80,
+          y: 70,
+          tag: 'Condenser Bay',
+          title: 'Heavy Tropicalized Tecumseh Unit',
+          desc: 'Continuous duty hermetic compressor with external heat sink fan.'
+        }
+      ]
     }
   };
 
@@ -130,7 +158,7 @@
   let startAngle = 0;
   let autoRotateInterval = null;
   let isAutoRotate = false;
-  let currentMode = 'turntable'; // 'turntable' or 'cad-3d'
+  let currentMode = 'turntable';
   let isWireframe = false;
 
   // DOM Elements
@@ -147,7 +175,6 @@
   const wireframeBtn = document.getElementById('wireframe-btn');
   const cadCanvas = document.getElementById('cad-canvas');
 
-  // Initialize Viewer
   function initViewer() {
     if (!stage || !frameImg) return;
 
@@ -157,17 +184,14 @@
     init3DCanvas();
   }
 
-  // Update image frame & angle display
   function updateViewer(angle) {
     currentAngle = ((Math.round(angle) % 360) + 360) % 360;
 
-    // Update Slider & Readout
     if (scrubber) scrubber.value = currentAngle;
     if (angleReadout) {
       angleReadout.textContent = `${String(currentAngle).padStart(3, '0')}°`;
     }
 
-    // Determine current image frame based on angle
     const product = PRODUCTS_DATA[currentProductId];
     if (!product) return;
 
@@ -175,7 +199,6 @@
 
     for (const frame of product.frames) {
       if (frame.minAngle > frame.maxAngle) {
-        // Wraparound (e.g. 315 to 45)
         if (currentAngle >= frame.minAngle || currentAngle < frame.maxAngle) {
           matchedSrc = frame.src;
           break;
@@ -192,11 +215,9 @@
       frameImg.src = matchedSrc;
     }
 
-    // Perspective transformation sheen
     const skewFactor = Math.sin((currentAngle * Math.PI) / 180) * 1.5;
-    frameImg.style.transform = `scale(1) skewY(${skewFactor * 0.4}deg)`;
+    frameImg.style.transform = `scale(1) skewY(${skewFactor * 0.3}deg)`;
 
-    // Update preset pills active state
     presetButtons.forEach(btn => {
       const btnAngle = parseInt(btn.getAttribute('data-angle'), 10);
       if (Math.abs(currentAngle - btnAngle) <= 15) {
@@ -206,13 +227,11 @@
       }
     });
 
-    // If in 3D WebGL mode, rotate 3D mesh
     if (window.jhe3dScene && window.jhe3dScene.mesh) {
       window.jhe3dScene.mesh.rotation.y = (currentAngle * Math.PI) / 180;
     }
   }
 
-  // Render Hotspots for current product
   function renderProductHotspots() {
     if (!hotspotsLayer) return;
     hotspotsLayer.innerHTML = '';
@@ -238,7 +257,6 @@
         </div>
       `;
 
-      // Click to toggle active tooltip on mobile
       pin.addEventListener('click', (e) => {
         e.stopPropagation();
         const wasActive = pin.classList.contains('active');
@@ -250,9 +268,7 @@
     });
   }
 
-  // Event Listeners for drag, slider, buttons
   function setupEventListeners() {
-    // Mouse Drag on Stage
     stage.addEventListener('mousedown', (e) => {
       if (e.target.closest('.hotspot-pin') || e.target.closest('button')) return;
       isDragging = true;
@@ -265,7 +281,6 @@
     window.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       const deltaX = e.clientX - startX;
-      // 1px drag = ~0.65 degrees rotation
       const newAngle = startAngle + deltaX * 0.65;
       updateViewer(newAngle);
     });
@@ -277,7 +292,6 @@
       }
     });
 
-    // Touch Drag on Stage
     stage.addEventListener('touchstart', (e) => {
       if (e.target.closest('.hotspot-pin') || e.target.closest('button')) return;
       isDragging = true;
@@ -297,7 +311,6 @@
       isDragging = false;
     });
 
-    // Scrubber Slider Input
     if (scrubber) {
       scrubber.addEventListener('input', (e) => {
         stopAutoRotate();
@@ -305,7 +318,6 @@
       });
     }
 
-    // Angle Presets (0, 45, 90, 180, etc.)
     presetButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         stopAutoRotate();
@@ -314,7 +326,6 @@
       });
     });
 
-    // Product Selectors
     productButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const prod = btn.getAttribute('data-product');
@@ -325,13 +336,12 @@
           renderProductHotspots();
           updateViewer(currentAngle);
           if (window.jhe3dScene) {
-            update3DProductMesh(prod);
+            window.jhe3dScene.render();
           }
         }
       });
     });
 
-    // Mode Toggle (Turntable vs 3D CAD)
     modeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const mode = btn.getAttribute('data-mode');
@@ -361,7 +371,6 @@
       });
     });
 
-    // Auto-Rotate Button
     if (autoRotateBtn) {
       autoRotateBtn.addEventListener('click', () => {
         if (isAutoRotate) {
@@ -372,7 +381,6 @@
       });
     }
 
-    // Reset View Button
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
         stopAutoRotate();
@@ -380,7 +388,6 @@
       });
     }
 
-    // Wireframe Toggle
     if (wireframeBtn) {
       wireframeBtn.addEventListener('click', () => {
         isWireframe = !isWireframe;
@@ -391,13 +398,11 @@
       });
     }
 
-    // Close open hotspot on backdrop click
     document.addEventListener('click', () => {
       document.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
     });
   }
 
-  // Smooth Animate to Target Angle
   function animateToAngle(targetAngle) {
     const start = currentAngle;
     let diff = (targetAngle - start) % 360;
@@ -405,12 +410,11 @@
     if (diff < -180) diff += 360;
 
     const startTime = performance.now();
-    const duration = 320;
+    const duration = 300;
 
     function step(now) {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const ease = 1 - Math.pow(1 - progress, 3);
       updateViewer(start + diff * ease);
 
@@ -422,7 +426,6 @@
     requestAnimationFrame(step);
   }
 
-  // Auto-Rotate functionality
   function startAutoRotate() {
     isAutoRotate = true;
     if (autoRotateBtn) autoRotateBtn.classList.add('active');
@@ -442,17 +445,12 @@
     }
   }
 
-  // =========================================================================
-  // 3D CAD WebGL Engine (HTML5 Canvas 3D Mesh / Three.js Compatible)
-  // Provides high-fidelity real-time 3D rotation, wireframe inspection,
-  // and slot for production .GLB / .GLTF models.
-  // =========================================================================
+  // 3D Canvas Engine
   function init3DCanvas() {
     if (!cadCanvas) return;
     const ctx = cadCanvas.getContext('2d');
     if (!ctx) return;
 
-    // Handle high DPI
     function resizeCanvas() {
       const rect = stage.getBoundingClientRect();
       cadCanvas.width = rect.width * window.devicePixelRatio;
@@ -462,8 +460,6 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // 3D Box / Industrial Unit Vertices
-    // Defines an industrial refrigeration unit in 3D coordinate space
     const baseWidth = 140;
     const baseHeight = 220;
     const baseDepth = 120;
@@ -480,17 +476,15 @@
     ];
 
     const faces = [
-      [0, 1, 2, 3, '#1e293b'], // Back
-      [4, 5, 6, 7, 'rgba(14, 165, 233, 0.25)'], // Front glass
-      [0, 4, 7, 3, '#172033'], // Left
-      [1, 5, 6, 2, '#233047'], // Right
-      [3, 2, 6, 7, '#0f172a'], // Top
-      [0, 1, 5, 4, '#0a0e17']  // Bottom
+      [0, 1, 2, 3, '#101626'],
+      [4, 5, 6, 7, 'rgba(0, 210, 255, 0.22)'],
+      [0, 4, 7, 3, '#141d33'],
+      [1, 5, 6, 2, '#1e2945'],
+      [3, 2, 6, 7, '#0b101c'],
+      [0, 1, 5, 4, '#070a12']
     ];
 
-    // Internal Shelves (SS wire racks)
     const shelfYLevels = [-50, 20, 90];
-
     let rotY = 0;
     let rotX = 0.22;
 
@@ -500,15 +494,12 @@
       const cosX = Math.cos(rotX);
       const sinX = Math.sin(rotX);
 
-      // Rotate Y
       const x1 = p[0] * cosY - p[2] * sinY;
       const z1 = p[0] * sinY + p[2] * cosY;
 
-      // Rotate X
       const y2 = p[1] * cosX - z1 * sinX;
       const z2 = p[1] * sinX + z1 * cosX;
 
-      // Perspective projection
       const fov = 480;
       const distance = 580;
       const z = z2 + distance;
@@ -528,12 +519,10 @@
       ctx.clearRect(0, 0, w, h);
 
       rotY = (currentAngle * Math.PI) / 180;
-
-      // Project vertices
       const projected = vertices.map(v => project(v, rotY));
 
-      // Draw Grid on Floor
-      ctx.strokeStyle = 'rgba(14, 165, 233, 0.12)';
+      // Floor Grid
+      ctx.strokeStyle = 'rgba(0, 210, 255, 0.12)';
       ctx.lineWidth = 1;
       const gridRadius = 240;
       ctx.beginPath();
@@ -550,13 +539,11 @@
       }
       ctx.stroke();
 
-      // Sort faces by depth
       const sortedFaces = faces.map((face, index) => {
         const zAvg = (projected[face[0]][2] + projected[face[1]][2] + projected[face[2]][2] + projected[face[3]][2]) / 4;
         return { face, index, zAvg, color: face[4] };
       }).sort((a, b) => b.zAvg - a.zAvg);
 
-      // Render faces
       sortedFaces.forEach(item => {
         const f = item.face;
         ctx.beginPath();
@@ -567,7 +554,7 @@
         ctx.closePath();
 
         if (isWireframe) {
-          ctx.strokeStyle = '#0ea5e9';
+          ctx.strokeStyle = '#00d2ff';
           ctx.lineWidth = 1.5;
           ctx.stroke();
         } else {
@@ -579,7 +566,6 @@
         }
       });
 
-      // Draw internal SS wire shelves
       shelfYLevels.forEach(sy => {
         const s0 = project([-baseWidth + 5, sy, -baseDepth + 5], rotY);
         const s1 = project([baseWidth - 5, sy, -baseDepth + 5], rotY);
@@ -611,17 +597,16 @@
       ctx.closePath();
       ctx.fillStyle = '#060a12';
       ctx.fill();
-      ctx.strokeStyle = '#0ea5e9';
+      ctx.strokeStyle = '#00d2ff';
       ctx.stroke();
 
-      ctx.fillStyle = '#38bdf8';
+      ctx.fillStyle = '#00d2ff';
       ctx.font = '10px monospace';
       ctx.fillText('-02°C', d1[0] + 12, d1[1] + 14);
 
       requestAnimationFrame(render3D);
     }
 
-    // Expose to window for external control
     window.jhe3dScene = {
       render: render3D,
       setWireframe: function (wf) {
@@ -632,14 +617,6 @@
     render3D();
   }
 
-  function update3DProductMesh(productId) {
-    // Allows swapping 3D geometries or triggering GLTF loader
-    if (window.jhe3dScene && window.jhe3dScene.render) {
-      window.jhe3dScene.render();
-    }
-  }
-
-  // Self execute on DOMContentLoaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initViewer);
   } else {

@@ -1,65 +1,70 @@
 /* ==========================================================================
-   JAI HIND ENGINEERING WORKS - INDUSTRIAL DESIGN SYSTEM
-   Precision Commercial Refrigeration & Custom Counter Fabrication
-   Established 1980 | Sultanpur, Uttar Pradesh
+   JAI HIND ENGINEERING WORKS - COLORFUL & MINIMALIST INDUSTRIAL DESIGN
+   Commercial Refrigeration, Counters & Factory Spares Depot (Est. 1980)
    ========================================================================== */
 
 :root {
-  /* Industrial Palette */
-  --color-obsidian: #070a11;
-  --color-slate-dark: #0f172a;
-  --color-slate-surface: #172033;
-  --color-slate-card: #1e293b;
-  --color-slate-hover: #273549;
-  --color-steel-border: #334155;
-  --color-steel-light: #475569;
-  
-  /* Precision & Steel Metals */
-  --color-metal-text: #f8fafc;
-  --color-metal-muted: #94a3b8;
-  --color-metal-dim: #64748b;
-  --color-steel-silver: #e2e8f0;
+  /* Minimalist Canvas Palette */
+  --color-canvas-bg: #07090f;
+  --color-surface: #0d121f;
+  --color-surface-hover: #141b2c;
+  --color-surface-glass: rgba(13, 18, 31, 0.75);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.18);
 
-  /* Industrial Safety & High-Contrast Accents */
+  /* Vibrant Minimalist Chromatic Accents */
+  /* Cryo Cyan (Refrigerators & Chilling) */
+  --color-cryo: #00d2ff;
+  --color-cryo-glow: rgba(0, 210, 255, 0.18);
+  --color-cryo-border: rgba(0, 210, 255, 0.35);
+
+  /* Warm Amber & Honey Gold (Counters & Sweet Showcases) */
   --color-amber: #f59e0b;
-  --color-amber-hover: #d97706;
   --color-amber-glow: rgba(245, 158, 11, 0.18);
-  --color-amber-border: rgba(245, 158, 11, 0.45);
-  
-  /* Cryogenic Cooling & Precision Cyan */
-  --color-cryo: #0ea5e9;
-  --color-cryo-hover: #0284c7;
-  --color-cryo-glow: rgba(14, 165, 233, 0.2);
-  --color-cryo-surface: rgba(14, 165, 233, 0.08);
+  --color-amber-border: rgba(245, 158, 11, 0.35);
 
-  /* Status Colors */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  /* Electric Violet & Indigo (Motors, Wire & Electrical Hardware) */
+  --color-violet: #8b5cf6;
+  --color-violet-glow: rgba(139, 92, 246, 0.18);
+  --color-violet-border: rgba(139, 92, 246, 0.35);
+
+  /* Vibrant Emerald & Mint (Eco Gases, Nitrogen & Efficiency) */
+  --color-emerald: #10b981;
+  --color-emerald-glow: rgba(16, 185, 129, 0.18);
+  --color-emerald-border: rgba(16, 185, 129, 0.35);
+
+  /* Thermal Coral & Flame (Heated Counters & Cryo Compressors) */
+  --color-coral: #f43f5e;
+  --color-coral-glow: rgba(244, 63, 94, 0.18);
+  --color-coral-border: rgba(244, 63, 94, 0.35);
+
+  /* Neutral Metal Tones */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #94a3b8;
+  --color-text-dim: #64748b;
+  --color-steel: #e2e8f0;
 
   /* Typography */
-  --font-display: 'Chakra Petch', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
+  --font-display: 'Chakra Petch', 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* Elevation & Geometry */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
-  --shadow-glow: 0 0 25px rgba(245, 158, 11, 0.25);
-  --shadow-cryo: 0 0 25px rgba(14, 165, 233, 0.25);
+  /* Radii & Shadows */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
 
-  /* Max widths */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.8);
+
   --container-max: 1280px;
-  --header-height: 84px;
-  --topbar-height: 38px;
+  --header-height: 80px;
 }
 
-/* Light / Reset */
+/* Reset & Box Sizing */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -68,43 +73,28 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-height) + var(--topbar-height) + 20px);
+  scroll-padding-top: calc(var(--header-height) + 24px);
   font-size: 16px;
   color-scheme: dark;
 }
 
 body {
-  background-color: var(--color-obsidian);
-  color: var(--color-metal-text);
+  background-color: var(--color-canvas-bg);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 45%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    radial-gradient(circle at 15% 15%, rgba(0, 210, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 50% 75%, rgba(139, 92, 246, 0.04) 0%, transparent 50%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
 }
 
-/* Blueprint Grid Overlay utility */
-.blueprint-grid {
-  position: relative;
-}
-.blueprint-grid::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
-  z-index: 0;
-}
-
-/* Containers */
+/* Container */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -116,7 +106,6 @@ body {
   z-index: 1;
 }
 
-/* Section Common Styling */
 .section-padding {
   padding: 5.5rem 0;
 }
@@ -127,7 +116,7 @@ body {
   }
 }
 
-/* Headings */
+/* Typography Hierarchy */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -137,29 +126,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(2.3rem, 5vw, 4rem);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.7rem);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
 
 h3 {
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
 }
 
 p {
-  color: var(--color-metal-muted);
+  color: var(--color-text-secondary);
 }
 
-/* Section Header Block */
+/* Minimalist Section Header */
 .section-header {
   text-align: center;
-  max-width: 820px;
+  max-width: 780px;
   margin: 0 auto 3.5rem auto;
 }
 
@@ -168,47 +157,59 @@ p {
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--color-amber);
   background: var(--color-amber-glow);
   border: 1px solid var(--color-amber-border);
   padding: 0.35rem 0.9rem;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-full);
   margin-bottom: 1rem;
 }
 
 .section-tag.cryo {
   color: var(--color-cryo);
   background: var(--color-cryo-glow);
-  border-color: rgba(14, 165, 233, 0.4);
+  border-color: var(--color-cryo-border);
+}
+
+.section-tag.violet {
+  color: var(--color-violet);
+  background: var(--color-violet-glow);
+  border-color: var(--color-violet-border);
+}
+
+.section-tag.emerald {
+  color: var(--color-emerald);
+  background: var(--color-emerald-glow);
+  border-color: var(--color-emerald-border);
 }
 
 .section-title {
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.65;
-  color: var(--color-metal-muted);
+  color: var(--color-text-secondary);
 }
 
-/* Button & Action Components */
+/* Minimalist Vibrant Action Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 0.85rem 1.75rem;
-  border-radius: var(--radius-xs);
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -216,62 +217,63 @@ p {
   user-select: none;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--color-amber), var(--color-amber-hover));
-  color: #000000;
-  border-color: #fbbf24;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #fbbf24, var(--color-amber));
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
-  transform: translateY(-2px);
-  color: #000000;
-}
-
-.btn-secondary {
-  background: var(--color-slate-surface);
-  color: var(--color-steel-silver);
-  border: 1px solid var(--color-steel-border);
-}
-
-.btn-secondary:hover {
-  background: var(--color-slate-hover);
-  border-color: var(--color-metal-muted);
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
 .btn-cryo {
-  background: linear-gradient(135deg, var(--color-cryo), var(--color-cryo-hover));
-  color: #ffffff;
-  border-color: #38bdf8;
-  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+  background: linear-gradient(135deg, #00d2ff, #0284c7);
+  color: #040812;
+  box-shadow: 0 4px 18px rgba(0, 210, 255, 0.35);
 }
 
 .btn-cryo:hover {
-  background: linear-gradient(135deg, #38bdf8, var(--color-cryo));
-  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+  background: linear-gradient(135deg, #38bdf8, #00d2ff);
+  box-shadow: 0 8px 25px rgba(0, 210, 255, 0.55);
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+.btn-amber {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #080500;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+}
+
+.btn-amber:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.55);
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+.btn-violet {
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.35);
+}
+
+.btn-violet:hover {
+  background: linear-gradient(135deg, #c084fc, #8b5cf6);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.55);
   transform: translateY(-2px);
   color: #ffffff;
 }
 
 .btn-outline {
-  background: transparent;
-  color: var(--color-metal-text);
-  border: 1px solid var(--color-steel-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
 }
 
 .btn-outline:hover {
-  border-color: var(--color-amber);
-  color: var(--color-amber);
-  background: var(--color-amber-glow);
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.82rem;
+  padding: 0.45rem 1rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-xs);
 }
 
 .btn-block {
@@ -284,15 +286,21 @@ p {
   align-items: center;
   gap: 0.35rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--color-steel-border);
-  background: var(--color-slate-surface);
-  color: var(--color-metal-muted);
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary);
+}
+
+.badge-cryo {
+  background: var(--color-cryo-glow);
+  color: var(--color-cryo);
+  border-color: var(--color-cryo-border);
 }
 
 .badge-amber {
@@ -301,56 +309,22 @@ p {
   border-color: var(--color-amber-border);
 }
 
-.badge-cryo {
-  background: var(--color-cryo-glow);
-  color: var(--color-cryo);
-  border-color: rgba(14, 165, 233, 0.35);
+.badge-violet {
+  background: var(--color-violet-glow);
+  color: var(--color-violet);
+  border-color: var(--color-violet-border);
 }
 
-.badge-success {
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--color-success);
-  border-color: rgba(16, 185, 129, 0.35);
+.badge-emerald {
+  background: var(--color-emerald-glow);
+  color: var(--color-emerald);
+  border-color: var(--color-emerald-border);
 }
 
-/* Cards & Industrial Panels */
-.industrial-panel {
-  background: var(--color-slate-surface);
-  border: 1px solid var(--color-steel-border);
-  border-radius: var(--radius-sm);
-  padding: 1.75rem;
-  position: relative;
-  transition: all 0.25s ease;
-  box-shadow: var(--shadow-sm);
-}
-
-.industrial-panel:hover {
-  border-color: var(--color-steel-light);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Subtle corner rivets/brackets */
-.industrial-rivets {
-  position: relative;
-}
-.industrial-rivets::before,
-.industrial-rivets::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #64748b;
-  box-shadow: inset 1px 1px 1px #cbd5e1, 1px 1px 2px rgba(0,0,0,0.8);
-}
-.industrial-rivets::before {
-  top: 8px;
-  left: 8px;
-}
-.industrial-rivets::after {
-  top: 8px;
-  right: 8px;
+.badge-coral {
+  background: var(--color-coral-glow);
+  color: var(--color-coral);
+  border-color: var(--color-coral-border);
 }
 
 /* Accessible Screen Reader Only */
@@ -366,7 +340,7 @@ p {
   border: 0;
 }
 
-/* Floating WhatsApp / Quick Contact */
+/* Floating WhatsApp / Direct B2B */
 .floating-whatsapp {
   position: fixed;
   bottom: 2rem;
@@ -377,21 +351,21 @@ p {
   gap: 0.65rem;
   background: #25d366;
   color: #ffffff;
-  padding: 0.75rem 1.25rem;
-  border-radius: 50px;
+  padding: 0.75rem 1.35rem;
+  border-radius: var(--radius-full);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   letter-spacing: 0.04em;
   text-decoration: none;
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
   transition: all 0.25s ease;
 }
 
 .floating-whatsapp:hover {
   background: #20ba5a;
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+  box-shadow: 0 14px 35px rgba(37, 211, 102, 0.6);
   color: #ffffff;
 }
 
@@ -409,6 +383,5 @@ p {
     padding: 0.85rem;
     bottom: 1.25rem;
     right: 1.25rem;
-    border-radius: 50%;
   }
 }
