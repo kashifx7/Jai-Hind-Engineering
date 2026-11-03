@@ -1,6 +1,7 @@
 /* ==========================================================================
    SECTION TWO: 5 MAJOR REFRIGERATION & FABRICATION HIGHLIGHTS
    (Fridge, Ice Cream Machine, Defridger, Cone Maker, Display Counter)
+   Minimalist & Colorful Design: Big Hero Images, Essential Clean Specs
    ========================================================================== */
 
 .major-showcase-section {
@@ -24,10 +25,11 @@
 @media (max-width: 720px) {
   .major-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
-/* Major Equipment Card (Minimalist + Chromatic Accent) */
+/* Major Equipment Card (Minimalist Luxury Surface + Vibrant Border Hover) */
 .major-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -40,34 +42,34 @@
   position: relative;
 }
 
-/* Chromatic Hover Border & Glow per Category */
+/* Vibrant Chromatic Hover Glow per Category */
 .major-card.theme-cryo:hover {
   border-color: var(--color-cryo-border);
-  box-shadow: 0 16px 40px -10px rgba(0, 210, 255, 0.25);
+  box-shadow: 0 16px 40px -10px rgba(0, 210, 255, 0.22);
   transform: translateY(-4px);
 }
 
 .major-card.theme-emerald:hover {
   border-color: var(--color-emerald-border);
-  box-shadow: 0 16px 40px -10px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 16px 40px -10px rgba(16, 185, 129, 0.22);
   transform: translateY(-4px);
 }
 
 .major-card.theme-amber:hover {
   border-color: var(--color-amber-border);
-  box-shadow: 0 16px 40px -10px rgba(245, 158, 11, 0.25);
+  box-shadow: 0 16px 40px -10px rgba(245, 158, 11, 0.22);
   transform: translateY(-4px);
 }
 
 .major-card.theme-coral:hover {
   border-color: var(--color-coral-border);
-  box-shadow: 0 16px 40px -10px rgba(244, 63, 94, 0.25);
+  box-shadow: 0 16px 40px -10px rgba(244, 63, 94, 0.22);
   transform: translateY(-4px);
 }
 
 .major-card.theme-violet:hover {
   border-color: var(--color-violet-border);
-  box-shadow: 0 16px 40px -10px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 16px 40px -10px rgba(139, 92, 246, 0.22);
   transform: translateY(-4px);
 }
 
@@ -84,17 +86,18 @@
   }
 }
 
-/* Media / Image Viewport */
+/* BIG Media / Image Viewport - Hero Visual Presentation */
 .major-media-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16/11;
+  min-height: 270px;
   background: #04060c;
   overflow: hidden;
 }
 
 .major-card.card-featured .major-media-wrapper {
-  width: 52%;
+  width: 54%;
   aspect-ratio: auto;
   min-height: 380px;
 }
@@ -103,7 +106,7 @@
   .major-card.card-featured .major-media-wrapper {
     width: 100%;
     aspect-ratio: 16/11;
-    min-height: auto;
+    min-height: 280px;
   }
 }
 
@@ -115,10 +118,10 @@
 }
 
 .major-card:hover .major-media-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
-/* Category Float Pill on Media */
+/* Floating Badges on Image */
 .major-badge-float {
   position: absolute;
   top: 1rem;
@@ -131,14 +134,14 @@
   bottom: 1rem;
   right: 1rem;
   z-index: 2;
-  background: rgba(10, 14, 24, 0.85);
+  background: rgba(8, 12, 20, 0.85);
   backdrop-filter: blur(8px);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.35rem 0.85rem;
+  padding: 0.35rem 0.8rem;
   border-radius: var(--radius-full);
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -149,41 +152,43 @@
 
 .inspect-360-trigger:hover {
   background: var(--color-cryo);
-  color: #000;
+  color: #000000;
   border-color: var(--color-cryo);
 }
 
 .inspect-360-trigger svg {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
 }
 
-/* Card Content Body */
+/* Card Content Body - Clean, Airy, Minimalist */
 .major-card-body {
-  padding: 1.75rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .major-card.card-featured .major-card-body {
-  width: 48%;
-  padding: 2.25rem;
+  width: 46%;
+  padding: 2rem 2.25rem;
+  justify-content: center;
 }
 
 @media (max-width: 1100px) {
   .major-card.card-featured .major-card-body {
     width: 100%;
-    padding: 1.75rem;
+    padding: 1.5rem;
   }
 }
 
 .major-sku {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
 }
 
 .major-sku.cryo { color: var(--color-cryo); }
@@ -193,103 +198,60 @@
 .major-sku.violet { color: var(--color-violet); }
 
 .major-title {
-  font-size: 1.35rem;
-  margin-bottom: 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
   color: #ffffff;
 }
 
 .major-card.card-featured .major-title {
-  font-size: 1.65rem;
+  font-size: 1.55rem;
 }
 
 .major-desc {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--color-text-secondary);
-  line-height: 1.55;
-  margin-bottom: 1.35rem;
+  line-height: 1.5;
+  margin-bottom: 1.15rem;
 }
 
-/* Specifications Matrix */
-.major-specs-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem 0.9rem;
-  margin-bottom: 1.25rem;
-}
-
-.spec-item {
+/* Minimalist Spec Pills Row */
+.major-specs-pills {
   display: flex;
-  flex-direction: column;
-}
-
-.spec-key {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
-}
-
-.spec-val {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-steel);
-}
-
-/* Disclosure (<details>) */
-.major-details-disclosure {
+  flex-wrap: wrap;
+  gap: 0.45rem;
   margin-bottom: 1.25rem;
-  border: 1px solid var(--color-border);
+}
+
+.spec-pill {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-xs);
-  background: rgba(255, 255, 255, 0.015);
-}
-
-.major-details-disclosure summary {
-  padding: 0.55rem 0.85rem;
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  user-select: none;
-  display: flex;
+  padding: 0.22rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-steel);
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.35rem;
 }
 
-.major-details-disclosure[open] summary {
-  border-bottom: 1px solid var(--color-border);
+.spec-pill strong {
   color: #ffffff;
 }
 
-.major-details-box {
-  padding: 0.75rem;
-  font-size: 0.82rem;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-}
-
-.major-details-box ul {
-  padding-left: 1.1rem;
-  margin: 0;
-}
-
-.major-details-box li {
-  margin-bottom: 0.35rem;
-}
-
-/* Card Actions */
+/* Minimal Card Action Buttons */
 .major-card-actions {
   display: flex;
-  gap: 0.65rem;
+  align-items: center;
+  gap: 0.75rem;
   margin-top: auto;
 }
 
 .major-card-actions .btn {
   flex: 1;
+  text-align: center;
+  justify-content: center;
 }
