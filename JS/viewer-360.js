@@ -15,6 +15,12 @@
     fridge: {
       name: 'Commercial Display Refrigerator (JHE-CR-450)',
       category: 'Commercial Refrigeration',
+      specs: {
+        model: 'JHE-CR-450 Visi Cooler',
+        temp: '+1°C to +8°C Uniform Air',
+        compressor: 'Embraco Aspera Tropical 1/4 HP',
+        steel: '1.2mm SS-304 Food Grade'
+      },
       frames: [
         { minAngle: 315, maxAngle: 45, src: 'IMG/major-fridge.jpg', label: 'Front HD Showcase (0°)' },
         { minAngle: 45, maxAngle: 135, src: 'IMG/image-2.jpeg', label: 'Isometric Quarter Angle (45°)' },
@@ -51,6 +57,12 @@
     counter: {
       name: 'Curved Glass Sweet & Bakery Counter (JHE-SC-800)',
       category: 'Display Counters',
+      specs: {
+        model: 'JHE-SC-800 Mithai Counter',
+        temp: '+2°C to +10°C / Ambient Dual',
+        compressor: 'Tecumseh Silent Chiller 1/3 HP',
+        steel: '10mm Curved Glass + SS-304'
+      },
       frames: [
         { minAngle: 315, maxAngle: 45, src: 'IMG/major-counter.jpg', label: 'Front Bakery & Mithai View (0°)' },
         { minAngle: 45, maxAngle: 135, src: 'IMG/counter-2.jpeg', label: 'Isometric Display Angle (45°)' },
@@ -87,6 +99,12 @@
     icecream: {
       name: 'Soft Serve & Cone Cream Dispenser (JHE-IC-320)',
       category: 'Ice Cream Machinery',
+      specs: {
+        model: 'JHE-IC-320 Soft Serve & Cone',
+        temp: '-8°C Rapid Freezing Well',
+        compressor: 'Twin Cryogenic R-404A Engine',
+        steel: 'Dual SS-304 Freezing Wells'
+      },
       frames: [
         { minAngle: 315, maxAngle: 45, src: 'IMG/major-icecream.jpg', label: 'Soft Serve Dispenser (0°)' },
         { minAngle: 45, maxAngle: 135, src: 'IMG/major-cone-maker.jpg', label: 'Cone Making Station (45°)' },
@@ -123,6 +141,12 @@
     defriger: {
       name: 'Sub-Zero Cryo Deep Freezer (JHE-DF-500)',
       category: 'Deep Storage Freezers',
+      specs: {
+        model: 'JHE-DF-500 Cryo Deep Freezer',
+        temp: '-18°C to -24°C Sub-Zero',
+        compressor: 'Tecumseh Cryo 1/3 HP',
+        steel: '70mm Injected PUF + Copper Coils'
+      },
       frames: [
         { minAngle: 315, maxAngle: 45, src: 'IMG/major-defriger.jpg', label: 'Front Hard-Top View (0°)' },
         { minAngle: 45, maxAngle: 135, src: 'IMG/image-3.jpeg', label: 'Deep Storage Cavity (45°)' },
@@ -181,7 +205,24 @@
     setupEventListeners();
     renderProductHotspots();
     updateViewer(0);
+    updateSpecsStrip('fridge');
     init3DCanvas();
+  }
+
+  function updateSpecsStrip(productId) {
+    const data = PRODUCTS_DATA[productId];
+    if (!data || !data.specs) return;
+    const modelEl = document.getElementById('spec-strip-model');
+    const tempEl = document.getElementById('spec-strip-temp');
+    const compEl = document.getElementById('spec-strip-compressor');
+    const steelEl = document.getElementById('spec-strip-steel');
+    const quoteBtn = document.getElementById('viewer-quote-btn');
+
+    if (modelEl) modelEl.textContent = data.specs.model;
+    if (tempEl) tempEl.textContent = data.specs.temp;
+    if (compEl) compEl.textContent = data.specs.compressor;
+    if (steelEl) steelEl.textContent = data.specs.steel;
+    if (quoteBtn) quoteBtn.setAttribute('data-product-type', data.name);
   }
 
   function updateViewer(angle) {
@@ -335,6 +376,7 @@
           btn.classList.add('active');
           renderProductHotspots();
           updateViewer(currentAngle);
+          updateSpecsStrip(prod);
           if (window.jhe3dScene) {
             window.jhe3dScene.render();
           }

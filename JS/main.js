@@ -282,7 +282,7 @@
   // 6. IMAGE LIGHTBOX (ZOOM IN INSPECTION)
   // =========================================================================
   function initLightbox() {
-    const zoomableImages = document.querySelectorAll('.product-media-container img, .icecream-thumb img');
+    const zoomableImages = document.querySelectorAll('.part-media img, .turntable-image-frame');
     const lightboxDialog = document.getElementById('lightbox-dialog');
     const lightboxImg = document.getElementById('lightbox-image');
 
