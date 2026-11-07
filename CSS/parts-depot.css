@@ -1,6 +1,6 @@
 /* ==========================================================================
    PARTS & HARDWARE DEPOT (10 HD COMPONENTS CATALOG)
-   Motors, Fan Blades, Copper & Wire, Trays, Compressors, Gas, Controllers, Valves, Castors, Gaskets
+   California Burrito Theme: Warm Earthy Cards, Fresh Avocado, Maize & Chipotle Glows
    Minimalist & Colorful Layout with Prominent High-Def Imagery
    ========================================================================== */
 
@@ -34,14 +34,14 @@
   padding: 0.75rem 1rem 0.75rem 2.6rem;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  color: #ffffff;
+  color: #fffdfa;
   outline: none;
   transition: all 0.2s ease;
 }
 
 .parts-search-input:focus {
   border-color: var(--color-cryo);
-  box-shadow: 0 0 16px rgba(0, 210, 255, 0.2);
+  box-shadow: 0 0 16px rgba(34, 197, 94, 0.25);
 }
 
 .parts-search-icon {
@@ -81,7 +81,7 @@
 }
 
 .category-pill:hover {
-  color: #ffffff;
+  color: #fffdfa;
   border-color: var(--color-border-hover);
   background: rgba(255, 255, 255, 0.06);
 }
@@ -90,7 +90,7 @@
   background: var(--color-cryo-glow);
   color: var(--color-cryo);
   border-color: var(--color-cryo-border);
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.25);
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
 }
 
 /* Results Count Bar */
@@ -141,21 +141,21 @@
 }
 
 /* Specific Category Accent on Card Hover */
-.part-card[data-category="motor"]:hover { border-color: var(--color-violet-border); box-shadow: 0 12px 30px -10px rgba(139, 92, 246, 0.3); }
-.part-card[data-category="fan"]:hover { border-color: var(--color-cryo-border); box-shadow: 0 12px 30px -10px rgba(0, 210, 255, 0.3); }
-.part-card[data-category="wire"]:hover { border-color: var(--color-amber-border); box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.3); }
-.part-card[data-category="tray"]:hover { border-color: rgba(226, 232, 240, 0.4); box-shadow: 0 12px 30px -10px rgba(255, 255, 255, 0.15); }
-.part-card[data-category="compressor"]:hover { border-color: var(--color-coral-border); box-shadow: 0 12px 30px -10px rgba(244, 63, 94, 0.3); }
-.part-card[data-category="gas"]:hover { border-color: var(--color-emerald-border); box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.3); }
-.part-card[data-category="controller"]:hover { border-color: var(--color-cryo-border); box-shadow: 0 12px 30px -10px rgba(0, 210, 255, 0.3); }
-.part-card[data-category="hardware"]:hover { border-color: var(--color-amber-border); box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.3); }
+.part-card[data-category="motor"]:hover { border-color: var(--color-violet-border); box-shadow: 0 12px 30px -10px rgba(234, 88, 12, 0.35); }
+.part-card[data-category="fan"]:hover { border-color: var(--color-cryo-border); box-shadow: 0 12px 30px -10px rgba(34, 197, 94, 0.35); }
+.part-card[data-category="wire"]:hover { border-color: var(--color-amber-border); box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.35); }
+.part-card[data-category="tray"]:hover { border-color: rgba(254, 243, 199, 0.4); box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.2); }
+.part-card[data-category="compressor"]:hover { border-color: var(--color-coral-border); box-shadow: 0 12px 30px -10px rgba(225, 29, 72, 0.35); }
+.part-card[data-category="gas"]:hover { border-color: var(--color-emerald-border); box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.35); }
+.part-card[data-category="controller"]:hover { border-color: var(--color-cryo-border); box-shadow: 0 12px 30px -10px rgba(34, 197, 94, 0.35); }
+.part-card[data-category="hardware"]:hover { border-color: var(--color-amber-border); box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.35); }
 
 /* Component Media Image Container - BIG & IMPACTFUL */
 .part-media {
   width: 100%;
   aspect-ratio: 4/3;
   min-height: 220px;
-  background: #04060c;
+  background: #0d0a08;
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid var(--color-border);
@@ -176,15 +176,15 @@
   position: absolute;
   top: 0.65rem;
   left: 0.65rem;
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(27, 22, 18, 0.88);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   padding: 0.18rem 0.5rem;
   border-radius: var(--radius-xs);
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #fffdfa;
   z-index: 2;
 }
 
@@ -215,7 +215,7 @@
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #fffdfa;
   line-height: 1.25;
   margin-bottom: 0.4rem;
 }
@@ -229,7 +229,7 @@
 
 .part-specs-pill {
   background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.15);
   border-radius: var(--radius-xs);
   padding: 0.35rem 0.55rem;
   font-family: var(--font-mono);

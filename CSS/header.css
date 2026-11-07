@@ -1,11 +1,12 @@
 /* ==========================================================================
-   HEADER & INDUSTRIAL TOP BAR - SLEEK & MINIMALIST
+   HEADER & TOP BAR - CALIFORNIA BURRITO THEME
+   Warm Earthy Roasted Glass, Fresh Avocado Green Accents & Golden Maize
    ========================================================================== */
 
-/* Topbar - Ultra-Slim 28px Status Strip */
+/* Topbar - Warm Roasted Strip */
 .industrial-topbar {
-  background-color: #04060a;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #0b0907;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.12);
   font-size: 0.72rem;
   color: var(--color-metal-muted);
   height: var(--topbar-height, 28px);
@@ -34,29 +35,29 @@
   align-items: center;
   gap: 0.35rem;
   text-decoration: none;
-  color: var(--color-metal-muted);
+  color: #d6cfc7;
   transition: color 0.2s ease;
 }
 
 .topbar-item:hover {
-  color: var(--color-amber);
+  color: #f59e0b;
 }
 
 .topbar-item svg {
   width: 12px;
   height: 12px;
-  color: var(--color-amber);
+  color: #f59e0b;
 }
 
 .topbar-badge {
-  background: rgba(245, 158, 11, 0.1);
-  color: var(--color-amber);
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.35);
   padding: 0.1rem 0.45rem;
   border-radius: var(--radius-xs);
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 @media (max-width: 900px) {
@@ -65,15 +66,15 @@
   }
 }
 
-/* Main Site Header - Ultra-Minimalist Top 2nd Bar */
+/* Main Site Header - Warm Roasted Glass */
 .site-header {
   position: sticky;
   top: 0;
   width: 100%;
-  background: rgba(7, 9, 15, 0.9);
+  background: rgba(22, 17, 13, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.15);
   z-index: 100;
   height: var(--header-height, 56px);
   display: flex;
@@ -88,7 +89,7 @@
   width: 100%;
 }
 
-/* Minimal Brand Monogram & Wordmark */
+/* Brand Monogram & Wordmark */
 .brand-link {
   display: flex;
   align-items: center;
@@ -97,20 +98,20 @@
 }
 
 .brand-symbol-minimal {
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(0, 210, 255, 0.12));
-  border: 1px solid rgba(245, 158, 11, 0.4);
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(245, 158, 11, 0.2));
+  border: 1px solid #f59e0b;
   border-radius: var(--radius-xs);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 800;
-  color: var(--color-amber);
+  color: #f59e0b;
   letter-spacing: 0.04em;
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
 }
 
 .brand-text {
@@ -123,22 +124,22 @@
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  color: #ffffff;
+  letter-spacing: 0.04em;
+  color: #fffdfa;
   line-height: 1;
   text-transform: uppercase;
 }
 
 .brand-accent {
-  color: var(--color-amber);
+  color: #22c55e;
 }
 
 .brand-tagline-pill {
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  font-weight: 600;
-  color: var(--color-text-dim);
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  color: #f59e0b;
+  border-left: 1px solid rgba(245, 158, 11, 0.3);
   padding-left: 0.45rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -150,7 +151,7 @@
   }
 }
 
-/* Minimal Navigation Links */
+/* Navigation Links */
 .main-nav {
   display: flex;
   align-items: center;
@@ -169,10 +170,10 @@
 .nav-link {
   font-family: var(--font-display);
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-text-secondary);
+  color: #d6cfc7;
   text-decoration: none;
   padding: 0.35rem 0.1rem;
   position: relative;
@@ -186,12 +187,12 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: var(--color-amber);
+  background-color: #22c55e;
   transition: width 0.25s ease;
 }
 
 .nav-link:hover {
-  color: #ffffff;
+  color: #fffdfa;
 }
 
 .nav-link:hover::after,
@@ -200,10 +201,10 @@
 }
 
 .nav-link.active {
-  color: var(--color-amber);
+  color: #22c55e;
 }
 
-/* Minimal Header Action Buttons */
+/* Header Action Buttons */
 .header-actions {
   display: flex;
   align-items: center;
@@ -217,32 +218,39 @@
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--color-text-secondary);
+  color: #d6cfc7;
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  background: rgba(245, 158, 11, 0.06);
   transition: all 0.2s ease;
 }
 
 .header-phone-pill:hover {
-  color: var(--color-amber);
-  border-color: var(--color-amber-border);
-  background: var(--color-amber-glow);
+  color: #f59e0b;
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
 }
 
 .header-phone-pill svg {
   width: 12px;
   height: 12px;
-  color: var(--color-amber);
+  color: #f59e0b;
 }
 
 .btn-minimal-quote {
-  padding: 0.38rem 0.85rem;
+  padding: 0.38rem 0.95rem;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   border-radius: var(--radius-xs);
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  color: #120900;
+}
+
+.btn-minimal-quote:hover {
+  background: linear-gradient(135deg, #f59e0b, #b45309);
+  color: #000000;
 }
 
 @media (max-width: 1080px) {
@@ -255,8 +263,8 @@
 .mobile-nav-toggle {
   display: none;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #fffdfa;
   padding: 0.4rem;
   border-radius: var(--radius-xs);
   cursor: pointer;
@@ -282,8 +290,8 @@
     width: 80%;
     max-width: 320px;
     height: calc(100vh - var(--header-height, 56px));
-    background: #090d16;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    background: #18130f;
+    border-left: 1px solid rgba(245, 158, 11, 0.2);
     flex-direction: column;
     align-items: flex-start;
     padding: 2rem 1.5rem;
@@ -310,7 +318,7 @@
     width: 100%;
     display: block;
     padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.1);
   }
 
   .header-actions {
