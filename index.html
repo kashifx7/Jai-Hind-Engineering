@@ -50,9 +50,9 @@
   </aside>
 
   <!-- =========================================================================
-       PRIMARY SITE HEADER (MINIMALIST TOP 2ND BAR - 3 PARTS NAVIGATION)
+       PRIMARY SITE HEADER (MINIMALIST FROSTED GLASS NAVBAR)
        ========================================================================= -->
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a href="#part-1-factory" class="brand-link" aria-label="Jai Hind Engineering Works Home">
         <span class="brand-symbol-minimal">JH</span>
@@ -62,38 +62,84 @@
         </div>
       </a>
 
-      <nav class="main-nav" aria-label="Main site navigation">
+      <!-- Desktop Navigation Links -->
+      <nav class="main-nav desktop-nav" aria-label="Main site navigation">
         <ul class="nav-list">
-          <li><a href="#part-1-factory" class="nav-link active">1. Factory (Est. 1980)</a></li>
+          <li><a href="#part-1-factory" class="nav-link active">1. Factory Heritage</a></li>
           <li><a href="#part-2-3d" class="nav-link">2. 3D Studio</a></li>
           <li><a href="#part-3-spares" class="nav-link">3. 10 Spares</a></li>
           <li><a href="#contact" class="nav-link">Contact Desk</a></li>
         </ul>
-
-        <div class="mobile-nav-actions">
-          <button type="button" class="btn btn-amber btn-sm btn-block open-quote-modal-btn">Request Factory Quote</button>
-        </div>
       </nav>
 
+      <!-- Header Actions (Visible on Desktop & Mobile) -->
       <div class="header-actions">
-        <a href="tel:+919838021456" class="header-phone-pill">
+        <a href="tel:+919838021456" class="header-phone-pill" aria-label="Call factory directly">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          +91 98380 21456
+          <span>+91 98380 21456</span>
         </a>
         <button type="button" class="btn btn-amber btn-minimal-quote open-quote-modal-btn">
           Get Quote
         </button>
-        <button type="button" class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-drawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
         </button>
       </div>
     </div>
   </header>
 
+  <!-- =========================================================================
+       ACCESSIBLE MOBILE NAVIGATION DRAWER
+       ========================================================================= -->
+  <div class="mobile-drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation Menu" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="brand-symbol-minimal">JH</span>
+        <span class="brand-name">Jai Hind Engineering</span>
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <nav class="drawer-nav" aria-label="Mobile site links">
+        <a href="#part-1-factory" class="drawer-nav-link">
+          <span class="nav-step">01</span>
+          <span>Factory Heritage (Est. 1980)</span>
+        </a>
+        <a href="#part-2-3d" class="drawer-nav-link">
+          <span class="nav-step">02</span>
+          <span>Interactive 3D Studio</span>
+        </a>
+        <a href="#part-3-spares" class="drawer-nav-link">
+          <span class="nav-step">03</span>
+          <span>10 Hardware Spares Depot</span>
+        </a>
+        <a href="#contact" class="drawer-nav-link">
+          <span class="nav-step">04</span>
+          <span>Factory Contact &amp; Location</span>
+        </a>
+      </nav>
+
+      <div class="drawer-actions">
+        <button type="button" class="btn btn-amber btn-block open-quote-modal-btn">Request Factory Quote</button>
+        <a href="https://wa.me/919838021456?text=Hello%20Jai%20Hind%20Engineering,%20I%20am%20inquiring%20about%20commercial%20cooling/counter%20fabrication." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-drawer btn-block">
+          WhatsApp Direct Desk
+        </a>
+        <a href="tel:+919838021456" class="drawer-phone-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>+91 98380 21456 • Badhmandi Chauraha, Sultanpur</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
   <main>
     <!-- =========================================================================
          PART 01: CINEMATIC FACTORY VIDEO BACKGROUND & HERITAGE (EST. 1980)
-         Full-Bleed Industrial Video with Prestigious Factory Credentials Overlay
          ========================================================================= -->
     <section class="hero-section" id="part-1-factory">
       <!-- 1. Cinematic Industrial Video Background -->
@@ -105,13 +151,14 @@
       <div class="hero-video-overlay"></div>
       <div class="hero-video-mesh"></div>
 
-      <!-- 2. Rich Factory Credentials Overlay -->
+      <!-- 2. Clean Factory Credentials Overlay (Reduced Cognitive Overload) -->
       <div class="container hero-content-wrapper">
         <div class="hero-header-badges">
-          <span class="part-indicator-badge">Part 01 // Factory Heritage</span>
-          <span class="badge badge-amber">Operating Since 1980 • 44+ Years</span>
-          <span class="badge badge-cryo">Sultanpur, Uttar Pradesh</span>
-          <span class="badge badge-emerald">Tropical 48°C Tested</span>
+          <span class="hero-kicker-pill">
+            <span class="kicker-dot"></span>
+            Est. 1980 • Sultanpur, Uttar Pradesh
+          </span>
+          <span class="badge badge-cryo">Tropical 48°C Tested</span>
         </div>
 
         <h1 class="hero-headline">
@@ -120,7 +167,7 @@
         </h1>
 
         <p class="hero-description">
-          Founded in <strong>Sultanpur in 1980</strong>, Jai Hind Engineering is North India’s premier industrial manufacturer of heavy commercial display refrigerators, sweet &amp; bakery display counters, sub-zero defridgers, and soft serve ice cream machines. Engineered with <strong>100% food-grade SS-304 stainless steel</strong> and high-back-pressure tropicalized cooling circuits.
+          Founded in <strong>Sultanpur in 1980</strong>, Jai Hind Engineering is North India’s premier manufacturer of commercial display refrigerators, sweet &amp; bakery display counters, and sub-zero defridgers. Engineered with <strong>100% food-grade SS-304 stainless steel</strong> and high-back-pressure tropicalized cooling circuits.
         </p>
 
         <div class="hero-actions">
@@ -236,13 +283,6 @@
               Drag horizontally or scrub slider to rotate 360°
             </div>
 
-            <div class="future-3d-banner" style="display: none;">
-              <span class="badge badge-cryo">3D CAD Pipeline Active</span>
-              <div class="future-3d-text">
-                Live interactive 3D WebGL render. Drop production <code>.glb</code> / <code>.gltf</code> models into <code>assets/models/</code> to replace with custom CAD meshes.
-              </div>
-            </div>
-
             <div class="turntable-container">
               <img id="turntable-img" class="turntable-image-frame" src="IMG/major-fridge.jpg" alt="360 view angle of Jai Hind Engineering product" width="1200" height="900">
               <div id="hotspots-layer"></div>
@@ -265,18 +305,12 @@
                 <button type="button" class="preset-btn" data-angle="45">Quarter (45°)</button>
                 <button type="button" class="preset-btn" data-angle="90">Side (90°)</button>
                 <button type="button" class="preset-btn" data-angle="180">Back (180°)</button>
-                <button type="button" class="preset-btn" data-angle="270">Side-L (270°)</button>
-                <button type="button" class="preset-btn" data-angle="315">Top-Iso (315°)</button>
               </div>
 
               <div class="controls-aux-group">
                 <button type="button" class="control-icon-btn" id="auto-rotate-btn" title="Toggle automatic turntable rotation">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
                   Auto-Rotate
-                </button>
-                <button type="button" class="control-icon-btn" id="wireframe-btn" style="display: none;" title="Toggle 3D wireframe mesh mode">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon></svg>
-                  Wireframe
                 </button>
                 <button type="button" class="control-icon-btn" id="reset-view-btn" title="Reset angle to 0 degrees">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
@@ -670,7 +704,7 @@
               Submit your required equipment specifications. Transmits directly to our engineering desk for an instant quotation.
             </p>
 
-            <form class="inquiry-form" id="main-inquiry-form" onsubmit="event.preventDefault(); document.querySelector('.open-quote-modal-btn').click();">
+            <form class="inquiry-form" id="main-inquiry-form">
               <div class="form-row">
                 <div class="form-group">
                   <label for="contact-name">Your Name / Business *</label>
@@ -708,7 +742,7 @@
 
               <button type="submit" class="btn btn-amber btn-block">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                Launch Custom Quote Calculator
+                Send Inquiry to Factory WhatsApp
               </button>
             </form>
           </div>
@@ -828,26 +862,29 @@
           </div>
         </div>
 
-        <!-- Custom Dimension Estimator -->
-        <div style="margin-top: 0.5rem;">
-          <label style="font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--color-steel);">
-            Custom Dimensions (Length &times; Width &times; Height in Inches)
-          </label>
-          <div class="form-row" style="margin-top: 0.4rem;">
-            <div class="form-group">
-              <input type="number" id="calc-length" class="form-input" placeholder="Length (e.g. 60 inches / 5ft)" min="12" max="180">
+        <!-- Custom Dimension Estimator (Content-First Noise Reduction via Disclosure) -->
+        <details class="custom-calc-details">
+          <summary>Need Custom Dimensions? Open Volume &amp; Sizing Calculator</summary>
+          <div style="margin-top: 0.75rem;">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="calc-length">Length (Inches)</label>
+                <input type="number" id="calc-length" class="form-input" placeholder="e.g. 60 (5 ft)" min="12" max="180">
+              </div>
+              <div class="form-group">
+                <label for="calc-width">Depth (Inches)</label>
+                <input type="number" id="calc-width" class="form-input" placeholder="e.g. 30 (2.5 ft)" min="12" max="60">
+              </div>
+              <div class="form-group">
+                <label for="calc-height">Height (Inches)</label>
+                <input type="number" id="calc-height" class="form-input" placeholder="e.g. 48 (4 ft)" min="12" max="96">
+              </div>
             </div>
-            <div class="form-group">
-              <input type="number" id="calc-width" class="form-input" placeholder="Depth (e.g. 30 inches)" min="12" max="60">
-            </div>
-            <div class="form-group">
-              <input type="number" id="calc-height" class="form-input" placeholder="Height (e.g. 48 inches / 4ft)" min="12" max="96">
+            <div class="calculator-preview-box" id="calculator-result-text">
+              Enter dimensions in inches to calculate estimated storage volume &amp; running feet.
             </div>
           </div>
-          <div class="calculator-preview-box" id="calculator-result-text">
-            Enter dimensions in inches to calculate estimated storage volume &amp; running feet.
-          </div>
-        </div>
+        </details>
 
         <div class="form-row" style="margin-top: 0.5rem;">
           <div class="form-group">

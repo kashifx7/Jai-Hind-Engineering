@@ -69,7 +69,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-height) + 24px);
+  scroll-padding-top: calc(var(--header-height) + 20px);
   font-size: 16px;
   color-scheme: dark;
 }
@@ -86,6 +86,17 @@ body {
     radial-gradient(circle at 50% 0%, rgba(41, 151, 255, 0.04) 0%, transparent 60%);
 }
 
+/* Touch manipulation & tap highlight optimization */
+button, a, input, select, textarea, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scroll targets clearance */
+:target {
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
 /* Container */
 .container {
   width: 100%;
@@ -96,6 +107,13 @@ body {
   padding-right: 1.5rem;
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
 }
 
 .section-padding {
@@ -295,4 +313,72 @@ p {
 /* Industrial Rivets & Blueprint grid overridden with sleek minimalism */
 .industrial-rivets, .blueprint-grid {
   background-image: none;
+}
+
+/* Horizontal Scroll Utilities for Mobile Swipeable Chips */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Modern Details Disclosure (Content-First Noise Reduction) */
+details.custom-calc-details {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin-top: 0.85rem;
+  transition: all 0.25s ease;
+}
+
+details.custom-calc-details[open] {
+  background: rgba(41, 151, 255, 0.04);
+  border-color: rgba(41, 151, 255, 0.35);
+}
+
+details.custom-calc-details summary {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2997ff;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  user-select: none;
+  padding: 0.2rem 0;
+}
+
+details.custom-calc-details summary::-webkit-details-marker {
+  display: none;
+}
+
+details.custom-calc-details summary::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #2997ff;
+  border-bottom: 2px solid #2997ff;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-right: 0.25rem;
+}
+
+details.custom-calc-details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+/* Accessible User-Invalid Forms (Modern Web Guidance) */
+.form-input:user-invalid,
+.form-select:user-invalid,
+.form-textarea:user-invalid {
+  border-color: #ff453a;
+  box-shadow: 0 0 10px rgba(255, 69, 58, 0.2);
 }
