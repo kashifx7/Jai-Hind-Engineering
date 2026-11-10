@@ -333,23 +333,43 @@
       }
     });
 
+    let startY = 0;
+    let isHorizontalGesture = false;
+
     stage.addEventListener('touchstart', (e) => {
       if (e.target.closest('.hotspot-pin') || e.target.closest('button')) return;
       isDragging = true;
+      isHorizontalGesture = false;
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
       startAngle = currentAngle;
       stopAutoRotate();
     }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
-      const deltaX = e.touches[0].clientX - startX;
-      const newAngle = startAngle + deltaX * 0.65;
-      updateViewer(newAngle);
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+
+      // Distinguish intentional horizontal turntable drag from vertical page scroll
+      if (!isHorizontalGesture) {
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 7) {
+          isHorizontalGesture = true;
+        } else if (Math.abs(dy) > 10) {
+          isDragging = false;
+          return;
+        }
+      }
+
+      if (isHorizontalGesture) {
+        const newAngle = startAngle + dx * 0.65;
+        updateViewer(newAngle);
+      }
     }, { passive: true });
 
     window.addEventListener('touchend', () => {
       isDragging = false;
+      isHorizontalGesture = false;
     });
 
     if (scrubber) {
