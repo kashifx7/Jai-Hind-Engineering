@@ -232,6 +232,18 @@
         openQuoteModalWithPart(sku, name);
       });
     });
+
+    // Tap card on touch screens to reveal/toggle specs cleanly
+    partCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.part-btn')) return;
+        const wasActive = card.classList.contains('is-active');
+        partCards.forEach(c => c.classList.remove('is-active'));
+        if (!wasActive) {
+          card.classList.add('is-active');
+        }
+      });
+    });
   }
 
   // =========================================================================
