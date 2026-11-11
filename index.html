@@ -20,6 +20,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Google model-viewer Web Component for Real-time 3D GLB Rendering -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -243,16 +246,25 @@
             <!-- Product Selector Pills -->
             <div class="viewer-product-selector" role="tablist" aria-label="Select product for 360 inspection">
               <button type="button" class="viewer-product-btn active" data-product="fridge" role="tab" aria-selected="true">
-                Commercial Fridge (JHE-CR-450)
+                Commercial Fridge (JHE-CR-450) <span class="badge-3d">3D</span>
               </button>
               <button type="button" class="viewer-product-btn" data-product="counter" role="tab" aria-selected="false">
                 Mithai Counter (JHE-SC-800)
               </button>
               <button type="button" class="viewer-product-btn" data-product="icecream" role="tab" aria-selected="false">
-                Ice Cream Machine (JHE-IC-320)
+                Ice Cream Machine (JHE-IC-320) <span class="badge-3d">3D</span>
               </button>
               <button type="button" class="viewer-product-btn" data-product="defriger" role="tab" aria-selected="false">
                 Defridger Freezer (JHE-DF-500)
+              </button>
+              <button type="button" class="viewer-product-btn" data-product="compressor" role="tab" aria-selected="false">
+                Compressor (JHE-CMP-EM65) <span class="badge-3d">3D</span>
+              </button>
+              <button type="button" class="viewer-product-btn" data-product="motor" role="tab" aria-selected="false">
+                Electric Motor (JHE-MTR-16W) <span class="badge-3d">3D</span>
+              </button>
+              <button type="button" class="viewer-product-btn" data-product="fan" role="tab" aria-selected="false">
+                Exhaust Fan (JHE-FAN-AL10) <span class="badge-3d">3D</span>
               </button>
             </div>
 
@@ -260,11 +272,11 @@
             <div class="viewer-mode-switch">
               <button type="button" class="mode-btn active" data-mode="turntable" title="Inspect through multi-angle photography">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
-                360° Turntable
+                360° Photo
               </button>
-              <button type="button" class="mode-btn cad-mode" data-mode="cad-3d" title="Switch to interactive 3D WebGL / CAD model">
+              <button type="button" class="mode-btn cad-mode" data-mode="cad-3d" title="Switch to interactive 3D model">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                3D CAD Mode
+                3D Model
               </button>
             </div>
           </div>
@@ -273,15 +285,42 @@
           <div class="viewer-stage" id="viewer-stage" aria-label="Interactive 360 degree product view. Drag horizontally to rotate.">
             <div class="turntable-pedestal"></div>
 
-            <div class="drag-hint-pill" aria-hidden="true">
+            <div class="drag-hint-pill" id="drag-hint-pill" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11l-6-6-6 6M6 13l6 6 6-6"></path></svg>
-              Drag horizontally or scrub slider to rotate 360°
+              <span id="drag-hint-text">Drag horizontally or scrub slider to rotate 360°</span>
             </div>
 
-            <div class="turntable-container">
+            <div class="turntable-container" id="turntable-container">
               <img id="turntable-img" class="turntable-image-frame" src="IMG/major-fridge.jpg" alt="360 view angle of Jai Hind Engineering product" width="1200" height="900">
               <div id="hotspots-layer"></div>
             </div>
+
+            <!-- Interactive 3D Model Viewer (GLB) -->
+            <model-viewer
+              id="cad-model-viewer"
+              class="cad-model-viewer-element"
+              src="assets/CadModels/fridge.glb"
+              alt="Interactive 3D model"
+              auto-rotate
+              auto-rotate-delay="1000"
+              rotation-per-second="24deg"
+              camera-controls
+              touch-action="pan-y"
+              shadow-intensity="1.5"
+              shadow-softness="0.8"
+              exposure="1.0"
+              environment-image="neutral"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              interaction-prompt="auto"
+              loading="eager"
+              bounds="tight"
+              style="display: none;">
+              <div slot="poster" class="model-loading-poster">
+                <div class="model-spinner"></div>
+                <p>Loading 3D Model...</p>
+              </div>
+            </model-viewer>
 
             <canvas id="cad-canvas" class="cad-webgl-canvas" width="1000" height="540"></canvas>
           </div>

@@ -1,20 +1,22 @@
 /**
  * JAI HIND ENGINEERING WORKS - 360° & 3D PRODUCT INSPECTOR
  * Features:
+ * - Real-time 3D GLB CAD Model Rendering via Google <model-viewer>
  * - 360 Turntable multi-angle image scrubber using HD imagery
  * - Interactive technical hotspot inspection pins
- * - Multi-product switching (Fridges, Counters, Ice Cream & Cone Maker, Defridgers)
- * - 3D CAD WebGL canvas mode (procedural 3D model & slot for future .GLB/.GLTF files)
+ * - Multi-product switching (Commercial Fridge, Mithai Counter, Ice Cream Machine, Defridger Freezer, Compressor, Motor, Fan)
+ * - 3D & 360 Mode switching with bi-directional orbit & angle scrubber synchronization
  */
 
 (function () {
   'use strict';
 
-  // Product configurations & HD angle frame mappings
+  // Product configurations, 3D GLB assets & HD angle frame mappings
   const PRODUCTS_DATA = {
     fridge: {
       name: 'Commercial Display Refrigerator (JHE-CR-450)',
       category: 'Commercial Refrigeration',
+      glb: 'assets/CadModels/fridge.glb',
       specs: {
         model: 'JHE-CR-450 Visi Cooler',
         temp: '+1°C to +8°C Uniform Air',
@@ -57,6 +59,7 @@
     counter: {
       name: 'Curved Glass Sweet & Bakery Counter (JHE-SC-800)',
       category: 'Display Counters',
+      glb: null,
       specs: {
         model: 'JHE-SC-800 Mithai Counter',
         temp: '+2°C to +10°C / Ambient Dual',
@@ -99,6 +102,7 @@
     icecream: {
       name: 'Soft Serve & Cone Cream Dispenser (JHE-IC-320)',
       category: 'Ice Cream Machinery',
+      glb: 'assets/CadModels/icecreammachine.glb',
       specs: {
         model: 'JHE-IC-320 Soft Serve & Cone',
         temp: '-8°C Rapid Freezing Well',
@@ -141,6 +145,7 @@
     defriger: {
       name: 'Sub-Zero Cryo Deep Freezer (JHE-DF-500)',
       category: 'Deep Storage Freezers',
+      glb: null,
       specs: {
         model: 'JHE-DF-500 Cryo Deep Freezer',
         temp: '-18°C to -24°C Sub-Zero',
@@ -171,6 +176,135 @@
           desc: 'Continuous duty hermetic compressor with external heat sink fan.'
         }
       ]
+    },
+    compressor: {
+      name: 'Embraco Hermetic Compressor (JHE-CMP-EM65)',
+      category: 'Refrigeration Components',
+      glb: 'assets/CadModels/compressor.glb',
+      specs: {
+        model: 'JHE-CMP-EM65 Hermetic Compressor',
+        temp: '-10°C to +7.2°C Evaporating',
+        compressor: 'Embraco 1/4 HP Tropical R-134a',
+        steel: 'Coated Hermetic Steel Shell'
+      },
+      frames: [
+        { minAngle: 315, maxAngle: 45, src: 'IMG/comp-compressor.jpg', label: 'Front Suction/Discharge Ports (0°)' },
+        { minAngle: 45, maxAngle: 135, src: 'IMG/comp-compressor.jpg', label: 'Side Terminal Housing (45°-90°)' },
+        { minAngle: 135, maxAngle: 225, src: 'IMG/comp-compressor.jpg', label: 'Rear Mounting Feet & Oil Sump (180°)' },
+        { minAngle: 225, maxAngle: 315, src: 'IMG/comp-compressor.jpg', label: 'Process Tube Profile (270°)' }
+      ],
+      hotspots: [
+        {
+          id: 1,
+          x: 42,
+          y: 35,
+          tag: 'Copper Ports',
+          title: 'Suction & Discharge Stubs',
+          desc: 'Heavy-gauge brazed copper tubes for leak-proof connection to condenser circuits.'
+        },
+        {
+          id: 2,
+          x: 65,
+          y: 50,
+          tag: 'Motor Chamber',
+          title: 'Hermetic Motor Chamber',
+          desc: 'Tropicalized continuous-duty motor rated for 48°C ambient with internal thermal overload protection.'
+        },
+        {
+          id: 3,
+          x: 35,
+          y: 75,
+          tag: 'Vibration Mounts',
+          title: 'Neoprene Anti-Vibration Grommets',
+          desc: 'Heavy-duty rubber suspension grommets preventing noise transmission to cabinet frame.'
+        }
+      ]
+    },
+    motor: {
+      name: 'Shaded Pole Condenser Motor (JHE-MTR-16W)',
+      category: 'Fan & Motor Components',
+      glb: 'assets/CadModels/electric_motor.glb',
+      specs: {
+        model: 'JHE-MTR-16W Shaded Pole Motor',
+        temp: 'Class B Insulation (-30°C to +50°C)',
+        compressor: '230V / 50Hz 1300 RPM 16W Output',
+        steel: 'Die-Cast Aluminum + Copper Windings'
+      },
+      frames: [
+        { minAngle: 315, maxAngle: 45, src: 'IMG/comp-motor.jpg', label: 'Front Drive Shaft (0°)' },
+        { minAngle: 45, maxAngle: 135, src: 'IMG/comp-motor.jpg', label: 'Stator Cooling Fins (45°-90°)' },
+        { minAngle: 135, maxAngle: 225, src: 'IMG/comp-motor.jpg', label: 'Terminal Leads & Rear Bearing (180°)' },
+        { minAngle: 225, maxAngle: 315, src: 'IMG/comp-motor.jpg', label: 'Bracket Mounting Ring (270°)' }
+      ],
+      hotspots: [
+        {
+          id: 1,
+          x: 50,
+          y: 28,
+          tag: 'Drive Spindle',
+          title: 'Precision Ground Steel Shaft',
+          desc: 'Hardened ground steel spindle with flat keyway for direct fan blade installation.'
+        },
+        {
+          id: 2,
+          x: 40,
+          y: 55,
+          tag: 'Copper Windings',
+          title: '100% Electrolytic Copper Windings',
+          desc: 'Vacuum-varnished dual-insulated copper coils engineered for continuous 24/7 duty.'
+        },
+        {
+          id: 3,
+          x: 62,
+          y: 75,
+          tag: 'Bearing Bush',
+          title: 'Self-Aligning Porous Bronze Bearings',
+          desc: 'Oil-impregnated sintered sleeve bearings providing silent operation and zero maintenance.'
+        }
+      ]
+    },
+    fan: {
+      name: '10" Aluminum Condenser Fan (JHE-FAN-AL10)',
+      category: 'Air Draft Components',
+      glb: 'assets/CadModels/exhaust_fan.glb',
+      specs: {
+        model: 'JHE-FAN-AL10 10-Inch Fan Assembly',
+        temp: 'High CFM Forced Draft (650 m³/h)',
+        compressor: '5-Wing Aerodynamic High Pitch',
+        steel: 'Stamped Aluminum Blades + Steel Hub'
+      },
+      frames: [
+        { minAngle: 315, maxAngle: 45, src: 'IMG/comp-fan.jpg', label: 'Front Aerodynamic Face (0°)' },
+        { minAngle: 45, maxAngle: 135, src: 'IMG/comp-fan.jpg', label: 'Blade Pitch Profile (45°-90°)' },
+        { minAngle: 135, maxAngle: 225, src: 'IMG/comp-fan.jpg', label: 'Rear Hub & Shaft Collet (180°)' },
+        { minAngle: 225, maxAngle: 315, src: 'IMG/comp-fan.jpg', label: 'Peripheral Air Induction Arc (270°)' }
+      ],
+      hotspots: [
+        {
+          id: 1,
+          x: 50,
+          y: 25,
+          tag: 'Aero Blades',
+          title: 'Dynamically Balanced Aluminum Wings',
+          desc: 'Curved aerodynamic 5-blade profile engineered for maximum static air pressure and low acoustic dB.'
+        },
+        {
+          id: 2,
+          x: 50,
+          y: 50,
+          tag: 'Center Boss',
+          title: 'Heavy-Gauge Zinc Steel Boss',
+          desc: 'Corrosion-proof zinc-plated hub with Allen locking screw for vibration-free lock to shaft.'
+        },
+        {
+          id: 3,
+          x: 72,
+          y: 65,
+          tag: 'Heat Dissipation',
+          title: 'Rapid Condenser Heat Extraction',
+          desc: 'Directs uniform forced airflow across refrigeration condenser coils to prevent high-head cutouts.'
+        }
+      ]
     }
   };
 
@@ -182,7 +316,7 @@
   let startAngle = 0;
   let autoRotateInterval = null;
   let isAutoRotate = false;
-  let currentMode = 'turntable';
+  let currentMode = 'turntable'; // 'turntable' or 'cad-3d'
   let isWireframe = false;
 
   // DOM Elements
@@ -196,17 +330,20 @@
   const presetButtons = document.querySelectorAll('.preset-btn');
   const autoRotateBtn = document.getElementById('auto-rotate-btn');
   const resetBtn = document.getElementById('reset-view-btn');
-  const wireframeBtn = document.getElementById('wireframe-btn');
   const cadCanvas = document.getElementById('cad-canvas');
+  const cadModelViewer = document.getElementById('cad-model-viewer');
+  const turntableContainer = document.getElementById('turntable-container');
+  const dragHintText = document.getElementById('drag-hint-text');
 
   function initViewer() {
-    if (!stage || !frameImg) return;
+    if (!stage) return;
 
     setupEventListeners();
     renderProductHotspots();
     updateViewer(0);
     updateSpecsStrip('fridge');
     init3DCanvas();
+    applyCurrentMode();
   }
 
   function updateSpecsStrip(productId) {
@@ -225,6 +362,58 @@
     if (quoteBtn) quoteBtn.setAttribute('data-product-type', data.name);
   }
 
+  function applyCurrentMode() {
+    const product = PRODUCTS_DATA[currentProductId];
+    const hasGlb = product && !!product.glb;
+
+    if (currentMode === 'cad-3d') {
+      // 3D CAD Mode Active
+      if (turntableContainer) turntableContainer.style.display = 'none';
+      if (hotspotsLayer) hotspotsLayer.style.display = 'none';
+
+      if (hasGlb && cadModelViewer) {
+        if (cadCanvas) cadCanvas.classList.remove('active');
+        cadModelViewer.style.display = 'block';
+
+        const targetSrc = product.glb;
+        if (cadModelViewer.getAttribute('src') !== targetSrc) {
+          cadModelViewer.src = targetSrc;
+          cadModelViewer.alt = product.name;
+        }
+
+        cadModelViewer.cameraOrbit = `${currentAngle}deg 75deg auto`;
+        cadModelViewer.autoRotate = isAutoRotate;
+
+        if (dragHintText) {
+          dragHintText.textContent = 'Drag in 3D to rotate, pitch & zoom model';
+        }
+      } else {
+        // Fallback procedural CAD canvas
+        if (cadModelViewer) cadModelViewer.style.display = 'none';
+        if (cadCanvas) cadCanvas.classList.add('active');
+        if (dragHintText) {
+          dragHintText.textContent = 'Drag horizontally or scrub slider to rotate 3D wireframe';
+        }
+        if (window.jhe3dScene && window.jhe3dScene.render) {
+          window.jhe3dScene.render();
+        }
+      }
+    } else {
+      // 360° Photo Turntable Mode Active
+      if (cadModelViewer) {
+        cadModelViewer.style.display = 'none';
+        cadModelViewer.autoRotate = false;
+      }
+      if (cadCanvas) cadCanvas.classList.remove('active');
+      if (turntableContainer) turntableContainer.style.display = 'flex';
+      if (hotspotsLayer) hotspotsLayer.style.display = 'block';
+      if (dragHintText) {
+        dragHintText.textContent = 'Drag horizontally or scrub slider to rotate 360°';
+      }
+      updateViewer(currentAngle);
+    }
+  }
+
   function updateViewer(angle) {
     currentAngle = ((Math.round(angle) % 360) + 360) % 360;
 
@@ -233,43 +422,48 @@
       angleReadout.textContent = `${String(currentAngle).padStart(3, '0')}°`;
     }
 
+    presetButtons.forEach(btn => {
+      const btnAngle = parseInt(btn.getAttribute('data-angle'), 10);
+      btn.classList.toggle('active', Math.abs(currentAngle - btnAngle) <= 15);
+    });
+
     const product = PRODUCTS_DATA[currentProductId];
     if (!product) return;
 
-    let matchedSrc = product.frames[0].src;
-
-    for (const frame of product.frames) {
-      if (frame.minAngle > frame.maxAngle) {
-        if (currentAngle >= frame.minAngle || currentAngle < frame.maxAngle) {
-          matchedSrc = frame.src;
-          break;
-        }
-      } else {
-        if (currentAngle >= frame.minAngle && currentAngle < frame.maxAngle) {
-          matchedSrc = frame.src;
-          break;
-        }
-      }
+    // Sync camera orbit with 3D model viewer when active
+    if (currentMode === 'cad-3d' && product.glb && cadModelViewer) {
+      cadModelViewer.cameraOrbit = `${currentAngle}deg 75deg auto`;
     }
 
-    if (frameImg.getAttribute('src') !== matchedSrc) {
-      frameImg.src = matchedSrc;
-    }
-
-    const skewFactor = Math.sin((currentAngle * Math.PI) / 180) * 1.5;
-    frameImg.style.transform = `scale(1) skewY(${skewFactor * 0.3}deg)`;
-
-    presetButtons.forEach(btn => {
-      const btnAngle = parseInt(btn.getAttribute('data-angle'), 10);
-      if (Math.abs(currentAngle - btnAngle) <= 15) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-
+    // Sync procedural 3D canvas
     if (window.jhe3dScene && window.jhe3dScene.mesh) {
       window.jhe3dScene.mesh.rotation.y = (currentAngle * Math.PI) / 180;
+    }
+
+    // Turntable photo frame matching
+    if (frameImg && product.frames && product.frames.length > 0) {
+      let matchedSrc = product.frames[0].src;
+
+      for (const frame of product.frames) {
+        if (frame.minAngle > frame.maxAngle) {
+          if (currentAngle >= frame.minAngle || currentAngle < frame.maxAngle) {
+            matchedSrc = frame.src;
+            break;
+          }
+        } else {
+          if (currentAngle >= frame.minAngle && currentAngle < frame.maxAngle) {
+            matchedSrc = frame.src;
+            break;
+          }
+        }
+      }
+
+      if (frameImg.getAttribute('src') !== matchedSrc) {
+        frameImg.src = matchedSrc;
+      }
+
+      const skewFactor = Math.sin((currentAngle * Math.PI) / 180) * 1.5;
+      frameImg.style.transform = `scale(1) skewY(${skewFactor * 0.3}deg)`;
     }
   }
 
@@ -310,7 +504,9 @@
   }
 
   function setupEventListeners() {
+    // Stage drag handling for 360 Photo turntable
     stage.addEventListener('mousedown', (e) => {
+      if (currentMode === 'cad-3d' && PRODUCTS_DATA[currentProductId]?.glb) return;
       if (e.target.closest('.hotspot-pin') || e.target.closest('button')) return;
       isDragging = true;
       startX = e.clientX;
@@ -337,6 +533,7 @@
     let isHorizontalGesture = false;
 
     stage.addEventListener('touchstart', (e) => {
+      if (currentMode === 'cad-3d' && PRODUCTS_DATA[currentProductId]?.glb) return;
       if (e.target.closest('.hotspot-pin') || e.target.closest('button')) return;
       isDragging = true;
       isHorizontalGesture = false;
@@ -351,7 +548,6 @@
       const dx = e.touches[0].clientX - startX;
       const dy = e.touches[0].clientY - startY;
 
-      // Distinguish intentional horizontal turntable drag from vertical page scroll
       if (!isHorizontalGesture) {
         if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 7) {
           isHorizontalGesture = true;
@@ -372,6 +568,29 @@
       isHorizontalGesture = false;
     });
 
+    // Model Viewer Camera Change Event (Bidirectional sync with slider)
+    if (cadModelViewer) {
+      cadModelViewer.addEventListener('camera-change', (event) => {
+        if (event.detail && event.detail.source === 'user-interaction') {
+          const orbit = cadModelViewer.getCameraOrbit();
+          if (orbit && typeof orbit.theta === 'number') {
+            let deg = Math.round((orbit.theta * 180) / Math.PI) % 360;
+            if (deg < 0) deg += 360;
+            currentAngle = deg;
+            if (scrubber) scrubber.value = currentAngle;
+            if (angleReadout) {
+              angleReadout.textContent = `${String(currentAngle).padStart(3, '0')}°`;
+            }
+            presetButtons.forEach(btn => {
+              const btnAngle = parseInt(btn.getAttribute('data-angle'), 10);
+              btn.classList.toggle('active', Math.abs(currentAngle - btnAngle) <= 15);
+            });
+          }
+        }
+      });
+    }
+
+    // Scrubber Slider
     if (scrubber) {
       scrubber.addEventListener('input', (e) => {
         stopAutoRotate();
@@ -379,60 +598,49 @@
       });
     }
 
+    // Angle Presets
     presetButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         stopAutoRotate();
         const targetAngle = parseInt(btn.getAttribute('data-angle'), 10);
         animateToAngle(targetAngle);
+        if (currentMode === 'cad-3d' && PRODUCTS_DATA[currentProductId]?.glb && cadModelViewer) {
+          cadModelViewer.cameraOrbit = `${targetAngle}deg 75deg auto`;
+        }
       });
     });
 
+    // Product Selector Buttons
     productButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const prod = btn.getAttribute('data-product');
         if (prod && PRODUCTS_DATA[prod]) {
           currentProductId = prod;
-          productButtons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+          productButtons.forEach(b => {
+            const isActive = (b === btn);
+            b.classList.toggle('active', isActive);
+            b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
           renderProductHotspots();
-          updateViewer(currentAngle);
           updateSpecsStrip(prod);
-          if (window.jhe3dScene) {
-            window.jhe3dScene.render();
-          }
+          applyCurrentMode();
+          updateViewer(currentAngle);
         }
       });
     });
 
+    // Mode Switcher Buttons (360° Photo vs 3D Model)
     modeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const mode = btn.getAttribute('data-mode');
         if (!mode) return;
         currentMode = mode;
-        modeButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const turntableContainer = document.querySelector('.turntable-container');
-        const futureBadge = document.querySelector('.future-3d-banner');
-
-        if (mode === 'cad-3d') {
-          if (turntableContainer) turntableContainer.style.display = 'none';
-          if (cadCanvas) cadCanvas.classList.add('active');
-          if (futureBadge) futureBadge.style.display = 'block';
-          if (wireframeBtn) wireframeBtn.style.display = 'inline-flex';
-          if (window.jhe3dScene && window.jhe3dScene.render) {
-            window.jhe3dScene.render();
-          }
-        } else {
-          if (turntableContainer) turntableContainer.style.display = 'flex';
-          if (cadCanvas) cadCanvas.classList.remove('active');
-          if (futureBadge) futureBadge.style.display = 'none';
-          if (wireframeBtn) wireframeBtn.style.display = 'none';
-          updateViewer(currentAngle);
-        }
+        modeButtons.forEach(b => b.classList.toggle('active', b === btn));
+        applyCurrentMode();
       });
     });
 
+    // Auto-Rotate Button
     if (autoRotateBtn) {
       autoRotateBtn.addEventListener('click', () => {
         if (isAutoRotate) {
@@ -443,20 +651,17 @@
       });
     }
 
+    // Reset Angle Button
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
         stopAutoRotate();
-        animateToAngle(0);
-      });
-    }
-
-    if (wireframeBtn) {
-      wireframeBtn.addEventListener('click', () => {
-        isWireframe = !isWireframe;
-        wireframeBtn.classList.toggle('active', isWireframe);
-        if (window.jhe3dScene && window.jhe3dScene.setWireframe) {
-          window.jhe3dScene.setWireframe(isWireframe);
+        if (currentMode === 'cad-3d' && cadModelViewer) {
+          cadModelViewer.cameraOrbit = '0deg 75deg auto';
+          if (typeof cadModelViewer.resetTurntable === 'function') {
+            cadModelViewer.resetTurntable();
+          }
         }
+        animateToAngle(0);
       });
     }
 
@@ -491,23 +696,34 @@
   function startAutoRotate() {
     isAutoRotate = true;
     if (autoRotateBtn) autoRotateBtn.classList.add('active');
-    if (autoRotateInterval) clearInterval(autoRotateInterval);
 
+    if (currentMode === 'cad-3d' && PRODUCTS_DATA[currentProductId]?.glb && cadModelViewer) {
+      cadModelViewer.autoRotate = true;
+    }
+
+    if (autoRotateInterval) clearInterval(autoRotateInterval);
     autoRotateInterval = setInterval(() => {
-      updateViewer(currentAngle + 1);
+      if (currentMode === 'turntable' || !PRODUCTS_DATA[currentProductId]?.glb) {
+        updateViewer(currentAngle + 1);
+      }
     }, 40);
   }
 
   function stopAutoRotate() {
     isAutoRotate = false;
     if (autoRotateBtn) autoRotateBtn.classList.remove('active');
+
+    if (cadModelViewer) {
+      cadModelViewer.autoRotate = false;
+    }
+
     if (autoRotateInterval) {
       clearInterval(autoRotateInterval);
       autoRotateInterval = null;
     }
   }
 
-  // 3D Canvas Engine
+  // Procedural 3D Canvas Fallback Engine
   function init3DCanvas() {
     if (!cadCanvas) return;
     const ctx = cadCanvas.getContext('2d');
@@ -539,7 +755,7 @@
 
     const faces = [
       [0, 1, 2, 3, '#101626'],
-      [4, 5, 6, 7, 'rgba(0, 210, 255, 0.22)'],
+      [4, 5, 6, 7, 'rgba(0, 113, 227, 0.25)'],
       [0, 4, 7, 3, '#141d33'],
       [1, 5, 6, 2, '#1e2945'],
       [3, 2, 6, 7, '#0b101c'],
@@ -574,7 +790,7 @@
     }
 
     function render3D() {
-      if (currentMode !== 'cad-3d') return;
+      if (currentMode !== 'cad-3d' || PRODUCTS_DATA[currentProductId]?.glb) return;
 
       const w = stage.clientWidth;
       const h = stage.clientHeight;
@@ -584,7 +800,7 @@
       const projected = vertices.map(v => project(v, rotY));
 
       // Floor Grid
-      ctx.strokeStyle = 'rgba(0, 210, 255, 0.12)';
+      ctx.strokeStyle = 'rgba(0, 113, 227, 0.15)';
       ctx.lineWidth = 1;
       const gridRadius = 240;
       ctx.beginPath();
@@ -616,7 +832,7 @@
         ctx.closePath();
 
         if (isWireframe) {
-          ctx.strokeStyle = '#00d2ff';
+          ctx.strokeStyle = '#2997ff';
           ctx.lineWidth = 1.5;
           ctx.stroke();
         } else {
@@ -640,31 +856,10 @@
         ctx.lineTo(s2[0], s2[1]);
         ctx.lineTo(s3[0], s3[1]);
         ctx.closePath();
-        ctx.strokeStyle = isWireframe ? '#f59e0b' : 'rgba(245, 158, 11, 0.6)';
+        ctx.strokeStyle = isWireframe ? '#2997ff' : 'rgba(41, 151, 255, 0.6)';
         ctx.lineWidth = 1.2;
         ctx.stroke();
       });
-
-      // Digital Sub-Zero LED display mock on top front
-      const d1 = project([-35, -baseHeight + 15, baseDepth + 1], rotY);
-      const d2 = project([35, -baseHeight + 15, baseDepth + 1], rotY);
-      const d3 = project([35, -baseHeight + 35, baseDepth + 1], rotY);
-      const d4 = project([-35, -baseHeight + 35, baseDepth + 1], rotY);
-
-      ctx.beginPath();
-      ctx.moveTo(d1[0], d1[1]);
-      ctx.lineTo(d2[0], d2[1]);
-      ctx.lineTo(d3[0], d3[1]);
-      ctx.lineTo(d4[0], d4[1]);
-      ctx.closePath();
-      ctx.fillStyle = '#060a12';
-      ctx.fill();
-      ctx.strokeStyle = '#00d2ff';
-      ctx.stroke();
-
-      ctx.fillStyle = '#00d2ff';
-      ctx.font = '10px monospace';
-      ctx.fillText('-02°C', d1[0] + 12, d1[1] + 14);
 
       requestAnimationFrame(render3D);
     }
