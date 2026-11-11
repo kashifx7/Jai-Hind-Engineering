@@ -113,7 +113,7 @@
           <span>Factory Heritage (Est. 1980)</span>
         </a>
         <a href="#part-2-3d" class="drawer-nav-link">
-          <span>See Our Products (360° View)</span>
+          <span>See Our Products (3D View)</span>
         </a>
         <a href="#part-3-spares" class="drawer-nav-link">
           <span>Similar Products &amp; Components</span>
@@ -171,7 +171,7 @@
         <div class="hero-actions">
           <a href="#part-2-3d" class="btn btn-cryo">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-            See Our Products in 360° &darr;
+            See Our Products in 3D &darr;
           </a>
           <a href="#part-3-spares" class="btn btn-violet">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 2v20M2 12h20"></path></svg>
@@ -234,65 +234,50 @@
     <section class="section-padding viewer-section" id="part-2-3d">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag cryo">360° Product View</span>
-          <h2 class="section-title">See Our Products in 360°</h2>
+          <span class="section-tag cryo">Interactive 3D Studio</span>
+          <h2 class="section-title">See Our Products in 3D</h2>
           <p class="section-subtitle">
-            Explore our commercial refrigerators, sweet display counters, and ice cream machines from every angle before you order. Built with heavy-duty food-grade stainless steel and tropicalized cooling circuits.
+            Inspect our commercial refrigerators, ice cream machinery, and heavy-duty cooling components in interactive 3D. Rotate 360°, zoom in on precision welds and fittings, and review technical specs before you order.
           </p>
         </div>
 
         <div class="viewer-wrapper">
           <div class="viewer-topbar">
             <!-- Product Selector Pills -->
-            <div class="viewer-product-selector" role="tablist" aria-label="Select product for 360 inspection">
+            <div class="viewer-product-selector" role="tablist" aria-label="Select product for 3D inspection">
               <button type="button" class="viewer-product-btn active" data-product="fridge" role="tab" aria-selected="true">
-                Commercial Fridge (JHE-CR-450) <span class="badge-3d">3D</span>
-              </button>
-              <button type="button" class="viewer-product-btn" data-product="counter" role="tab" aria-selected="false">
-                Mithai Counter (JHE-SC-800)
+                Commercial Fridge (JHE-CR-450)
               </button>
               <button type="button" class="viewer-product-btn" data-product="icecream" role="tab" aria-selected="false">
-                Ice Cream Machine (JHE-IC-320) <span class="badge-3d">3D</span>
-              </button>
-              <button type="button" class="viewer-product-btn" data-product="defriger" role="tab" aria-selected="false">
-                Defridger Freezer (JHE-DF-500)
+                Ice Cream Machine (JHE-IC-320)
               </button>
               <button type="button" class="viewer-product-btn" data-product="compressor" role="tab" aria-selected="false">
-                Compressor (JHE-CMP-EM65) <span class="badge-3d">3D</span>
+                Compressor (JHE-CMP-EM65)
               </button>
               <button type="button" class="viewer-product-btn" data-product="motor" role="tab" aria-selected="false">
-                Electric Motor (JHE-MTR-16W) <span class="badge-3d">3D</span>
+                Electric Motor (JHE-MTR-16W)
               </button>
               <button type="button" class="viewer-product-btn" data-product="fan" role="tab" aria-selected="false">
-                Exhaust Fan (JHE-FAN-AL10) <span class="badge-3d">3D</span>
+                Exhaust Fan (JHE-FAN-AL10)
               </button>
             </div>
 
-            <!-- Mode Switcher -->
-            <div class="viewer-mode-switch">
-              <button type="button" class="mode-btn active" data-mode="turntable" title="Inspect through multi-angle photography">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
-                360° Photo
-              </button>
-              <button type="button" class="mode-btn cad-mode" data-mode="cad-3d" title="Switch to interactive 3D model">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                3D Model
+            <!-- 3D Actions (AR in Room) -->
+            <div class="viewer-topbar-actions">
+              <button type="button" class="view-ar-btn" id="trigger-ar-btn" title="View 3D model in your actual space with Augmented Reality (AR)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                View in Room (AR)
               </button>
             </div>
           </div>
 
-          <!-- Viewport Stage -->
-          <div class="viewer-stage" id="viewer-stage" aria-label="Interactive 360 degree product view. Drag horizontally to rotate.">
+          <!-- Viewport Stage (100% Real 3D GLB Model) -->
+          <div class="viewer-stage" id="viewer-stage" aria-label="Interactive 3D product view. Drag in 3D to rotate and scroll to zoom.">
             <div class="turntable-pedestal"></div>
 
             <div class="drag-hint-pill" id="drag-hint-pill" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11l-6-6-6 6M6 13l6 6 6-6"></path></svg>
-              <span id="drag-hint-text">Drag horizontally or scrub slider to rotate 360°</span>
-            </div>
-
-            <div class="turntable-container" id="turntable-container">
-              <img id="turntable-img" class="turntable-image-frame" src="IMG/major-fridge.jpg" alt="360 view angle of Jai Hind Engineering product" width="1200" height="900">
-              <div id="hotspots-layer"></div>
+              <span id="drag-hint-text">Drag in 3D to rotate • Scroll or pinch to zoom</span>
             </div>
 
             <!-- Interactive 3D Model Viewer (GLB) -->
@@ -300,36 +285,33 @@
               id="cad-model-viewer"
               class="cad-model-viewer-element"
               src="assets/CadModels/fridge.glb"
-              alt="Interactive 3D model"
+              alt="Interactive 3D model - Commercial Fridge (JHE-CR-450)"
               auto-rotate
-              auto-rotate-delay="1000"
-              rotation-per-second="24deg"
+              auto-rotate-delay="1200"
+              rotation-per-second="20deg"
               camera-controls
               touch-action="pan-y"
               shadow-intensity="1.5"
               shadow-softness="0.8"
-              exposure="1.0"
+              exposure="1.05"
               environment-image="neutral"
               ar
               ar-modes="webxr scene-viewer quick-look"
               interaction-prompt="auto"
               loading="eager"
-              bounds="tight"
-              style="display: none;">
+              bounds="tight">
               <div slot="poster" class="model-loading-poster">
                 <div class="model-spinner"></div>
                 <p>Loading 3D Model...</p>
               </div>
             </model-viewer>
-
-            <canvas id="cad-canvas" class="cad-webgl-canvas" width="1000" height="540"></canvas>
           </div>
 
           <!-- Bottom Controls Bar -->
           <div class="viewer-controls-bar">
             <div class="controls-main-row">
               <div class="angle-scrubber-group">
-                <label for="angle-slider" class="sr-only">Turntable Rotation Angle (0 to 360 degrees)</label>
+                <label for="angle-slider" class="sr-only">3D Camera Rotation Angle (0 to 360 degrees)</label>
                 <input type="range" id="angle-slider" class="angle-scrubber-slider" min="0" max="359" value="0" step="1">
                 <div class="angle-readout" id="angle-readout" aria-live="polite">000°</div>
               </div>
@@ -342,13 +324,13 @@
               </div>
 
               <div class="controls-aux-group">
-                <button type="button" class="control-icon-btn" id="auto-rotate-btn" title="Toggle automatic turntable rotation">
+                <button type="button" class="control-icon-btn active" id="auto-rotate-btn" title="Toggle automatic 3D rotation">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
                   Auto-Rotate
                 </button>
-                <button type="button" class="control-icon-btn" id="reset-view-btn" title="Reset angle to 0 degrees">
+                <button type="button" class="control-icon-btn" id="reset-view-btn" title="Reset camera view to front">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-                  Reset
+                  Reset View
                 </button>
               </div>
             </div>
@@ -807,7 +789,7 @@
         <h4 class="footer-col-title">Quick Links</h4>
         <ul class="footer-links-list">
           <li class="footer-link-item"><a href="#part-1-factory">Factory Heritage (Est. 1980)</a></li>
-          <li class="footer-link-item"><a href="#part-2-3d">See Our Products (360°)</a></li>
+          <li class="footer-link-item"><a href="#part-2-3d">See Our Products (3D)</a></li>
           <li class="footer-link-item"><a href="#part-3-spares">Spares &amp; Components</a></li>
           <li class="footer-link-item"><a href="#contact">Direct Factory Connect Desk</a></li>
         </ul>

@@ -122,6 +122,38 @@
   border-color: #0071e3;
 }
 
+.viewer-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.view-ar-btn {
+  background: rgba(41, 151, 255, 0.12);
+  border: 1px solid rgba(41, 151, 255, 0.35);
+  color: #2997ff;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.42rem 0.95rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+  min-height: 38px;
+  white-space: nowrap;
+}
+
+.view-ar-btn:hover {
+  background: #0071e3;
+  color: #ffffff;
+  border-color: #0071e3;
+  box-shadow: 0 2px 10px rgba(0, 113, 227, 0.4);
+}
+
 .viewer-mode-switch {
   display: flex;
   align-items: center;
@@ -134,7 +166,7 @@
 }
 
 @media (max-width: 768px) {
-  .viewer-mode-switch {
+  .viewer-topbar-actions {
     align-self: flex-start;
   }
 }
@@ -270,9 +302,14 @@
   height: 100%;
   z-index: 3;
   outline: none;
+  cursor: grab;
   --poster-color: transparent;
   --progress-bar-color: #0071e3;
   --progress-bar-height: 2px;
+}
+
+.cad-model-viewer-element:active {
+  cursor: grabbing;
 }
 
 .model-loading-poster {
