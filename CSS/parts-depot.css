@@ -1,7 +1,6 @@
 /* ==========================================================================
-   PARTS & HARDWARE DEPOT (10 HD COMPONENTS CATALOG)
-   Motors, Fan Blades, Copper & Wire, Trays, Compressors, Gas, Controllers, Valves, Castors, Gaskets
-   Minimalist & Colorful Layout with Prominent High-Def Imagery
+   SIMILAR PRODUCTS & COMPONENTS CATALOG (TITANIUM FORGE & LUMINESCENT CRYO)
+   Clean Resting Cards with High-Def Imagery & Hover/Touch Reveal Specs Drawer
    ========================================================================== */
 
 .parts-depot-section {
@@ -11,14 +10,15 @@
 
 /* Minimalist Search & Filter Toolbar */
 .parts-toolbar {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: #080d1a;
+  border: 1px solid rgba(0, 240, 255, 0.15);
   border-radius: var(--radius-md);
-  padding: 1rem 1.25rem;
+  padding: 1.1rem 1.35rem;
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.95rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .parts-search-container {
@@ -28,8 +28,8 @@
 
 .parts-search-input {
   width: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--color-border);
+  background: rgba(4, 7, 14, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem 0.75rem 2.6rem;
   font-family: var(--font-body);
@@ -39,14 +39,14 @@
   transition: all 0.2s ease;
 }
 
-.parts-search-input:focus {
-  border-color: var(--color-cryo);
-  box-shadow: 0 0 16px rgba(0, 210, 255, 0.2);
+.parts-search-input:focus-visible {
+  border-color: #00f0ff;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
 }
 
 .parts-search-icon {
   position: absolute;
-  left: 0.9rem;
+  left: 0.95rem;
   top: 50%;
   transform: translateY(-50%);
   width: 16px;
@@ -55,42 +55,48 @@
   pointer-events: none;
 }
 
-/* Category Filter Pills */
+/* Category Filter Pills (No Emojis, Clean Industrial) */
 .parts-category-pills {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .category-pill {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--color-text-secondary);
   font-family: var(--font-display);
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 0.32rem 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  user-select: none;
 }
 
 .category-pill:hover {
   color: #ffffff;
-  border-color: var(--color-border-hover);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 240, 255, 0.4);
+  background: rgba(0, 240, 255, 0.06);
 }
 
 .category-pill.active {
-  background: var(--color-cryo-glow);
-  color: var(--color-cryo);
-  border-color: var(--color-cryo-border);
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.25);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.22), rgba(0, 240, 255, 0.08));
+  color: #00f0ff;
+  border-color: #00f0ff;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+.category-pill:active {
+  scale: 0.97;
 }
 
 /* Results Count Bar */
@@ -105,14 +111,14 @@
 }
 
 .parts-counter-bar strong {
-  color: var(--color-cryo);
+  color: #00f0ff;
 }
 
-/* 10 Components Responsive Grid - Spacious & Visual */
+/* 10 Components Responsive Grid - Clean & Spacious */
 .parts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.65rem;
 }
 
 @media (max-width: 600px) {
@@ -123,84 +129,137 @@
 
 /* Component Card */
 .part-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: #080d19;
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-card);
   position: relative;
+  cursor: pointer;
 }
 
-.part-card:hover {
-  border-color: var(--color-border-hover);
+.part-card:hover,
+.part-card:focus-within,
+.part-card.active-touch {
+  border-color: rgba(0, 240, 255, 0.4);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.12);
 }
 
-/* Specific Category Accent on Card Hover */
-.part-card[data-category="motor"]:hover { border-color: var(--color-violet-border); box-shadow: 0 12px 30px -10px rgba(139, 92, 246, 0.3); }
-.part-card[data-category="fan"]:hover { border-color: var(--color-cryo-border); box-shadow: 0 12px 30px -10px rgba(0, 210, 255, 0.3); }
-.part-card[data-category="wire"]:hover { border-color: var(--color-amber-border); box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.3); }
-.part-card[data-category="tray"]:hover { border-color: rgba(226, 232, 240, 0.4); box-shadow: 0 12px 30px -10px rgba(255, 255, 255, 0.15); }
-.part-card[data-category="compressor"]:hover { border-color: var(--color-coral-border); box-shadow: 0 12px 30px -10px rgba(244, 63, 94, 0.3); }
-.part-card[data-category="gas"]:hover { border-color: var(--color-emerald-border); box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.3); }
-.part-card[data-category="controller"]:hover { border-color: var(--color-cryo-border); box-shadow: 0 12px 30px -10px rgba(0, 210, 255, 0.3); }
-.part-card[data-category="hardware"]:hover { border-color: var(--color-amber-border); box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.3); }
+/* Specific Category Ambient Glow on Card Hover */
+.part-card[data-category="motor"]:hover,
+.part-card[data-category="motor"]:focus-within,
+.part-card[data-category="motor"].active-touch {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(139, 92, 246, 0.25);
+}
 
-/* Component Media Image Container - BIG & IMPACTFUL */
+.part-card[data-category="fan"]:hover,
+.part-card[data-category="fan"]:focus-within,
+.part-card[data-category="fan"].active-touch {
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.25);
+}
+
+.part-card[data-category="wire"]:hover,
+.part-card[data-category="wire"]:focus-within,
+.part-card[data-category="wire"].active-touch {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.25);
+}
+
+.part-card[data-category="tray"]:hover,
+.part-card[data-category="tray"]:focus-within,
+.part-card[data-category="tray"].active-touch {
+  border-color: rgba(226, 232, 240, 0.4);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+.part-card[data-category="compressor"]:hover,
+.part-card[data-category="compressor"]:focus-within,
+.part-card[data-category="compressor"].active-touch {
+  border-color: rgba(244, 63, 94, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(244, 63, 94, 0.25);
+}
+
+.part-card[data-category="gas"]:hover,
+.part-card[data-category="gas"]:focus-within,
+.part-card[data-category="gas"].active-touch {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(16, 185, 129, 0.25);
+}
+
+.part-card[data-category="controller"]:hover,
+.part-card[data-category="controller"]:focus-within,
+.part-card[data-category="controller"].active-touch {
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.25);
+}
+
+.part-card[data-category="hardware"]:hover,
+.part-card[data-category="hardware"]:focus-within,
+.part-card[data-category="hardware"].active-touch {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.25);
+}
+
+/* Component Media Image Container - Crisp HD */
 .part-media {
   width: 100%;
   aspect-ratio: 4/3;
   min-height: 220px;
-  background: #04060c;
+  background: #04070f;
   overflow: hidden;
   position: relative;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .part-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.part-card:hover .part-media img {
-  transform: scale(1.05);
+.part-card:hover .part-media img,
+.part-card:focus-within .part-media img,
+.part-card.active-touch .part-media img {
+  transform: scale(1.06);
 }
 
 .part-sku-badge {
   position: absolute;
-  top: 0.65rem;
-  left: 0.65rem;
-  background: rgba(8, 12, 20, 0.85);
+  top: 0.75rem;
+  left: 0.75rem;
+  background: rgba(6, 10, 20, 0.88);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0.18rem 0.5rem;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 0.22rem 0.55rem;
   border-radius: var(--radius-xs);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #00f0ff;
   z-index: 2;
 }
 
-/* Minimalist Card Body */
+/* Card Body (Clean Resting State) */
 .part-body {
-  padding: 1.15rem 1.25rem;
+  padding: 1.15rem 1.25rem 1.35rem 1.25rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  position: relative;
 }
 
 .part-header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 .part-cat-label {
@@ -208,45 +267,104 @@
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .part-title {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.25;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
+}
+
+/* Subtle Monospace Peek Teaser at Rest */
+.part-peek-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xs);
+  padding: 0.4rem 0.65rem;
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-dim);
+  transition: all 0.25s ease;
+}
+
+.part-peek-teaser .teaser-arrow {
+  color: #00f0ff;
+  font-size: 0.85rem;
+  transition: transform 0.25s ease;
+}
+
+.part-card:hover .part-peek-teaser .teaser-arrow,
+.part-card:focus-within .part-peek-teaser .teaser-arrow,
+.part-card.active-touch .part-peek-teaser .teaser-arrow {
+  transform: translateY(2px);
+  color: #f59e0b;
+}
+
+/* Frosted Titanium Hover & Touch Reveal Drawer */
+.part-details-drawer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(8, 13, 25, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.8);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  z-index: 10;
+}
+
+.part-card:hover .part-details-drawer,
+.part-card:focus-within .part-details-drawer,
+.part-card.active-touch .part-details-drawer {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .part-desc-short {
   font-size: 0.82rem;
   color: var(--color-text-secondary);
   line-height: 1.45;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .part-specs-pill {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.2);
   border-radius: var(--radius-xs);
-  padding: 0.35rem 0.55rem;
+  padding: 0.4rem 0.6rem;
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--color-steel);
-  margin-bottom: 0.85rem;
-  line-height: 1.35;
+  color: #e2e8f0;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
 }
 
 .part-stock-line {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--color-emerald);
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.85rem;
 }
 
 .part-stock-dot {
@@ -254,15 +372,30 @@
   height: 6px;
   border-radius: 50%;
   background: var(--color-emerald);
-  box-shadow: 0 0 6px var(--color-emerald);
+  box-shadow: 0 0 8px var(--color-emerald);
 }
 
 .part-btn {
-  margin-top: auto;
   width: 100%;
   text-align: center;
   justify-content: center;
-  padding: 0.42rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.76rem;
   font-weight: 700;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: #00f0ff;
+  border-radius: var(--radius-xs);
+  transition: all 0.2s ease;
+}
+
+.part-btn:hover {
+  background: linear-gradient(135deg, #00f0ff, #0284c7);
+  color: #040812;
+  border-color: #00f0ff;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.45);
+}
+
+.part-btn:active {
+  scale: 0.97;
 }

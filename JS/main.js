@@ -89,6 +89,19 @@
         openQuoteModalWithPart(sku, name);
       });
     });
+
+    // Mobile Touch / Click to Toggle Details Drawer on Cards
+    partCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.inquire-part-btn') || e.target.closest('a')) return;
+
+        const isAlreadyActive = card.classList.contains('active-touch');
+        partCards.forEach(c => c.classList.remove('active-touch'));
+        if (!isAlreadyActive) {
+          card.classList.add('active-touch');
+        }
+      });
+    });
   }
 
   // =========================================================================
