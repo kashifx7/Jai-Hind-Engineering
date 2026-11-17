@@ -1,60 +1,53 @@
 /* ==========================================================================
-   JAI HIND ENGINEERING WORKS - SULTANPUR HERITAGE WORKSHOP DESIGN
-   Grounded in Classic 2023 Palette: Night Blue (#2d545e / #12343b) & Sand Tan (#e1b382 / #c89666)
+   JAI HIND ENGINEERING WORKS - INDUSTRIAL HARDWARE & SUPPLY CATALOG
+   Shop-Floor Utilitarian Palette: Cast Iron (#16191d), Steel Gray (#f1f3f5), Safety Orange (#c2410c)
    ========================================================================== */
 
 :root {
-  /* Core Legacy Brand Palette (from main @ b6a4996) */
-  --color-night-blue: #2d545e;
-  --color-night-shadow: #12343b;
-  --color-night-deep: #0b2227;
-  --color-sand-tan: #e1b382;
-  --color-sand-shadow: #c89666;
+  /* Hardware Store & Industrial Supply Palette */
+  --hw-floor: #f1f3f5;
+  --hw-surface: #ffffff;
+  --hw-surface-alt: #f8f9fa;
+  --hw-shelf: #e9ecef;
 
-  /* Architectural Paper & Ink Surfaces */
-  --color-paper: #f6f1ea;
-  --color-paper-soft: #ede4d6;
-  --color-paper-tint: #faf6f0;
-  --color-surface-card: #ffffff;
+  --hw-iron: #16191d;
+  --hw-slate: #272c35;
+  --hw-iron-muted: #4b5563;
 
-  /* Ink & Contrast-Safe Neutrals */
-  --color-ink-primary: #12343b;
-  --color-ink-secondary: #2d545e;
-  --color-ink-muted: #4a6369;
-  --color-ink-on-dark: #f6f1ea;
-  --color-ink-on-dark-muted: #d9cbb8;
+  --hw-orange: #c2410c;
+  --hw-orange-hover: #9a3412;
+  --hw-orange-accent: #ea580c;
 
-  /* Structural Hairlines */
-  --color-rule-dark: rgba(18, 52, 59, 0.16);
-  --color-rule-brass: rgba(200, 150, 102, 0.45);
-  --color-rule-light: rgba(225, 179, 130, 0.25);
+  --hw-border: #ced4da;
+  --hw-border-strong: #9ca3af;
 
-  /* Semantic Status (Muted Craft Tones) */
-  --color-success: #1b6b45;
-  --color-success-soft: rgba(27, 107, 69, 0.1);
-  --color-danger: #a93226;
+  --hw-on-dark: #f8f9fa;
+  --hw-on-dark-muted: #cbd5e1;
 
-  /* Typography */
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --hw-stock: #15803d;
+  --hw-danger: #b91c1c;
 
-  /* Radii & Shadows (Subtle Tactile Depth, Zero Neon Glow) */
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 18px;
+  /* Industrial Grotesque & Spec Monospace Typography */
+  --font-display: 'Barlow Condensed', 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Crisp Utilitarian Geometry */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
   --radius-full: 999px;
 
-  --shadow-subtle: 0 2px 10px rgba(18, 52, 59, 0.06);
-  --shadow-card: 0 10px 28px rgba(18, 52, 59, 0.09);
-  --shadow-elevated: 0 18px 42px rgba(18, 52, 59, 0.14);
+  --shadow-sm: 0 1px 3px rgba(22, 25, 29, 0.08);
+  --shadow-card: 0 4px 14px rgba(22, 25, 29, 0.08);
+  --shadow-elevated: 0 12px 28px rgba(22, 25, 29, 0.14);
 
-  --container-max: 1200px;
-  --header-height: 62px;
+  --container-max: 1240px;
+  --header-height: 60px;
 }
 
-/* Reset & Box Sizing */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -70,8 +63,8 @@ html {
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-ink-primary);
+  background-color: var(--hw-floor);
+  color: var(--hw-iron);
   font-family: var(--font-body);
   line-height: 1.55;
   text-align: start;
@@ -80,7 +73,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Touch optimization */
 button, a, input, select, textarea, summary, label {
   touch-action: manipulation;
 }
@@ -89,13 +81,11 @@ button, a, input, select, textarea, summary, label {
   scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
-/* High-Contrast Keyboard Focus Indicator (WCAG 2.4.7 / 1.4.11) */
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-sand-shadow);
-  outline-offset: 3px;
+  outline: 2px solid var(--hw-orange);
+  outline-offset: 2px;
 }
 
-/* Container */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -106,43 +96,44 @@ button, a, input, select, textarea, summary, label {
 
 @media (max-width: 640px) {
   .container {
-    padding-inline: 1.125rem;
+    padding-inline: 1rem;
   }
 }
 
 .section-padding {
-  padding-block: 5rem;
+  padding-block: 4.5rem;
 }
 
 @media (max-width: 768px) {
   .section-padding {
-    padding-block: 3.25rem;
+    padding-block: 3rem;
   }
 }
 
-/* Typography Hierarchy */
-h1, h2, h3, h4, h5, h6 {
+/* Industrial Heading Hierarchy */
+h1, h2 {
   font-family: var(--font-display);
-  font-weight: 600;
-  color: var(--color-ink-primary);
-  line-height: 1.18;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  color: var(--hw-iron);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.15rem, 1.3rem + 3.2vw, 3.6rem);
+  font-size: clamp(2.4rem, 1.4rem + 3.4vw, 3.85rem);
 }
 
 h2 {
-  font-size: clamp(1.75rem, 1.15rem + 2.1vw, 2.6rem);
+  font-size: clamp(1.9rem, 1.2rem + 2.2vw, 2.75rem);
 }
 
-h3 {
-  font-family: var(--font-body);
+h3, h4 {
+  font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.35rem);
-  letter-spacing: -0.01em;
+  color: var(--hw-iron);
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 p, li {
@@ -150,6 +141,7 @@ p, li {
 }
 
 img, video {
+  display: block;
   max-inline-size: 100%;
   block-size: auto;
 }
@@ -158,47 +150,49 @@ img, video {
   overflow-wrap: anywhere;
 }
 
-/* Editorial Section Header */
+/* Catalog Section Header */
 .section-header {
   max-width: 68ch;
   margin-inline: auto;
-  margin-block-end: 2.75rem;
+  margin-block-end: 2.5rem;
   text-align: center;
 }
 
 .section-eyebrow {
   display: inline-block;
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-night-blue);
-  margin-block-end: 0.6rem;
+  color: var(--hw-orange);
+  margin-block-end: 0.5rem;
 }
 
 .section-title {
-  margin-block-end: 0.75rem;
+  text-transform: uppercase;
+  margin-block-end: 0.6rem;
 }
 
 .section-subtitle {
-  font-size: 1.02rem;
-  line-height: 1.65;
-  color: var(--color-ink-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--hw-iron-muted);
 }
 
-/* Tactile Architectural Buttons (No Neon Glow) */
+/* Hard-Edged Industrial Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-body);
+  gap: 0.45rem;
+  font-family: var(--font-heading);
   font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.65rem 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.62rem 1.25rem;
   min-block-size: 40px;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
   border: 1px solid transparent;
@@ -209,56 +203,44 @@ img, video {
   scale: 0.97;
 }
 
-.btn-brass {
-  background-color: var(--color-sand-tan);
-  color: var(--color-night-shadow);
-  border-color: var(--color-sand-shadow);
+.btn-orange {
+  background-color: var(--hw-orange);
+  color: #ffffff;
+  border-color: var(--hw-orange);
 }
 
-.btn-brass:hover {
-  background-color: var(--color-sand-shadow);
-  color: var(--color-night-deep);
-  box-shadow: var(--shadow-subtle);
+.btn-orange:hover {
+  background-color: var(--hw-orange-hover);
+  border-color: var(--hw-orange-hover);
+  box-shadow: var(--shadow-sm);
 }
 
-.btn-night {
-  background-color: var(--color-night-shadow);
-  color: var(--color-ink-on-dark);
-  border-color: var(--color-night-shadow);
+.btn-iron {
+  background-color: var(--hw-iron);
+  color: #ffffff;
+  border-color: var(--hw-iron);
 }
 
-.btn-night:hover {
-  background-color: var(--color-night-blue);
-  border-color: var(--color-night-blue);
-  box-shadow: var(--shadow-subtle);
+.btn-iron:hover {
+  background-color: var(--hw-slate);
+  border-color: var(--hw-slate);
+  box-shadow: var(--shadow-sm);
 }
 
-.btn-outline-night {
-  background-color: transparent;
-  color: var(--color-night-shadow);
-  border-color: rgba(18, 52, 59, 0.35);
+.btn-outline-iron {
+  background-color: var(--hw-surface);
+  color: var(--hw-iron);
+  border-color: var(--hw-border-strong);
 }
 
-.btn-outline-night:hover {
-  background-color: var(--color-night-shadow);
-  color: var(--color-ink-on-dark);
-  border-color: var(--color-night-shadow);
-}
-
-.btn-outline-sand {
-  background-color: transparent;
-  color: var(--color-sand-tan);
-  border-color: rgba(225, 179, 130, 0.45);
-}
-
-.btn-outline-sand:hover {
-  background-color: var(--color-sand-tan);
-  color: var(--color-night-shadow);
-  border-color: var(--color-sand-tan);
+.btn-outline-iron:hover {
+  background-color: var(--hw-iron);
+  color: #ffffff;
+  border-color: var(--hw-iron);
 }
 
 .btn-sm {
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 0.9rem;
   font-size: 0.8125rem;
   min-block-size: 36px;
 }
@@ -274,40 +256,34 @@ img, video {
   }
 }
 
-/* Badges (Flat Craft Labels) */
+/* Spec Badges (Hardware Stencil Tags) */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  padding: 0.2rem 0.6rem;
+  padding: 0.18rem 0.5rem;
   border-radius: var(--radius-xs);
-  border: 1px solid var(--color-rule-dark);
-  background-color: var(--color-paper-soft);
-  color: var(--color-night-shadow);
+  border: 1px solid var(--hw-border);
+  background-color: var(--hw-shelf);
+  color: var(--hw-iron);
 }
 
-.badge-night {
-  background-color: rgba(45, 84, 94, 0.1);
-  border-color: rgba(45, 84, 94, 0.28);
-  color: var(--color-night-blue);
+.badge-orange {
+  background-color: #fff7ed;
+  border-color: #fed7aa;
+  color: var(--hw-orange);
 }
 
-.badge-brass {
-  background-color: rgba(200, 150, 102, 0.16);
-  border-color: rgba(200, 150, 102, 0.45);
-  color: var(--color-night-shadow);
+.badge-iron {
+  background-color: var(--hw-slate);
+  border-color: var(--hw-slate);
+  color: #f8f9fa;
 }
 
-.badge-on-dark {
-  background-color: rgba(225, 179, 130, 0.12);
-  border-color: rgba(225, 179, 130, 0.35);
-  color: var(--color-sand-tan);
-}
-
-/* Screen-Reader Only / Visually Hidden Utility */
+/* Visually Hidden / Screen-Reader Utility */
 .sr-only,
 .visually-hidden:where(:not(:focus-within, :active)) {
   position: absolute !important;
@@ -321,18 +297,19 @@ img, video {
   white-space: nowrap !important;
 }
 
-/* Details Disclosure (Progressive Sizing Estimator in Modal) */
+/* Progressive Details Disclosure */
 details.custom-calc-details {
-  background-color: var(--color-paper-tint);
-  border: 1px solid var(--color-rule-dark);
+  background-color: var(--hw-surface-alt);
+  border: 1px solid var(--hw-border);
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
 }
 
 details.custom-calc-details summary {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color-night-blue);
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--hw-iron);
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -351,22 +328,20 @@ details.custom-calc-details summary::after {
   font-family: var(--font-mono);
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-night-shadow);
+  color: var(--hw-orange);
 }
 
 details.custom-calc-details[open] summary::after {
   content: "−";
 }
 
-/* Validated Form Controls (:user-invalid only after interaction) */
 .form-input:user-invalid,
 .form-select:user-invalid,
 .form-textarea:user-invalid {
-  border-color: var(--color-danger);
-  box-shadow: 0 0 0 2px rgba(169, 50, 38, 0.18);
+  border-color: var(--hw-danger);
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.16);
 }
 
-/* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -377,7 +352,6 @@ details.custom-calc-details[open] summary::after {
   }
 }
 
-/* High Contrast / Forced Colors Fallback */
 @media (forced-colors: active) {
   .btn,
   .badge,

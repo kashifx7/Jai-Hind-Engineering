@@ -1,58 +1,57 @@
 /* ==========================================================================
-   3D PRODUCT SHOWCASE STAGE (CLEAN STUDIO LIGHTBOX)
-   Real-Time 3D CAD Mesh Rendering via Google <model-viewer> (Zero 2D Photos)
-   Palette: Warm Workshop Paper (#f6f1ea) & Deep Night Blue (#12343b / #2d545e)
+   3D EQUIPMENT INSPECTION BENCH (HARDWARE INDUSTRY CATALOG)
+   100% Real-Time 3D CAD Models via Google <model-viewer> (Zero 2D Photos)
    ========================================================================== */
 
 .viewer-section {
   position: relative;
-  background-color: var(--color-paper);
-  padding-block: 5rem;
-  border-bottom: 1px solid var(--color-rule-dark);
+  background-color: var(--hw-floor);
+  padding-block: 4.5rem;
+  border-bottom: 1px solid var(--hw-border);
 }
 
 @media (max-width: 768px) {
   .viewer-section {
-    padding-block: 3.25rem;
+    padding-block: 3rem;
   }
 }
 
 .viewer-wrapper {
-  background-color: var(--color-surface-card);
-  border: 1px solid var(--color-sand-shadow);
-  border-radius: var(--radius-lg);
+  background-color: var(--hw-surface);
+  border: 1px solid var(--hw-border-strong);
+  border-top: 3px solid var(--hw-iron);
+  border-radius: var(--radius-sm);
   box-shadow: var(--shadow-card);
-  overflow: hidden;
+  overflow: clip;
   position: relative;
 }
 
-/* Stage Header Selector Bar */
 .viewer-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.35rem;
-  background-color: var(--color-paper-soft);
-  border-bottom: 1px solid var(--color-rule-dark);
+  padding: 0.85rem 1.25rem;
+  background-color: var(--hw-shelf);
+  border-bottom: 1px solid var(--hw-border);
   flex-wrap: wrap;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .viewer-product-selector {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   flex-wrap: wrap;
 }
 
 .viewer-product-btn {
-  background-color: var(--color-surface-card);
-  border: 1px solid var(--color-rule-dark);
-  color: var(--color-ink-primary);
-  font-family: var(--font-body);
+  background-color: var(--hw-surface);
+  border: 1px solid var(--hw-border-strong);
+  color: var(--hw-iron);
+  font-family: var(--font-heading);
   font-size: 0.82rem;
-  font-weight: 600;
-  padding: 0.5rem 0.95rem;
+  font-weight: 700;
+  padding: 0.48rem 0.9rem;
   min-block-size: 38px;
   border-radius: var(--radius-xs);
   cursor: pointer;
@@ -60,14 +59,14 @@
 }
 
 .viewer-product-btn:hover {
-  border-color: var(--color-night-blue);
-  background-color: var(--color-paper-tint);
+  border-color: var(--hw-iron);
+  background-color: var(--hw-surface-alt);
 }
 
 .viewer-product-btn.active {
-  background-color: var(--color-night-shadow);
-  color: var(--color-ink-on-dark);
-  border-color: var(--color-night-shadow);
+  background-color: var(--hw-orange);
+  color: #ffffff;
+  border-color: var(--hw-orange);
 }
 
 .viewer-product-btn:active {
@@ -83,31 +82,29 @@
 .viewer-topbar-actions {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
-/* View in Room (AR) Button */
 .view-ar-btn {
-  background-color: transparent;
-  border: 1px solid rgba(18, 52, 59, 0.35);
-  color: var(--color-night-shadow);
-  font-family: var(--font-body);
+  background-color: var(--hw-surface);
+  border: 1px solid var(--hw-iron);
+  color: var(--hw-iron);
+  font-family: var(--font-heading);
   font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.45rem 0.9rem;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
   min-block-size: 38px;
   border-radius: var(--radius-xs);
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, scale 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, scale 150ms ease;
 }
 
 .view-ar-btn:hover {
-  background-color: var(--color-night-shadow);
-  color: var(--color-ink-on-dark);
-  border-color: var(--color-night-shadow);
+  background-color: var(--hw-iron);
+  color: #ffffff;
 }
 
 .view-ar-btn:active {
@@ -120,12 +117,12 @@
   }
 }
 
-/* Stage Viewport Area (Studio Daylight Cyclorama) */
+/* Inspection Viewport (Bright Technical Studio) */
 .viewer-stage {
   position: relative;
   width: 100%;
-  height: 520px;
-  background: radial-gradient(circle at 50% 42%, #ffffff 0%, #f1ebe1 76%, #e5dac7 100%);
+  height: 510px;
+  background: radial-gradient(circle at 50% 45%, #ffffff 0%, #f1f3f5 78%, #e2e6ea 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +144,6 @@
   cursor: grabbing;
 }
 
-/* Model Loading Poster */
 .model-loading-poster {
   position: absolute;
   inset: 0;
@@ -155,19 +151,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.85rem;
-  background-color: var(--color-paper-soft);
-  color: var(--color-night-shadow);
-  font-size: 0.86rem;
-  font-weight: 500;
+  gap: 0.8rem;
+  background-color: var(--hw-surface-alt);
+  color: var(--hw-iron);
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
   z-index: 5;
 }
 
 .model-spinner {
   width: 34px;
   height: 34px;
-  border: 2.5px solid rgba(18, 52, 59, 0.18);
-  border-top-color: var(--color-night-shadow);
+  border: 3px solid var(--hw-border);
+  border-top-color: var(--hw-orange);
   border-radius: 50%;
   animation: spinLoader 0.8s linear infinite;
 }
@@ -176,44 +172,44 @@
   to { transform: rotate(360deg); }
 }
 
-/* Subtle Interaction Hint Pill */
 .drag-hint-pill {
   position: absolute;
-  top: 1rem;
+  top: 0.95rem;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(18, 52, 59, 0.18);
-  padding: 0.35rem 0.9rem;
-  border-radius: var(--radius-full);
-  font-size: 0.76rem;
+  background-color: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--hw-border-strong);
+  padding: 0.32rem 0.85rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 500;
-  color: var(--color-night-shadow);
+  color: var(--hw-iron);
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   pointer-events: none;
   z-index: 4;
   transition: opacity 0.35s ease;
-  box-shadow: var(--shadow-subtle);
+  box-shadow: var(--shadow-sm);
 }
 
 .drag-hint-pill svg {
-  color: var(--color-night-blue);
+  color: var(--hw-orange);
 }
 
-/* Bottom Controls Bar */
+/* Mechanical Bottom Controls Deck */
 .viewer-controls-bar {
-  background-color: var(--color-paper-tint);
-  border-top: 1px solid var(--color-rule-dark);
-  padding: 0.95rem 1.35rem;
+  background-color: var(--hw-surface-alt);
+  border-top: 1px solid var(--hw-border);
+  padding: 0.9rem 1.25rem;
 }
 
 .controls-main-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
 }
 
@@ -228,24 +224,24 @@
 .angle-scrubber-slider {
   flex: 1;
   height: 6px;
-  accent-color: var(--color-night-blue);
+  accent-color: var(--hw-orange);
   cursor: pointer;
 }
 
-@supports not (accent-color: #2d545e) {
+@supports not (accent-color: #c2410c) {
   .angle-scrubber-slider {
     -webkit-appearance: none;
     appearance: none;
-    background: rgba(18, 52, 59, 0.18);
-    border-radius: 3px;
+    background: var(--hw-border);
+    border-radius: 2px;
   }
 
   .angle-scrubber-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
-    border-radius: 50%;
-    background: var(--color-night-shadow);
+    border-radius: 2px;
+    background: var(--hw-orange);
     cursor: pointer;
   }
 
@@ -253,36 +249,41 @@
     width: 16px;
     height: 16px;
     border: none;
-    border-radius: 50%;
-    background: var(--color-night-shadow);
+    border-radius: 2px;
+    background: var(--hw-orange);
     cursor: pointer;
   }
 }
 
 .angle-readout {
   font-family: var(--font-mono);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--color-night-shadow);
+  color: var(--hw-iron);
+  background-color: var(--hw-surface);
+  border: 1px solid var(--hw-border-strong);
+  border-radius: var(--radius-xs);
+  padding: 0.22rem 0.5rem;
   font-variant-numeric: tabular-nums;
-  min-width: 46px;
+  min-width: 54px;
+  text-align: center;
 }
 
 .angle-presets-row {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   flex-wrap: wrap;
 }
 
 .preset-btn {
-  background-color: var(--color-surface-card);
-  border: 1px solid var(--color-rule-dark);
-  color: var(--color-ink-secondary);
-  font-family: var(--font-body);
-  font-size: 0.76rem;
+  background-color: var(--hw-surface);
+  border: 1px solid var(--hw-border-strong);
+  color: var(--hw-iron-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
   font-weight: 600;
-  padding: 0.35rem 0.72rem;
+  padding: 0.35rem 0.68rem;
   min-block-size: 34px;
   border-radius: var(--radius-xs);
   cursor: pointer;
@@ -290,14 +291,14 @@
 }
 
 .preset-btn:hover {
-  color: var(--color-night-shadow);
-  border-color: var(--color-night-blue);
+  color: var(--hw-iron);
+  border-color: var(--hw-iron);
 }
 
 .preset-btn.active {
-  background-color: var(--color-night-blue);
-  border-color: var(--color-night-blue);
-  color: var(--color-ink-on-dark);
+  background-color: var(--hw-iron);
+  border-color: var(--hw-iron);
+  color: #ffffff;
 }
 
 .preset-btn:active {
@@ -307,34 +308,34 @@
 .controls-aux-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .control-icon-btn {
-  background-color: var(--color-surface-card);
-  border: 1px solid var(--color-rule-dark);
-  color: var(--color-night-shadow);
-  padding: 0.38rem 0.8rem;
+  background-color: var(--hw-surface);
+  border: 1px solid var(--hw-border-strong);
+  color: var(--hw-iron);
+  padding: 0.38rem 0.78rem;
   min-block-size: 34px;
   border-radius: var(--radius-xs);
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.38rem;
   cursor: pointer;
   transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, scale 150ms ease;
 }
 
 .control-icon-btn:hover {
-  border-color: var(--color-night-blue);
+  border-color: var(--hw-iron);
 }
 
 .control-icon-btn.active {
-  background-color: var(--color-night-shadow);
-  color: var(--color-ink-on-dark);
-  border-color: var(--color-night-shadow);
+  background-color: var(--hw-slate);
+  color: #ffffff;
+  border-color: var(--hw-slate);
 }
 
 .control-icon-btn:active {
@@ -353,16 +354,16 @@
   }
 }
 
-/* Dark Night Blue Engineering Specs Band at Base of Viewer */
+/* Cast-Iron Technical Spec Plate Band */
 .viewer-specs-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
   align-items: center;
   gap: 1.25rem;
-  padding: 1.25rem 1.5rem;
-  background-color: var(--color-night-shadow);
-  color: var(--color-ink-on-dark);
-  border-top: 2px solid var(--color-sand-shadow);
+  padding: 1.15rem 1.35rem;
+  background-color: var(--hw-iron);
+  color: var(--hw-on-dark);
+  border-top: 2px solid var(--hw-orange-accent);
 }
 
 @media (max-width: 960px) {
@@ -389,26 +390,28 @@
 .spec-strip-item {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.18rem;
 }
 
 .spec-strip-label {
-  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-sand-tan);
+  letter-spacing: 0.05em;
+  color: #fb923c;
 }
 
 .spec-strip-val {
+  font-family: var(--font-heading);
   font-size: 0.92rem;
   font-weight: 600;
-  color: var(--color-ink-on-dark);
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
   .viewer-stage {
-    height: 390px;
+    height: 380px;
   }
 
   .controls-main-row {

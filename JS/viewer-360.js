@@ -98,6 +98,7 @@
     let currentProductKey = 'fridge';
     let isUserScrubbing = false;
     let hasInteracted = false;
+    let hintTimerId = null;
 
     // =========================================================================
     // 1. PRODUCT SWITCHING
@@ -239,14 +240,18 @@
         if (viewer.canActivateAR) {
           viewer.activateAR();
         } else if (dragHint) {
+          clearTimeout(hintTimerId);
           const hintSpan = dragHint.querySelector('span');
           if (hintSpan) {
             hintSpan.textContent = 'AR room placement is available on iOS and Android devices';
           }
           dragHint.style.display = 'inline-flex';
           dragHint.style.opacity = '1';
-          setTimeout(() => {
+          hintTimerId = setTimeout(() => {
             dragHint.style.opacity = '0';
+            hintTimerId = setTimeout(() => {
+              dragHint.style.display = 'none';
+            }, 380);
           }, 3200);
         }
       });
@@ -256,10 +261,11 @@
     function dismissHint() {
       if (!hasInteracted && dragHint) {
         hasInteracted = true;
+        clearTimeout(hintTimerId);
         dragHint.style.opacity = '0';
-        setTimeout(() => {
+        hintTimerId = setTimeout(() => {
           dragHint.style.display = 'none';
-        }, 500);
+        }, 380);
       }
     }
 
