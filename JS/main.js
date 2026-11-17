@@ -169,14 +169,15 @@
   // =========================================================================
   function initPartsCatalog() {
     const searchInput = document.getElementById('parts-search-input');
-    const categoryPills = document.querySelectorAll('.category-pill');
+    const categoryRadios = document.querySelectorAll('input[name="parts-category"]');
     const partCards = document.querySelectorAll('.part-card');
     const countDisplay = document.getElementById('parts-count-num');
 
     if (!partCards.length) return;
 
-    let activeCategory = 'all';
-    let searchQuery = '';
+    const checkedRadio = document.querySelector('input[name="parts-category"]:checked');
+    let activeCategory = checkedRadio ? checkedRadio.value : 'all';
+    let searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
     function filterParts() {
       let visibleCount = 0;
@@ -201,16 +202,16 @@
       }
     }
 
-    // Category Pill Click
-    categoryPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        categoryPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        activeCategory = pill.getAttribute('data-category') || 'all';
-        filterParts();
+    // Sync initial cards if browser restored radio/search state
+    filterParts();
 
-        // Scroll pill into view smoothly on mobile
-        pill.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    // Category Radio Change
+    categoryRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          activeCategory = radio.value || 'all';
+          filterParts();
+        }
       });
     });
 

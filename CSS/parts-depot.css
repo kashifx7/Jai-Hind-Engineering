@@ -69,54 +69,120 @@
   pointer-events: none;
 }
 
-/* Category Filter Pills - Horizontally Scrollable Rail on Mobile */
-.parts-category-pills {
+/* Category Filter Radio Group - Minimalist Apple Store Control */
+.parts-category-radios {
+  border: 0;
+  padding: 0.2rem 0 0 0;
+  margin: 0;
+  min-inline-size: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  flex-wrap: nowrap;
-  padding-bottom: 4px;
+  gap: 0.4rem 1.25rem;
 }
 
-.parts-category-pills::-webkit-scrollbar {
-  display: none;
-}
-
-.category-pill {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #86868b;
-  font-family: var(--font-body);
-  font-size: 0.76rem;
-  font-weight: 500;
-  padding: 0.38rem 0.9rem;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: all 0.2s ease;
+.category-radio-label {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  flex-shrink: 0;
-  white-space: nowrap;
-  min-height: 38px;
+  gap: 0.5rem;
+  min-block-size: 28px;
+  min-inline-size: 24px;
+  padding: 0.2rem 0.35rem;
+  color: #a1a1a6;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 500;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
-.category-pill:hover {
+@media (pointer: coarse) {
+  .category-radio-label {
+    min-block-size: 44px;
+    min-inline-size: 44px;
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+.category-radio-label:hover {
   color: #f5f5f7;
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.08);
 }
 
-.category-pill.active {
-  background: #f5f5f7;
-  color: #000000;
-  border-color: #f5f5f7;
+.category-radio-label:has(:checked),
+.category-radio-input:checked + span {
+  color: #f5f5f7;
   font-weight: 600;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+}
+
+.category-radio-input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  accent-color: #2997ff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.category-radio-input:focus-visible {
+  outline: 2px solid #2997ff;
+  outline-offset: 3px;
+}
+
+/* Fallback for older browsers without accent-color support */
+@supports not (accent-color: #2997ff) {
+  .category-radio-input {
+    position: absolute !important;
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .category-radio-label {
+    padding-left: 1.75rem;
+  }
+
+  .category-radio-input + span::before {
+    content: "";
+    position: absolute;
+    left: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.05rem;
+    height: 1.05rem;
+    border: 2px solid #86868b;
+    border-radius: 50%;
+    background: transparent;
+    box-sizing: border-box;
+    transition: border-color 0.18s ease;
+  }
+
+  .category-radio-input:focus-visible + span::before {
+    outline: 2px solid #2997ff;
+    outline-offset: 2px;
+  }
+
+  .category-radio-input:checked + span::before {
+    border-color: #2997ff;
+  }
+
+  .category-radio-input:checked + span::after {
+    content: "";
+    position: absolute;
+    left: calc(0.2rem + 4px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(1.05rem - 8px);
+    height: calc(1.05rem - 8px);
+    border-radius: 50%;
+    background: #2997ff;
+  }
 }
 
 /* Results Count Bar */

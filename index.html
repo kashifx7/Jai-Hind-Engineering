@@ -336,27 +336,53 @@
         </div>
 
         <!-- Filter & Search Toolbar -->
-        <div class="parts-toolbar">
+        <search class="parts-toolbar">
           <div class="parts-search-container">
-            <search>
-              <label for="parts-search-input" class="sr-only">Search components by part name, SKU, or category</label>
-              <svg class="parts-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <input type="search" id="parts-search-input" class="parts-search-input" placeholder="Search by SKU, part name (Motor, Fan, Trays, Wire, Compressor, Gas, Castors)...">
-            </search>
+            <label for="parts-search-input" class="sr-only">Search components by part name, SKU, or category</label>
+            <svg class="parts-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" id="parts-search-input" class="parts-search-input" placeholder="Search by SKU, part name (Motor, Fan, Trays, Wire, Compressor, Gas, Castors)...">
           </div>
 
-          <div class="parts-category-pills" role="tablist" aria-label="Filter parts by category">
-            <button type="button" class="category-pill active" data-category="all">All Components</button>
-            <button type="button" class="category-pill" data-category="motor">Motors</button>
-            <button type="button" class="category-pill" data-category="fan">Motor Fans</button>
-            <button type="button" class="category-pill" data-category="wire">Copper &amp; Wire</button>
-            <button type="button" class="category-pill" data-category="tray">SS Trays</button>
-            <button type="button" class="category-pill" data-category="compressor">Compressors</button>
-            <button type="button" class="category-pill" data-category="gas">Gas Cylinders</button>
-            <button type="button" class="category-pill" data-category="controller">Controllers</button>
-            <button type="button" class="category-pill" data-category="hardware">Hardware &amp; Castors</button>
-          </div>
-        </div>
+          <fieldset class="parts-category-radios">
+            <legend class="sr-only">Filter parts by category</legend>
+            <label for="cat-all" class="category-radio-label">
+              <input type="radio" id="cat-all" name="parts-category" value="all" class="category-radio-input" checked>
+              <span>All Components</span>
+            </label>
+            <label for="cat-motor" class="category-radio-label">
+              <input type="radio" id="cat-motor" name="parts-category" value="motor" class="category-radio-input">
+              <span>Motors</span>
+            </label>
+            <label for="cat-fan" class="category-radio-label">
+              <input type="radio" id="cat-fan" name="parts-category" value="fan" class="category-radio-input">
+              <span>Motor Fans</span>
+            </label>
+            <label for="cat-wire" class="category-radio-label">
+              <input type="radio" id="cat-wire" name="parts-category" value="wire" class="category-radio-input">
+              <span>Copper &amp; Wire</span>
+            </label>
+            <label for="cat-tray" class="category-radio-label">
+              <input type="radio" id="cat-tray" name="parts-category" value="tray" class="category-radio-input">
+              <span>SS Trays</span>
+            </label>
+            <label for="cat-compressor" class="category-radio-label">
+              <input type="radio" id="cat-compressor" name="parts-category" value="compressor" class="category-radio-input">
+              <span>Compressors</span>
+            </label>
+            <label for="cat-gas" class="category-radio-label">
+              <input type="radio" id="cat-gas" name="parts-category" value="gas" class="category-radio-input">
+              <span>Gas Cylinders</span>
+            </label>
+            <label for="cat-controller" class="category-radio-label">
+              <input type="radio" id="cat-controller" name="parts-category" value="controller" class="category-radio-input">
+              <span>Controllers</span>
+            </label>
+            <label for="cat-hardware" class="category-radio-label">
+              <input type="radio" id="cat-hardware" name="parts-category" value="hardware" class="category-radio-input">
+              <span>Hardware &amp; Castors</span>
+            </label>
+          </fieldset>
+        </search>
 
         <div class="parts-counter-bar">
           <div>Showing <strong id="parts-count-num">10</strong> genuine components &amp; spares in stock</div>
