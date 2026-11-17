@@ -17,52 +17,57 @@
   const PRODUCTS_DATA = {
     fridge: {
       name: 'Commercial Fridge (JHE-CR-450)',
+      quoteCategory: 'Commercial Display Fridge',
       glbSrc: 'assets/CadModels/fridge.glb',
       specs: {
-        model: 'JHE-CR-450 Commercial Visi-Cooler',
+        model: 'JHE-CR-450 Visi-Cooler',
         temp: '+1°C to +8°C Uniform Chilling',
-        compressor: 'Embraco Aspera 1/4 HP Tropical',
-        steel: '1.2mm SS-304 & Double Glazed Glass'
+        compressor: 'Embraco Aspera 1/4 HP',
+        steel: '1.2mm SS-304 Food Grade'
       }
     },
     icecream: {
       name: 'Ice Cream Machine (JHE-IC-320)',
+      quoteCategory: 'Soft Serve Ice Cream Machine',
       glbSrc: 'assets/CadModels/icecreammachine.glb',
       specs: {
         model: 'JHE-IC-320 Soft Serve Dispenser',
         temp: '-8°C Rapid Freezing Wells',
-        compressor: 'Twin Cryogenic R-404A Engine',
-        steel: 'Dual SS-304 Wells & Chrome Levers'
+        compressor: 'Twin R-404A Condensing Core',
+        steel: 'Dual SS-304 Freezing Cylinders'
       }
     },
     compressor: {
       name: 'Compressor (JHE-CMP-EM65)',
+      quoteCategory: 'Hardware Spare Parts (Motors / Trays / Gas)',
       glbSrc: 'assets/CadModels/compressor.glb',
       specs: {
-        model: 'JHE-CMP-EM65 Hermetic Reciprocating',
-        temp: 'Sub-Zero LBP / MBP High Back Pressure',
-        compressor: '1/4 HP • 230V 50Hz • Tropical 48°C',
-        steel: 'Cast Steel Chassis & Copper Winding'
+        model: 'JHE-CMP-EM65 Hermetic Compressor',
+        temp: 'Sub-Zero LBP / MBP Rated',
+        compressor: '1/4 HP • 230V 50Hz',
+        steel: 'Cast Steel Housing & Cu Winding'
       }
     },
     motor: {
       name: 'Electric Motor (JHE-MTR-16W)',
+      quoteCategory: 'Hardware Spare Parts (Motors / Trays / Gas)',
       glbSrc: 'assets/CadModels/electric_motor.glb',
       specs: {
         model: 'JHE-MTR-16W Shaded Pole Motor',
-        temp: '-30°C to +50°C Thermal Rating',
-        compressor: '16W High Output • 1300 RPM',
-        steel: 'IP42 Sealed Enclosure • Ball Bearing'
+        temp: '-30°C to +50°C Thermal Rated',
+        compressor: '16W Output • 1300 RPM',
+        steel: 'IP42 Sealed • Ball Bearing'
       }
     },
     fan: {
       name: 'Exhaust Fan (JHE-FAN-AL10)',
+      quoteCategory: 'Hardware Spare Parts (Motors / Trays / Gas)',
       glbSrc: 'assets/CadModels/exhaust_fan.glb',
       specs: {
-        model: 'JHE-FAN-AL10 Aerodynamic Fan Blade',
-        temp: 'High CFM Condenser Heat Dissipation',
-        compressor: '254mm (10-Inch) Outer Span',
-        steel: 'Cast Aluminum Alloy • Zero Vibration'
+        model: 'JHE-FAN-AL10 Condenser Fan',
+        temp: 'High-Airflow Condenser Dissipation',
+        compressor: '254mm (10-Inch) Blade Span',
+        steel: 'Balanced Cast Aluminum Hub'
       }
     }
   };
@@ -115,7 +120,7 @@
 
       // Update Quote Button Context
       if (specQuoteBtn) {
-        specQuoteBtn.setAttribute('data-product-type', data.name);
+        specQuoteBtn.setAttribute('data-product-type', data.quoteCategory || data.name);
       }
 
       // Reset Camera to Front 0°
@@ -233,9 +238,16 @@
       arBtn.addEventListener('click', () => {
         if (viewer.canActivateAR) {
           viewer.activateAR();
-        } else {
-          // Helpful user notification for desktop / unsupported environments
-          alert('Augmented Reality (AR) 3D placement requires an ARCore (Android) or ARKit (iPhone / iPad) mobile device with camera access. On mobile, tap "View in Room" to place this equipment directly on your factory or shop floor!');
+        } else if (dragHint) {
+          const hintSpan = dragHint.querySelector('span');
+          if (hintSpan) {
+            hintSpan.textContent = 'AR room placement is available on iOS and Android devices';
+          }
+          dragHint.style.display = 'inline-flex';
+          dragHint.style.opacity = '1';
+          setTimeout(() => {
+            dragHint.style.opacity = '0';
+          }, 3200);
         }
       });
     }
