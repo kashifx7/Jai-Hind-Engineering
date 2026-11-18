@@ -19,14 +19,14 @@
 
 .hero-split-grid {
   display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
   gap: 3rem;
   align-items: center;
 }
 
 @media (max-width: 960px) {
   .hero-split-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2.25rem;
   }
 }
@@ -136,6 +136,7 @@
 
 /* Right Column: Workshop Video Bay Frame */
 .hero-media-frame {
+  min-inline-size: 0;
   background-color: var(--hw-iron);
   border: 2px solid var(--hw-iron);
   border-radius: var(--radius-sm);

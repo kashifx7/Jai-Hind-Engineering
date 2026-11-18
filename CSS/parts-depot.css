@@ -18,6 +18,7 @@
 
 /* Search & Radio Department Filter Deck */
 .parts-toolbar {
+  min-inline-size: 0;
   background-color: var(--hw-surface);
   border: 1px solid var(--hw-border-strong);
   border-left: 4px solid var(--hw-orange-accent);
@@ -213,19 +214,20 @@
 /* Hardware Catalog Grid */
 .parts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(265px, 100%), 1fr));
   gap: 1.25rem;
   align-items: start;
 }
 
 @media (max-width: 600px) {
   .parts-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 /* Hardware SKU Card */
 .part-card {
+  min-inline-size: 0;
   background-color: var(--hw-surface);
   border: 1px solid var(--hw-border);
   border-top: 3px solid var(--hw-iron);

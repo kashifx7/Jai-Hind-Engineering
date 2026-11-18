@@ -91,6 +91,7 @@
       backdrop.classList.toggle('active', open);
       toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      drawer.inert = !open;
       document.body.style.overflow = open ? 'hidden' : '';
 
       if (open && closeBtn) {

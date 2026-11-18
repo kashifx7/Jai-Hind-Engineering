@@ -11,25 +11,27 @@
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   gap: 2.25rem;
   align-items: start;
 }
 
 @media (max-width: 960px) {
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.75rem;
   }
 }
 
 .contact-info-col {
+  min-inline-size: 0;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
 .contact-info-card {
+  min-inline-size: 0;
   background-color: var(--hw-iron);
   color: var(--hw-on-dark);
   border: 1px solid var(--hw-slate);
@@ -65,6 +67,11 @@
 .contact-icon-box svg {
   width: 19px;
   height: 19px;
+}
+
+.contact-text-box {
+  min-inline-size: 0;
+  flex: 1;
 }
 
 .contact-text-box h4 {
@@ -136,6 +143,7 @@
 
 /* Trade Desk Inquiry Form Card */
 .inquiry-form-card {
+  min-inline-size: 0;
   background-color: var(--hw-surface-alt);
   color: var(--hw-iron);
   border: 1px solid var(--hw-border-strong);
@@ -173,22 +181,23 @@
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0.95rem;
 }
 
 .form-row.three-cols {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 @media (max-width: 580px) {
   .form-row,
   .form-row.three-cols {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 .form-group {
+  min-inline-size: 0;
   display: flex;
   flex-direction: column;
   gap: 0.32rem;
@@ -204,6 +213,8 @@
 .form-input,
 .form-select,
 .form-textarea {
+  width: 100%;
+  min-inline-size: 0;
   background-color: var(--hw-surface);
   border: 1px solid var(--hw-border-strong);
   border-radius: var(--radius-xs);
