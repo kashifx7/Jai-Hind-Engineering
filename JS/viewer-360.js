@@ -1,270 +1,280 @@
 /**
- * JAI HIND ENGINEERING WORKS - 3D EQUIPMENT STUDIO CONTROLLER
- * Real-Time 3D CAD Mesh Rendering via Google <model-viewer>
+ * JAI HIND ENGINEERING WORKS - 3D INTERACTIVE PRODUCT STUDIO
  * Features:
- * - 5 Verified GLB 3D Models (Commercial Fridge, Ice Cream Machine, Compressor, Motor, Exhaust Fan)
- * - Bi-directional 360° Orbit & Angle Scrubber Synchronization
- * - Precision View Presets (0° Front, 45° Quarter, 90° Side, 180° Back)
- * - Auto-Rotate & Camera Reset Controls
- * - WebXR / QuickLook Augmented Reality (AR) Activation
- * - Dynamic Engineering Specs Strip & Inquiry Linkage
+ * - Real-time 3D GLB Model Rendering via Google <model-viewer>
+ * - Interactive 3D Product Switching (Fridge, Ice Cream Machine, Compressor, Motor, Fan)
+ * - Bi-directional Synchronization between 3D Camera Orbit and Angle Scrubber
+ * - Camera Angle Presets (Front 0°, Quarter 45°, Side 90°, Back 180°)
+ * - Auto-Rotate & One-Click Camera Reset
+ * - Augmented Reality (AR) Quick Look / Scene Viewer Launch
+ * - Dynamic Technical Specifications & Factory Quote Linking
  */
 
 (function () {
   'use strict';
 
-  // 5 Real 3D CAD Equipment Models & Engineering Specs
+  // 3D Model Configurations and Technical Specifications
   const PRODUCTS_DATA = {
     fridge: {
       name: 'Commercial Fridge (JHE-CR-450)',
-      quoteCategory: 'Commercial Display Fridge',
-      glbSrc: 'assets/CadModels/fridge.glb',
+      glb: 'assets/CadModels/fridge.glb',
       specs: {
-        model: 'JHE-CR-450 Visi-Cooler',
+        model: 'Commercial Fridge (JHE-CR-450)',
         temp: '+1°C to +8°C Uniform Chilling',
-        compressor: 'Embraco Aspera 1/4 HP',
-        steel: '1.2mm SS-304 Food Grade'
+        compressor: 'Embraco Aspera Tropical 1/4 HP',
+        steel: '1.2mm Food-Grade SS-304'
       }
     },
     icecream: {
       name: 'Ice Cream Machine (JHE-IC-320)',
-      quoteCategory: 'Soft Serve Ice Cream Machine',
-      glbSrc: 'assets/CadModels/icecreammachine.glb',
+      glb: 'assets/CadModels/icecreammachine.glb',
       specs: {
-        model: 'JHE-IC-320 Soft Serve Dispenser',
-        temp: '-8°C Rapid Freezing Wells',
-        compressor: 'Twin R-404A Condensing Core',
+        model: 'Ice Cream Machine (JHE-IC-320)',
+        temp: '-8°C Rapid Freezing Well',
+        compressor: 'Twin Cryogenic R-404A Engine',
         steel: 'Dual SS-304 Freezing Cylinders'
       }
     },
     compressor: {
       name: 'Compressor (JHE-CMP-EM65)',
-      quoteCategory: 'Hardware Spare Parts (Motors / Trays / Gas)',
-      glbSrc: 'assets/CadModels/compressor.glb',
+      glb: 'assets/CadModels/compressor.glb',
       specs: {
-        model: 'JHE-CMP-EM65 Hermetic Compressor',
-        temp: 'Sub-Zero LBP / MBP Rated',
-        compressor: '1/4 HP • 230V 50Hz',
-        steel: 'Cast Steel Housing & Cu Winding'
+        model: 'Compressor (JHE-CMP-EM65)',
+        temp: '-10°C to +7.2°C Evaporating',
+        compressor: 'Embraco 1/4 HP Tropical R-134a',
+        steel: 'Coated Hermetic Steel Shell'
       }
     },
     motor: {
       name: 'Electric Motor (JHE-MTR-16W)',
-      quoteCategory: 'Hardware Spare Parts (Motors / Trays / Gas)',
-      glbSrc: 'assets/CadModels/electric_motor.glb',
+      glb: 'assets/CadModels/electric_motor.glb',
       specs: {
-        model: 'JHE-MTR-16W Shaded Pole Motor',
-        temp: '-30°C to +50°C Thermal Rated',
-        compressor: '16W Output • 1300 RPM',
-        steel: 'IP42 Sealed • Ball Bearing'
+        model: 'Electric Motor (JHE-MTR-16W)',
+        temp: 'Class B Insulation (-30°C to +50°C)',
+        compressor: '230V / 50Hz 1300 RPM 16W Output',
+        steel: 'Die-Cast Aluminum + Copper Windings'
       }
     },
     fan: {
       name: 'Exhaust Fan (JHE-FAN-AL10)',
-      quoteCategory: 'Hardware Spare Parts (Motors / Trays / Gas)',
-      glbSrc: 'assets/CadModels/exhaust_fan.glb',
+      glb: 'assets/CadModels/exhaust_fan.glb',
       specs: {
-        model: 'JHE-FAN-AL10 Condenser Fan',
-        temp: 'High-Airflow Condenser Dissipation',
-        compressor: '254mm (10-Inch) Blade Span',
-        steel: 'Balanced Cast Aluminum Hub'
+        model: 'Exhaust Fan (JHE-FAN-AL10)',
+        temp: 'High CFM Forced Draft (650 m³/h)',
+        compressor: '5-Wing Aerodynamic Pitch',
+        steel: 'Stamped Aluminum Blades + Steel Hub'
       }
     }
   };
 
-  document.addEventListener('DOMContentLoaded', () => {
-    init3DStudio();
-  });
+  // State
+  let currentProductId = 'fridge';
+  let currentAngle = 0; // 0 to 359 degrees
+  let isAutoRotate = true; // Auto-rotate on by default for lively 3D showcase
+  let isProgrammaticOrbit = false;
 
-  function init3DStudio() {
-    const viewer = document.getElementById('cad-model-viewer');
-    const productBtns = document.querySelectorAll('.viewer-product-btn');
-    const angleSlider = document.getElementById('angle-slider');
-    const angleReadout = document.getElementById('angle-readout');
-    const presetBtns = document.querySelectorAll('.preset-btn');
-    const autoRotateBtn = document.getElementById('auto-rotate-btn');
-    const resetViewBtn = document.getElementById('reset-view-btn');
-    const arBtn = document.getElementById('trigger-ar-btn');
-    const dragHint = document.getElementById('drag-hint-pill');
+  // DOM Elements
+  const stage = document.getElementById('viewer-stage');
+  const cadModelViewer = document.getElementById('cad-model-viewer');
+  const scrubber = document.getElementById('angle-slider');
+  const angleReadout = document.getElementById('angle-readout');
+  const productButtons = document.querySelectorAll('.viewer-product-btn');
+  const presetButtons = document.querySelectorAll('.preset-btn');
+  const autoRotateBtn = document.getElementById('auto-rotate-btn');
+  const resetBtn = document.getElementById('reset-view-btn');
+  const arBtn = document.getElementById('trigger-ar-btn');
 
-    const specModel = document.getElementById('spec-val-model');
-    const specTemp = document.getElementById('spec-val-temp');
-    const specComp = document.getElementById('spec-val-comp');
-    const specSteel = document.getElementById('spec-val-steel');
-    const specQuoteBtn = document.getElementById('spec-quote-btn');
+  function initViewer() {
+    if (!cadModelViewer) return;
 
-    if (!viewer) return;
-
-    let currentProductKey = 'fridge';
-    let isUserScrubbing = false;
-    let hasInteracted = false;
-
-    // =========================================================================
-    // 1. PRODUCT SWITCHING
-    // =========================================================================
-    function switchProduct(productKey) {
-      const data = PRODUCTS_DATA[productKey];
-      if (!data) return;
-
-      currentProductKey = productKey;
-
-      // Update 3D Model Source & Accessibility
-      viewer.src = data.glbSrc;
-      viewer.alt = `Interactive 3D model - ${data.name}`;
-
-      // Update Live Specs Strip
-      if (specModel) specModel.textContent = data.specs.model;
-      if (specTemp) specTemp.textContent = data.specs.temp;
-      if (specComp) specComp.textContent = data.specs.compressor;
-      if (specSteel) specSteel.textContent = data.specs.steel;
-
-      // Update Quote Button Context
-      if (specQuoteBtn) {
-        specQuoteBtn.setAttribute('data-product-type', data.quoteCategory || data.name);
-      }
-
-      // Reset Camera to Front 0°
-      resetCameraView();
-
-      // Update Product Buttons UI
-      productBtns.forEach(btn => {
-        const isActive = btn.getAttribute('data-product') === productKey;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-    }
-
-    productBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const key = btn.getAttribute('data-product');
-        if (key && key !== currentProductKey) {
-          switchProduct(key);
-        }
-      });
-    });
-
-    // =========================================================================
-    // 2. CAMERA ANGLE & SCRUBBER SYNCHRONIZATION
-    // =========================================================================
-    function updateAngleDisplay(deg) {
-      if (angleSlider) angleSlider.value = deg;
-      if (angleReadout) angleReadout.textContent = String(deg).padStart(3, '0') + '°';
-
-      // Highlight matching preset button
-      presetBtns.forEach(btn => {
-        const presetAngle = parseInt(btn.getAttribute('data-angle'), 10);
-        const isMatch = Math.abs(presetAngle - deg) <= 5 || (presetAngle === 0 && deg >= 355);
-        btn.classList.toggle('active', isMatch);
-      });
-    }
-
-    // Listen to real-time camera changes from model-viewer
-    viewer.addEventListener('camera-change', () => {
-      if (isUserScrubbing) return;
-
-      try {
-        const orbit = viewer.getCameraOrbit();
-        if (orbit && typeof orbit.theta === 'number') {
-          const thetaDeg = Math.round(((orbit.theta * 180 / Math.PI) % 360 + 360) % 360);
-          updateAngleDisplay(thetaDeg);
-        }
-      } catch (e) {
-        // Fallback for browsers with strict custom element timing
-      }
-    });
-
-    // Angle Scrubber Input Slider
-    if (angleSlider) {
-      angleSlider.addEventListener('input', (e) => {
-        isUserScrubbing = true;
-        const targetDeg = parseInt(e.target.value, 10);
-        updateAngleDisplay(targetDeg);
-
-        // Turn off auto-rotate when user manual-scrubs
-        if (viewer.autoRotate) {
-          viewer.autoRotate = false;
-          if (autoRotateBtn) autoRotateBtn.classList.remove('active');
-        }
-
-        // Apply orbit theta while keeping natural elevation and radius
-        viewer.cameraOrbit = `${targetDeg}deg 75deg auto`;
-      });
-
-      angleSlider.addEventListener('change', () => {
-        isUserScrubbing = false;
-      });
-    }
-
-    // Preset Angle Buttons (0°, 45°, 90°, 180°)
-    presetBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetDeg = parseInt(btn.getAttribute('data-angle'), 10);
-        updateAngleDisplay(targetDeg);
-
-        // Disable auto-rotate
-        if (viewer.autoRotate) {
-          viewer.autoRotate = false;
-          if (autoRotateBtn) autoRotateBtn.classList.remove('active');
-        }
-
-        viewer.cameraOrbit = `${targetDeg}deg 75deg auto`;
-      });
-    });
-
-    // =========================================================================
-    // 3. AUXILIARY CONTROLS (AUTO-ROTATE, RESET, AR)
-    // =========================================================================
-    function resetCameraView() {
-      viewer.cameraOrbit = '0deg 75deg auto';
-      viewer.fieldOfView = 'auto';
-      viewer.cameraTarget = 'auto auto auto';
-      updateAngleDisplay(0);
-    }
-
-    if (resetViewBtn) {
-      resetViewBtn.addEventListener('click', () => {
-        resetCameraView();
-      });
-    }
+    setupEventListeners();
+    updateSpecsStrip('fridge');
+    loadProductModel('fridge');
 
     if (autoRotateBtn) {
-      autoRotateBtn.addEventListener('click', () => {
-        viewer.autoRotate = !viewer.autoRotate;
-        autoRotateBtn.classList.toggle('active', viewer.autoRotate);
-      });
+      autoRotateBtn.classList.toggle('active', isAutoRotate);
+    }
+  }
+
+  function updateSpecsStrip(productId) {
+    const data = PRODUCTS_DATA[productId];
+    if (!data || !data.specs) return;
+
+    const modelEl = document.getElementById('spec-strip-model');
+    const tempEl = document.getElementById('spec-strip-temp');
+    const compEl = document.getElementById('spec-strip-compressor');
+    const steelEl = document.getElementById('spec-strip-steel');
+    const quoteBtn = document.getElementById('viewer-quote-btn');
+
+    if (modelEl) modelEl.textContent = data.specs.model;
+    if (tempEl) tempEl.textContent = data.specs.temp;
+    if (compEl) compEl.textContent = data.specs.compressor;
+    if (steelEl) steelEl.textContent = data.specs.steel;
+    if (quoteBtn) quoteBtn.setAttribute('data-product-type', data.name);
+  }
+
+  function loadProductModel(productId) {
+    const data = PRODUCTS_DATA[productId];
+    if (!data || !cadModelViewer) return;
+
+    currentProductId = productId;
+
+    // Switch model source smoothly
+    if (cadModelViewer.getAttribute('src') !== data.glb) {
+      cadModelViewer.src = data.glb;
+      cadModelViewer.alt = `Interactive 3D model - ${data.name}`;
     }
 
-    if (arBtn) {
-      arBtn.addEventListener('click', () => {
-        if (viewer.canActivateAR) {
-          viewer.activateAR();
-        } else if (dragHint) {
-          const hintSpan = dragHint.querySelector('span');
-          if (hintSpan) {
-            hintSpan.textContent = 'AR room placement is available on iOS and Android devices';
+    // Reset camera orbit to front view on product switch
+    setCameraAngle(0);
+    cadModelViewer.autoRotate = isAutoRotate;
+  }
+
+  function setCameraAngle(angle) {
+    currentAngle = ((Math.round(angle) % 360) + 360) % 360;
+
+    if (scrubber) scrubber.value = currentAngle;
+    if (angleReadout) {
+      angleReadout.textContent = `${String(currentAngle).padStart(3, '0')}°`;
+    }
+
+    // Update active preset button
+    presetButtons.forEach(btn => {
+      const btnAngle = parseInt(btn.getAttribute('data-angle'), 10);
+      btn.classList.toggle('active', Math.abs(currentAngle - btnAngle) <= 15);
+    });
+
+    // Apply orbit to 3D model
+    if (cadModelViewer) {
+      isProgrammaticOrbit = true;
+      cadModelViewer.cameraOrbit = `${currentAngle}deg 75deg auto`;
+      // Allow user interaction events after orbit finishes applying
+      setTimeout(() => {
+        isProgrammaticOrbit = false;
+      }, 50);
+    }
+  }
+
+  function setupEventListeners() {
+    // 1. Bi-directional sync: Direct 3D Model drag -> updates scrubber & readout
+    if (cadModelViewer) {
+      cadModelViewer.addEventListener('camera-change', (event) => {
+        if (isProgrammaticOrbit) return;
+
+        // Sync when user drags or model rotates
+        const orbit = cadModelViewer.getCameraOrbit();
+        if (orbit && typeof orbit.theta === 'number') {
+          let deg = Math.round((orbit.theta * 180) / Math.PI) % 360;
+          if (deg < 0) deg += 360;
+          currentAngle = deg;
+
+          if (scrubber) scrubber.value = currentAngle;
+          if (angleReadout) {
+            angleReadout.textContent = `${String(currentAngle).padStart(3, '0')}°`;
           }
-          dragHint.style.display = 'inline-flex';
-          dragHint.style.opacity = '1';
-          setTimeout(() => {
-            dragHint.style.opacity = '0';
-          }, 3200);
+
+          presetButtons.forEach(btn => {
+            const btnAngle = parseInt(btn.getAttribute('data-angle'), 10);
+            btn.classList.toggle('active', Math.abs(currentAngle - btnAngle) <= 15);
+          });
         }
       });
     }
 
-    // Dismiss drag hint pill upon first interaction
-    function dismissHint() {
-      if (!hasInteracted && dragHint) {
-        hasInteracted = true;
-        dragHint.style.opacity = '0';
-        setTimeout(() => {
-          dragHint.style.display = 'none';
-        }, 500);
+    // 2. Angle Scrubber Slider
+    if (scrubber) {
+      scrubber.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        setCameraAngle(val);
+      });
+    }
+
+    // 3. Angle Presets (Front 0°, Quarter 45°, Side 90°, Back 180°)
+    presetButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetAngle = parseInt(btn.getAttribute('data-angle'), 10);
+        animateToAngle(targetAngle);
+      });
+    });
+
+    // 4. Product Selector Buttons
+    productButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const prod = btn.getAttribute('data-product');
+        if (prod && PRODUCTS_DATA[prod]) {
+          productButtons.forEach(b => {
+            const isActive = (b === btn);
+            b.classList.toggle('active', isActive);
+            b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+
+          updateSpecsStrip(prod);
+          loadProductModel(prod);
+        }
+      });
+    });
+
+    // 5. Auto-Rotate Toggle Button
+    if (autoRotateBtn) {
+      autoRotateBtn.addEventListener('click', () => {
+        isAutoRotate = !isAutoRotate;
+        autoRotateBtn.classList.toggle('active', isAutoRotate);
+        if (cadModelViewer) {
+          cadModelViewer.autoRotate = isAutoRotate;
+        }
+      });
+    }
+
+    // 6. Reset Camera View Button
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (cadModelViewer) {
+          if (typeof cadModelViewer.resetTurntable === 'function') {
+            cadModelViewer.resetTurntable();
+          }
+        }
+        animateToAngle(0);
+      });
+    }
+
+    // 7. AR View in Room Button (Mobile Augmented Reality)
+    if (arBtn && cadModelViewer) {
+      arBtn.addEventListener('click', () => {
+        if (typeof cadModelViewer.activateAR === 'function') {
+          cadModelViewer.activateAR();
+        }
+      });
+    }
+  }
+
+  // Smooth animation helper between angles
+  function animateToAngle(targetAngle) {
+    const start = currentAngle;
+    let diff = (targetAngle - start) % 360;
+    if (diff > 180) diff -= 360;
+    if (diff < -180) diff += 360;
+
+    const startTime = performance.now();
+    const duration = 350;
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setCameraAngle(start + diff * ease);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
       }
     }
 
-    viewer.addEventListener('mousedown', dismissHint, { once: true });
-    viewer.addEventListener('touchstart', dismissHint, { once: true });
-    viewer.addEventListener('wheel', dismissHint, { once: true });
+    requestAnimationFrame(step);
+  }
+
+  // Boot on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initViewer);
+  } else {
+    initViewer();
   }
 })();

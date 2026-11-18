@@ -1,6 +1,7 @@
 /* ==========================================================================
    DIRECT FACTORY CONTACT & CUSTOM QUOTE DIALOG
    Night Blue (#2d545e / #12343b) Section with Warm Parchment Form & Sand Tan (#e1b382) Details
+
    ========================================================================== */
 
 .contact-section {
@@ -187,6 +188,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
+
 }
 
 .form-row {
@@ -194,6 +196,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
+
 
 .form-row.three-cols {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -203,6 +206,7 @@
   .form-row,
   .form-row.three-cols {
     grid-template-columns: minmax(0, 1fr);
+
   }
 }
 
@@ -210,6 +214,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+
   min-inline-size: 0;
 }
 
@@ -245,10 +250,13 @@
 
 .form-select {
   cursor: pointer;
+
 }
 
 .form-textarea {
+  min-height: 95px;
   resize: vertical;
+
   min-height: 96px;
 }
 
@@ -274,20 +282,24 @@ dialog.modal-dialog {
 dialog.modal-dialog::backdrop {
   background-color: rgba(11, 34, 39, 0.72);
   backdrop-filter: blur(2px);
+
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 1.15rem 1.5rem;
   background-color: var(--color-night-shadow);
   color: var(--color-ink-on-dark);
   border-bottom: 2px solid var(--color-sand-shadow);
+
 }
 
 .modal-header h3 {
   font-family: var(--font-display);
+
   font-size: 1.2rem;
   color: var(--color-ink-on-dark);
 }
@@ -308,16 +320,25 @@ dialog.modal-dialog::backdrop {
 
 .modal-close-btn:hover {
   background-color: rgba(225, 179, 130, 0.2);
+
 }
 
 .modal-body {
   padding: 1.5rem;
   max-height: calc(90vh - 70px);
+
   overflow-y: auto;
   background-color: var(--color-paper-tint);
 }
 
+@media (max-width: 600px) {
+  .modal-body {
+    padding: 1.15rem;
+  }
+}
+
 .calculator-preview-box {
+
   background-color: var(--color-surface-card);
   border: 1px dashed rgba(45, 84, 94, 0.35);
   border-radius: var(--radius-xs);
@@ -360,4 +381,3 @@ dialog.lightbox-dialog::backdrop {
   border-radius: var(--radius-md);
   border: 2px solid var(--color-sand-shadow);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-}

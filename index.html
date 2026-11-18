@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Jai Hind Engineering Works | Refrigeration &amp; Metal Fabrication (Est. 1980)</title>
-  <meta name="description" content="Jai Hind Engineering Works, Sultanpur (Est. 1980). Commercial refrigeration equipment, sweet display counters, interactive 3D product views, and factory-direct spare parts.">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jai Hind Engineering Works | Commercial Refrigeration, Counters & Spares (Est. 1980)</title>
+  <meta name="description" content="Official portfolio of Jai Hind Engineering Works (Sultanpur, UP, Est. 1980). Commercial refrigeration, sweet display counters, and soft serve machines with 360° product views, genuine hardware spares, and components.">
+  
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="CSS/general.css">
   <link rel="stylesheet" href="CSS/header.css">
@@ -19,16 +19,41 @@
   <!-- Editorial & Workshop Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Google model-viewer Web Component for Real-Time 3D GLB Models -->
+  <!-- Google model-viewer Web Component for Real-time 3D GLB Rendering -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
 
 <body>
 
   <!-- =========================================================================
-       COMPACT SITE HEADER (NIGHT BLUE #12343b & SAND TAN #e1b382)
+       TOP INDUSTRIAL CREDENTIALS BAR (MICRO STRIP)
+       ========================================================================= -->
+  <aside class="industrial-topbar" aria-label="Factory summary bar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <span class="topbar-badge">Since 1980 • 44+ Years Manufacturing</span>
+        <span class="topbar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Badhmandi Chauraha, Sultanpur (UP) 228001
+        </span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Mon - Sat 9:00 AM - 8:30 PM
+        </span>
+        <a href="tel:+919838021456" class="topbar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          +91 98380 21456
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       PRIMARY SITE HEADER (MINIMALIST FROSTED GLASS NAVBAR)
        ========================================================================= -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
@@ -40,6 +65,7 @@
         </div>
       </a>
 
+      <!-- Header Actions (Visible on Desktop & Mobile) -->
       <div class="header-actions">
         <a href="tel:+919838021456" class="header-phone-pill" aria-label="Call factory directly">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -48,69 +74,80 @@
         <button type="button" class="btn btn-brass btn-minimal-quote open-quote-modal-btn">
           Get Quote
         </button>
-        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Open factory contact drawer" aria-expanded="false" aria-controls="mobile-drawer">
-          <span class="hamburger-bar" aria-hidden="true"></span>
-          <span class="hamburger-bar" aria-hidden="true"></span>
-          <span class="hamburger-bar" aria-hidden="true"></span>
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-drawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Contact Drawer Portal (Clips off-canvas slide cleanly inside viewport) -->
-  <div class="mobile-drawer-portal" id="mobile-drawer-portal">
-    <div class="mobile-drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
-    <aside class="mobile-drawer" id="mobile-drawer" aria-label="Factory Contact Desk" aria-hidden="true" inert>
+  <!-- =========================================================================
+       ACCESSIBLE MOBILE NAVIGATION DRAWER
+       ========================================================================= -->
+  <div class="mobile-drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation Menu" aria-hidden="true">
     <div class="drawer-header">
       <div class="drawer-brand">
-        <span class="brand-symbol-minimal" aria-hidden="true">JH</span>
+        <span class="brand-symbol-minimal">JH</span>
         <span class="brand-name">Jai Hind Engineering</span>
       </div>
-      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close drawer">
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     </div>
     <div class="drawer-body">
-      <p class="drawer-summary-note">
-        Badhmandi Chauraha, Allahabad Road, Sultanpur (UP) 228001 • Open Mon &ndash; Sat, 9:00 AM &ndash; 8:30 PM.
-      </p>
       <div class="drawer-actions">
-        <button type="button" class="btn btn-brass btn-block open-quote-modal-btn">Request Factory Quote</button>
-        <a href="https://wa.me/919838021456?text=Hello%20Jai%20Hind%20Engineering,%20I%20am%20inquiring%20about%20commercial%20cooling/counter%20fabrication." target="_blank" rel="noopener noreferrer" class="btn btn-night btn-block">
+        <button type="button" class="btn btn-amber btn-block open-quote-modal-btn">Request Factory Quote</button>
+        <a href="https://wa.me/919838021456?text=Hello%20Jai%20Hind%20Engineering,%20I%20am%20inquiring%20about%20commercial%20cooling/counter%20fabrication." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-drawer btn-block">
           WhatsApp Direct Desk
         </a>
         <a href="tel:+919838021456" class="drawer-phone-contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          <span>+91 98380 21456 &bull; Badhmandi Chauraha, Sultanpur</span>
+          <span>+91 98380 21456 • Badhmandi Chauraha, Sultanpur</span>
         </a>
       </div>
     </div>
   </aside>
-  </div>
 
   <main>
     <!-- =========================================================================
-         HERITAGE WORKSHOP SPLIT HERO
+         PART 01: CINEMATIC FACTORY VIDEO BACKGROUND & HERITAGE (EST. 1980)
          ========================================================================= -->
     <section class="hero-section" id="part-1-factory">
-      <div class="container hero-split-grid">
-        <div class="hero-editorial-col">
-          <div class="hero-provenance">
-            Established 1980 &bull; Sultanpur, Uttar Pradesh
-          </div>
+      <!-- 1. Cinematic Industrial Video Background -->
+      <div class="hero-video-container">
+        <video class="hero-video-element" autoplay muted loop playsinline poster="IMG/image-4.jpeg">
+          <source src="assets/videos/factory-hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-video-overlay"></div>
+      <div class="hero-video-mesh"></div>
 
-          <h1 class="hero-headline">
-            Refrigeration &amp; <span class="accent-sand">Metal Fabrication</span>
-          </h1>
+      <!-- 2. Clean Factory Credentials Overlay (Reduced Cognitive Overload) -->
+      <div class="container hero-content-wrapper">
+        <div class="hero-header-badges">
+          <span class="hero-kicker-pill">
+            <span class="kicker-dot"></span>
+            Est. 1980 • Sultanpur, Uttar Pradesh
+          </span>
+        </div>
 
-          <p class="hero-description">
-            Crafted in <strong>Sultanpur since 1980</strong>, Jai Hind Engineering manufactures commercial display refrigerators, curved-glass sweet counters, soft-serve machinery, and deep freezers in heavy-gauge <strong>SS-304 stainless steel</strong>.
-          </p>
+        <h1 class="hero-headline">
+          <span class="highlight-cryo">Refrigeration</span> &amp; <span class="highlight-amber">Metal Fabrication</span>
+        </h1>
 
-          <div class="hero-ledger" aria-label="Workshop credentials summary">
-            <div class="ledger-cell">
-              <div class="ledger-value">44+</div>
-              <div class="ledger-label">Years Continuous Manufacturing</div>
+        <p class="hero-description">
+          Founded in <strong>Sultanpur in 1980</strong>, Jai Hind Engineering is North India’s premier manufacturer of commercial display refrigerators, sweet &amp; bakery display counters, and sub-zero defridgers. Engineered with <strong>100% food-grade SS-304 stainless steel</strong> and high-back-pressure tropicalized cooling circuits.
+        </p>
+
+        <!-- Four Decades Milestone Panel -->
+        <div class="hero-stats-panel">
+          <div class="hero-stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">44<span class="unit" style="color: var(--color-amber);">+</span></div>
+              <div class="stat-label">Years Continuous Manufacturing (Est. 1980)</div>
             </div>
             <div class="ledger-cell">
               <div class="ledger-value">15,000+</div>
@@ -147,17 +184,17 @@
     <section class="section-padding viewer-section" id="part-2-3d">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Interactive 3D Catalog</span>
+          <span class="section-tag cryo">Interactive 3D Studio</span>
           <h2 class="section-title">See Our Products in 3D</h2>
           <p class="section-subtitle">
-            Inspect our commercial refrigerators, soft-serve machines, and genuine assemblies in full 3D. Drag to rotate, zoom in closely, or preview equipment in your shop floor via AR.
+            Inspect our commercial refrigerators, ice cream machinery, and heavy-duty cooling components in interactive 3D. Rotate 360°, zoom in on precision welds and fittings, and review technical specs before you order.
           </p>
         </div>
 
         <div class="viewer-wrapper">
           <div class="viewer-topbar">
-            <!-- Model Selector Tabs -->
-            <div class="viewer-product-selector" role="tablist" aria-label="Select product for 3D view">
+            <!-- Product Selector Pills -->
+            <div class="viewer-product-selector" role="tablist" aria-label="Select product for 3D inspection">
               <button type="button" class="viewer-product-btn active" data-product="fridge" role="tab" aria-selected="true">
                 Commercial Fridge (JHE-CR-450)
               </button>
@@ -175,21 +212,25 @@
               </button>
             </div>
 
+            <!-- 3D Actions (AR in Room) -->
             <div class="viewer-topbar-actions">
-              <button type="button" class="view-ar-btn" id="trigger-ar-btn">
+              <button type="button" class="view-ar-btn" id="trigger-ar-btn" title="View 3D model in your actual space with Augmented Reality (AR)">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 View in Room (AR)
               </button>
             </div>
           </div>
 
-          <!-- Studio Daylight Viewport (3D Model Only) -->
-          <div class="viewer-stage" id="viewer-stage" aria-label="Interactive 3D product stage">
+          <!-- Viewport Stage (100% Real 3D GLB Model) -->
+          <div class="viewer-stage" id="viewer-stage" aria-label="Interactive 3D product view. Drag in 3D to rotate and scroll to zoom.">
+            <div class="turntable-pedestal"></div>
+
             <div class="drag-hint-pill" id="drag-hint-pill" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11l-6-6-6 6M6 13l6 6 6-6"></path></svg>
-              <span>Drag to rotate in 3D &bull; Scroll or pinch to zoom</span>
+              <span id="drag-hint-text">Drag in 3D to rotate • Scroll or pinch to zoom</span>
             </div>
 
+            <!-- Interactive 3D Model Viewer (GLB) -->
             <model-viewer
               id="cad-model-viewer"
               class="cad-model-viewer-element"
@@ -197,12 +238,12 @@
               alt="Interactive 3D model - Commercial Fridge (JHE-CR-450)"
               auto-rotate
               auto-rotate-delay="1200"
-              rotation-per-second="18deg"
+              rotation-per-second="20deg"
               camera-controls
               touch-action="pan-y"
-              shadow-intensity="1.25"
-              shadow-softness="0.85"
-              exposure="1.0"
+              shadow-intensity="1.5"
+              shadow-softness="0.8"
+              exposure="1.05"
               environment-image="neutral"
               ar
               ar-modes="webxr scene-viewer quick-look"
@@ -211,7 +252,7 @@
               bounds="tight">
               <div slot="poster" class="model-loading-poster">
                 <div class="model-spinner"></div>
-                <p>Loading 3D Model&hellip;</p>
+                <p>Loading 3D Model...</p>
               </div>
             </model-viewer>
           </div>
@@ -220,25 +261,25 @@
           <div class="viewer-controls-bar">
             <div class="controls-main-row">
               <div class="angle-scrubber-group">
-                <label for="angle-slider" class="sr-only">3D Camera Rotation Angle</label>
+                <label for="angle-slider" class="sr-only">3D Camera Rotation Angle (0 to 360 degrees)</label>
                 <input type="range" id="angle-slider" class="angle-scrubber-slider" min="0" max="359" value="0" step="1">
                 <div class="angle-readout" id="angle-readout" aria-live="off">000&deg;</div>
               </div>
 
               <div class="angle-presets-row" aria-label="Camera angle presets">
-                <button type="button" class="preset-btn active" data-angle="0">Front (0&deg;)</button>
-                <button type="button" class="preset-btn" data-angle="45">Quarter (45&deg;)</button>
-                <button type="button" class="preset-btn" data-angle="90">Side (90&deg;)</button>
-                <button type="button" class="preset-btn" data-angle="180">Back (180&deg;)</button>
+                <button type="button" class="preset-btn active" data-angle="0">Front (0°)</button>
+                <button type="button" class="preset-btn" data-angle="45">Quarter (45°)</button>
+                <button type="button" class="preset-btn" data-angle="90">Side (90°)</button>
+                <button type="button" class="preset-btn" data-angle="180">Back (180°)</button>
               </div>
 
               <div class="controls-aux-group">
-                <button type="button" class="control-icon-btn active" id="auto-rotate-btn">
+                <button type="button" class="control-icon-btn active" id="auto-rotate-btn" title="Toggle automatic 3D rotation">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
                   Auto-Rotate
                 </button>
-                <button type="button" class="control-icon-btn" id="reset-view-btn">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                <button type="button" class="control-icon-btn" id="reset-view-btn" title="Reset camera view to front">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
                   Reset View
                 </button>
               </div>
@@ -277,10 +318,10 @@
     <section class="section-padding parts-depot-section" id="part-3-spares">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Factory-Direct Inventory</span>
+          <span class="section-tag violet">Spares &amp; Components</span>
           <h2 class="section-title">Similar Products &amp; Components</h2>
           <p class="section-subtitle">
-            Genuine replacement motors, fan blades, copper tubing, SS-304 gastronorm trays, compressors, and refrigeration hardware stocked directly at our Sultanpur depot.
+            Genuine factory-direct replacement parts, accessories, and components for commercial refrigerators, sweet counters, and cooling equipment.
           </p>
         </div>
 
@@ -292,50 +333,22 @@
             <input type="search" id="parts-search-input" class="parts-search-input" placeholder="Search by SKU or component (Motor, Fan, Trays, Copper, Compressor, Gas, Castors)...">
           </div>
 
-          <fieldset class="parts-category-radios">
-            <legend class="sr-only">Filter components by category</legend>
-            <label for="cat-all" class="category-radio-label">
-              <input type="radio" id="cat-all" name="parts-category" value="all" class="category-radio-input" checked>
-              <span>All Components</span>
-            </label>
-            <label for="cat-motor" class="category-radio-label">
-              <input type="radio" id="cat-motor" name="parts-category" value="motor" class="category-radio-input">
-              <span>Motors</span>
-            </label>
-            <label for="cat-fan" class="category-radio-label">
-              <input type="radio" id="cat-fan" name="parts-category" value="fan" class="category-radio-input">
-              <span>Motor Fans</span>
-            </label>
-            <label for="cat-wire" class="category-radio-label">
-              <input type="radio" id="cat-wire" name="parts-category" value="wire" class="category-radio-input">
-              <span>Copper &amp; Wire</span>
-            </label>
-            <label for="cat-tray" class="category-radio-label">
-              <input type="radio" id="cat-tray" name="parts-category" value="tray" class="category-radio-input">
-              <span>SS Trays</span>
-            </label>
-            <label for="cat-compressor" class="category-radio-label">
-              <input type="radio" id="cat-compressor" name="parts-category" value="compressor" class="category-radio-input">
-              <span>Compressors</span>
-            </label>
-            <label for="cat-gas" class="category-radio-label">
-              <input type="radio" id="cat-gas" name="parts-category" value="gas" class="category-radio-input">
-              <span>Gas Cylinders</span>
-            </label>
-            <label for="cat-controller" class="category-radio-label">
-              <input type="radio" id="cat-controller" name="parts-category" value="controller" class="category-radio-input">
-              <span>Controllers</span>
-            </label>
-            <label for="cat-hardware" class="category-radio-label">
-              <input type="radio" id="cat-hardware" name="parts-category" value="hardware" class="category-radio-input">
-              <span>Hardware &amp; Castors</span>
-            </label>
-          </fieldset>
-        </search>
+          <div class="parts-category-pills" role="tablist" aria-label="Filter parts by category">
+            <button type="button" class="category-pill active" data-category="all">All Components</button>
+            <button type="button" class="category-pill" data-category="motor">Motors</button>
+            <button type="button" class="category-pill" data-category="fan">Motor Fans</button>
+            <button type="button" class="category-pill" data-category="wire">Copper &amp; Wire</button>
+            <button type="button" class="category-pill" data-category="tray">SS Trays</button>
+            <button type="button" class="category-pill" data-category="compressor">Compressors</button>
+            <button type="button" class="category-pill" data-category="gas">Gas Cylinders</button>
+            <button type="button" class="category-pill" data-category="controller">Controllers</button>
+            <button type="button" class="category-pill" data-category="hardware">Hardware &amp; Castors</button>
+          </div>
+        </div>
 
         <div class="parts-counter-bar">
-          <div>Showing <strong id="parts-count-num">10</strong> verified components in stock</div>
-          <div>Hover any card to inspect full technical specs</div>
+          <div>Showing <strong id="parts-count-num">10</strong> genuine components &amp; spares in stock</div>
+          <div>100% Factory Tested &amp; Certified</div>
         </div>
 
         <!-- Components Grid -->
@@ -690,7 +703,8 @@
                 <textarea id="contact-message" name="contact_message" class="form-textarea" placeholder="Mention size (e.g. 5 ft curved counter or 450L Visi-Cooler)..."></textarea>
               </div>
 
-              <button type="submit" class="btn btn-night btn-block">
+              <button type="submit" class="btn btn-amber btn-block">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 Send Inquiry to Factory WhatsApp
               </button>
             </form>
@@ -718,17 +732,17 @@
       </div>
 
       <div>
-        <h4 class="footer-col-title">Sections</h4>
+        <h4 class="footer-col-title">Quick Links</h4>
         <ul class="footer-links-list">
-          <li class="footer-link-item"><a href="#part-1-factory">Workshop Heritage</a></li>
-          <li class="footer-link-item"><a href="#part-2-3d">See Our Products in 3D</a></li>
-          <li class="footer-link-item"><a href="#part-3-spares">Similar Products &amp; Components</a></li>
-          <li class="footer-link-item"><a href="#contact">Factory Contact Desk</a></li>
+          <li class="footer-link-item"><a href="#part-1-factory">Factory Heritage (Est. 1980)</a></li>
+          <li class="footer-link-item"><a href="#part-2-3d">See Our Products (3D)</a></li>
+          <li class="footer-link-item"><a href="#part-3-spares">Spares &amp; Components</a></li>
+          <li class="footer-link-item"><a href="#contact">Direct Factory Connect Desk</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="footer-col-title">Components</h4>
+        <h4 class="footer-col-title">Spares &amp; Parts</h4>
         <ul class="footer-links-list">
           <li class="footer-link-item"><a href="#part-3-spares">Shaded Pole Electric Motors</a></li>
           <li class="footer-link-item"><a href="#part-3-spares">Cooling Fan Blades</a></li>
@@ -807,24 +821,27 @@
           </div>
         </div>
 
+        <!-- Custom Dimension Estimator (Content-First Noise Reduction via Disclosure) -->
         <details class="custom-calc-details">
-          <summary>Need custom sizing? Open Dimension Estimator</summary>
-          <div class="form-row three-cols" style="margin-top: 0.75rem;">
-            <div class="form-group">
-              <label for="calc-length">Length (inches)</label>
-              <input type="number" id="calc-length" name="calc_length" class="form-input" placeholder="e.g. 60" min="12" max="180">
+          <summary>Need Custom Dimensions? Open Volume &amp; Sizing Calculator</summary>
+          <div style="margin-top: 0.75rem;">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="calc-length">Length (Inches)</label>
+                <input type="number" id="calc-length" class="form-input" placeholder="e.g. 60 (5 ft)" min="12" max="180">
+              </div>
+              <div class="form-group">
+                <label for="calc-width">Depth (Inches)</label>
+                <input type="number" id="calc-width" class="form-input" placeholder="e.g. 30 (2.5 ft)" min="12" max="60">
+              </div>
+              <div class="form-group">
+                <label for="calc-height">Height (Inches)</label>
+                <input type="number" id="calc-height" class="form-input" placeholder="e.g. 48 (4 ft)" min="12" max="96">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="calc-width">Depth (inches)</label>
-              <input type="number" id="calc-width" name="calc_width" class="form-input" placeholder="e.g. 30" min="12" max="60">
+            <div class="calculator-preview-box" id="calculator-result-text">
+              Enter dimensions in inches to calculate estimated storage volume &amp; running feet.
             </div>
-            <div class="form-group">
-              <label for="calc-height">Height (inches)</label>
-              <input type="number" id="calc-height" name="calc_height" class="form-input" placeholder="e.g. 48" min="12" max="96">
-            </div>
-          </div>
-          <div class="calculator-preview-box" id="calculator-result-text">
-            Enter dimensions in inches to estimate interior volume &amp; running feet.
           </div>
         </details>
 
