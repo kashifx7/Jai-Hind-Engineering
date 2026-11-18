@@ -1,90 +1,25 @@
 /* ==========================================================================
-   HEADER & NAVIGATION - APPLE PRO MINIMALIST FROSTED GLASS
-   Mobile-first, Noise-reduced, Scroll-reactive
+
+   SITE HEADER & MOBILE DRAWER (SULTANPUR HERITAGE WORKSHOP)
+   Compact Single-Row Navigation Bar in Deep Night Blue (#12343b) & Sand Tan (#e1b382)
    ========================================================================== */
 
-/* Topbar - Clean Industrial Strip */
-.industrial-topbar {
-  background-color: #000000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.72rem;
-  color: #86868b;
-  height: var(--topbar-height, 28px);
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 101;
-  letter-spacing: -0.01em;
-}
 
-.topbar-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.topbar-left, .topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.topbar-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  text-decoration: none;
-  color: #86868b;
-  transition: color 0.2s ease;
-}
-
-.topbar-item:hover {
-  color: #f5f5f7;
-}
-
-.topbar-item svg {
-  width: 12px;
-  height: 12px;
-  color: #a1a1a6;
-}
-
-.topbar-badge {
-  background: rgba(255, 255, 255, 0.08);
-  color: #f5f5f7;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0.1rem 0.5rem;
-  border-radius: var(--radius-full);
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 500;
-}
-
-@media (max-width: 900px) {
-  .industrial-topbar {
-    display: none;
-  }
-}
-
-/* Main Site Header - Apple Cupertino Frosted Glass Navbar */
 .site-header {
   position: sticky;
   top: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.82);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--color-night-shadow);
+  border-bottom: 1px solid rgba(225, 179, 130, 0.28);
   z-index: 100;
-  height: var(--header-height, 54px);
+  min-block-size: var(--header-height, 62px);
   display: flex;
   align-items: center;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease;
-  will-change: transform;
+  transition: transform 0.25s ease;
 }
 
-/* Hide header on scroll down to maximize content, show on scroll up */
-.site-header.header-hidden:not(:focus-within) {
+.site-header.is-hidden:not(:focus-within) {
+
   transform: translateY(-100%);
 }
 
@@ -94,63 +29,63 @@
   justify-content: space-between;
   width: 100%;
   gap: 1rem;
+  padding-block: 0.5rem;
 }
 
-/* Minimal Brand Monogram & Wordmark */
+/* Heritage Brand Monogram & Wordmark */
 .brand-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.65rem;
   text-decoration: none;
-  flex-shrink: 0;
+  min-inline-size: 0;
 }
 
 .brand-symbol-minimal {
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  background-color: var(--color-night-blue);
+  border: 1px solid var(--color-sand-shadow);
+  border-radius: var(--radius-xs);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: #f5f5f7;
-  letter-spacing: -0.01em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-sand-tan);
 }
 
 .brand-text {
   display: flex;
   align-items: baseline;
-  gap: 0.4rem;
+  gap: 0.55rem;
+  min-inline-size: 0;
 }
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: 0.98rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: #f5f5f7;
-  line-height: 1;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--color-ink-on-dark);
+  line-height: 1.1;
 }
 
 .brand-accent {
-  color: #2997ff;
+  color: var(--color-sand-tan);
 }
 
 .brand-tagline-pill {
   font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  color: #86868b;
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
-  padding-left: 0.45rem;
+  color: var(--color-ink-on-dark-muted);
+  border-left: 1px solid rgba(225, 179, 130, 0.3);
+  padding-left: 0.55rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 580px) {
   .brand-tagline-pill {
     display: none;
   }
@@ -207,12 +142,13 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .header-phone-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   text-decoration: none;
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -496,4 +432,136 @@
   width: 13px;
   height: 13px;
   color: #2997ff;
+}
+
+/* ==========================================================================
+   MOBILE DRAWER PORTAL (Strictly clipped to viewport, zero scroll overflow)
+   ========================================================================== */
+
+.mobile-drawer-portal {
+  position: fixed;
+  inset: 0;
+  overflow: clip;
+  pointer-events: none;
+  z-index: 998;
+}
+
+.mobile-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(11, 34, 39, 0.65);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.mobile-drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(86vw, 340px);
+  background-color: var(--color-paper);
+  color: var(--color-ink-primary);
+  border-left: 1px solid var(--color-sand-shadow);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.28s;
+  box-shadow: -12px 0 36px rgba(18, 52, 59, 0.25);
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background-color: var(--color-night-shadow);
+  color: var(--color-ink-on-dark);
+  border-bottom: 1px solid rgba(225, 179, 130, 0.3);
+}
+
+.drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.drawer-brand .brand-name {
+  font-size: 0.98rem;
+}
+
+.drawer-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(225, 179, 130, 0.35);
+  color: var(--color-sand-tan);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.drawer-body {
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.drawer-summary-note {
+  font-size: 0.88rem;
+  color: var(--color-ink-muted);
+  line-height: 1.55;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-rule-dark);
+}
+
+.drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.drawer-phone-contact {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.84rem;
+  color: var(--color-night-shadow);
+  text-decoration: none;
+  padding: 0.85rem;
+  background-color: var(--color-paper-soft);
+  border: 1px solid var(--color-rule-brass);
+  border-radius: var(--radius-xs);
+  margin-top: 0.5rem;
+}
+
+.drawer-phone-contact svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-night-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
 }

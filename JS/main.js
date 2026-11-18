@@ -1,5 +1,5 @@
 /**
- * JAI HIND ENGINEERING WORKS - MAIN CONTROLLER
+ * JAI HIND ENGINEERING WORKS - MAIN UI CONTROLLER
  * Handles:
  * - Mobile Navigation Drawer & Backdrop Focus
  * - Scroll-down Hide / Scroll-up Show Navbar (Modern Web Guidance)
@@ -13,20 +13,120 @@
 (function () {
   'use strict';
 
-  // Factory WhatsApp Contact Number (for direct B2B inquiries)
   const FACTORY_WHATSAPP = '919838021456';
 
-  // Wait for DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     initScrollHeader();
     initMobileNav();
     initDirectInquiryForm();
     initPartsCatalog();
+    initDirectInquiryForm();
     initQuoteModal();
     initScrollSpy();
     initLightbox();
     initDimensionCalculator();
+    initLightbox();
   });
+
+  // Shared helper: light-dismiss fallback for browsers lacking <dialog closedby="any">
+  function attachDialogLightDismiss(dialog) {
+    if (!dialog || 'closedBy' in HTMLDialogElement.prototype) return;
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const isInside = (
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width
+      );
+      if (!isInside) {
+        dialog.close();
+      }
+    });
+  }
+
+  // Shared helper: send formatted payload cleanly to WhatsApp
+  function openWhatsAppInquiry(message) {
+    const waUrl = `https://wa.me/${FACTORY_WHATSAPP}?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  }
+
+  // =========================================================================
+  // 1. COMPACT AUTO-HIDE HEADER ON SCROLL DOWN
+  // =========================================================================
+  function initScrollHeader() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        const currentY = Math.max(0, Math.min(window.scrollY, maxScroll));
+
+        if (currentY !== lastY) {
+          const isScrollingDown = currentY > lastY && currentY > header.offsetHeight;
+          header.classList.toggle('is-hidden', isScrollingDown);
+          lastY = currentY;
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  // =========================================================================
+  // 2. ACCESSIBLE MOBILE CONTACT DRAWER
+  // =========================================================================
+  function initMobileDrawer() {
+    const toggleBtn = document.getElementById('mobile-nav-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    const closeBtn = document.getElementById('drawer-close-btn');
+
+    if (!toggleBtn || !drawer || !backdrop) return;
+
+    function setOpenState(open) {
+      drawer.classList.toggle('open', open);
+      backdrop.classList.toggle('active', open);
+      toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      drawer.inert = !open;
+      document.body.style.overflow = open ? 'hidden' : '';
+
+      if (open && closeBtn) {
+        closeBtn.focus();
+      } else if (!open) {
+        toggleBtn.focus();
+      }
+    }
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpenState(!drawer.classList.contains('open'));
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => setOpenState(false));
+    }
+
+    backdrop.addEventListener('click', () => setOpenState(false));
+
+    drawer.querySelectorAll('a, button:not(#drawer-close-btn)').forEach(el => {
+      el.addEventListener('click', () => setOpenState(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        setOpenState(false);
+      }
+    });
+  }
 
   // =========================================================================
   // 1. SCROLL-DOWN HIDE / SCROLL-UP SHOW HEADER (Modern Web Guidance)
@@ -169,14 +269,15 @@
   // =========================================================================
   function initPartsCatalog() {
     const searchInput = document.getElementById('parts-search-input');
-    const categoryPills = document.querySelectorAll('.category-pill');
+    const categoryRadios = document.querySelectorAll('input[name="parts-category"]');
     const partCards = document.querySelectorAll('.part-card');
     const countDisplay = document.getElementById('parts-count-num');
 
     if (!partCards.length) return;
 
-    let activeCategory = 'all';
-    let searchQuery = '';
+    const checkedRadio = document.querySelector('input[name="parts-category"]:checked');
+    let activeCategory = checkedRadio ? checkedRadio.value : 'all';
+    let searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
     function filterParts() {
       let visibleCount = 0;
@@ -214,7 +315,6 @@
       });
     });
 
-    // Search Input Typing
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim().toLowerCase();
@@ -222,13 +322,10 @@
       });
     }
 
-    // "Inquire Part" Button Clicks on Cards
     document.querySelectorAll('.inquire-part-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const sku = btn.getAttribute('data-sku') || '';
         const name = btn.getAttribute('data-name') || '';
-
-        // Open Quote Modal with pre-filled details
         openQuoteModalWithPart(sku, name);
       });
     });
@@ -252,10 +349,20 @@
   const quoteDialog = document.getElementById('quote-modal');
   const quoteForm = document.getElementById('quote-form');
 
+  function setProductSelectValue(select, productType) {
+    if (!select || !productType) return;
+    for (const opt of select.options) {
+      if (opt.value === productType || productType.includes(opt.value)) {
+        select.value = opt.value;
+        return;
+      }
+    }
+    select.value = 'Complete Factory Custom Unit';
+  }
+
   function initQuoteModal() {
     if (!quoteDialog) return;
 
-    // Open triggers across the page
     document.querySelectorAll('.open-quote-modal-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -281,28 +388,13 @@
       });
     });
 
-    // Close Button
     const closeBtn = document.getElementById('close-quote-modal-btn');
     if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        quoteDialog.close();
-      });
+      closeBtn.addEventListener('click', () => quoteDialog.close());
     }
 
-    // Light-Dismiss on Backdrop Click
-    quoteDialog.addEventListener('click', (e) => {
-      const dialogDimensions = quoteDialog.getBoundingClientRect();
-      if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-      ) {
-        quoteDialog.close();
-      }
-    });
+    attachDialogLightDismiss(quoteDialog);
 
-    // Form Submit -> WhatsApp Formatter
     if (quoteForm) {
       quoteForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -347,7 +439,7 @@
 
     if (select) select.value = 'Hardware Spare Parts (Motors / Trays / Gas)';
     if (notes) {
-      notes.value = `Inquiring for Spare Part: ${name} (SKU: ${sku}). Please share wholesale pricing & delivery availability.`;
+      notes.value = `Inquiring for Spare Part: ${name} (SKU: ${sku}). Please share wholesale pricing and dispatch availability.`;
     }
 
     quoteDialog.showModal();
@@ -381,8 +473,14 @@
           summaryInput.value = `${l}"L × ${w}"W × ${h}"H (${runningFeet} ft / ${liters}L)`;
         }
       } else {
-        calcOutput.innerHTML = `Enter dimensions in inches to calculate estimated storage volume & running feet.`;
+        calcOutput.textContent = 'Enter dimensions in inches to estimate interior volume & running feet.';
       }
+    }
+
+    if (summaryInput) {
+      summaryInput.addEventListener('input', () => {
+        summaryInput.dataset.autoFilled = 'false';
+      });
     }
 
     lenInput.addEventListener('input', recalculate);
@@ -424,24 +522,26 @@
   // 8. IMAGE LIGHTBOX (ZOOM IN INSPECTION)
   // =========================================================================
   function initLightbox() {
-    const zoomableImages = document.querySelectorAll('.part-media img, .turntable-image-frame');
+    const zoomableImages = document.querySelectorAll('.part-media img');
     const lightboxDialog = document.getElementById('lightbox-dialog');
     const lightboxImg = document.getElementById('lightbox-image');
+    const closeBtn = document.getElementById('close-lightbox-btn');
 
     if (!lightboxDialog || !lightboxImg) return;
 
     zoomableImages.forEach(img => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => {
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
         lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt || 'Inspection View';
+        lightboxImg.alt = img.alt || 'Component enlarged preview';
         lightboxDialog.showModal();
       });
     });
 
-    lightboxDialog.addEventListener('click', () => {
-      lightboxDialog.close();
-    });
-  }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => lightboxDialog.close());
+    }
 
+    attachDialogLightDismiss(lightboxDialog);
+  }
 })();

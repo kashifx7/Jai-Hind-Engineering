@@ -277,5 +277,4 @@
   } else {
     initViewer();
   }
-
 })();
