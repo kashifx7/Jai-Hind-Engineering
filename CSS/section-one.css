@@ -19,14 +19,14 @@
 
 .hero-split-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: 3.25rem;
   align-items: center;
 }
 
 @media (max-width: 960px) {
   .hero-split-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2.25rem;
   }
 }
@@ -36,6 +36,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-inline-size: 0;
 }
 
 .hero-provenance {
@@ -131,8 +132,9 @@
   background-color: var(--color-night-deep);
   border: 1px solid var(--color-sand-shadow);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow: clip;
   box-shadow: 0 22px 48px rgba(7, 22, 26, 0.45);
+  min-inline-size: 0;
 }
 
 .hero-video-viewport {

@@ -43,9 +43,12 @@
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  min-inline-size: 0;
 }
 
 .viewer-product-btn {
+  max-inline-size: 100%;
+  text-align: left;
   background-color: var(--color-surface-card);
   border: 1px solid var(--color-rule-dark);
   color: var(--color-ink-primary);
@@ -180,8 +183,10 @@
 .drag-hint-pill {
   position: absolute;
   top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  inset-inline: 0.75rem;
+  margin-inline: auto;
+  width: fit-content;
+  max-width: calc(100% - 1.5rem);
   background-color: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(18, 52, 59, 0.18);
   padding: 0.35rem 0.9rem;
@@ -200,6 +205,7 @@
 
 .drag-hint-pill svg {
   color: var(--color-night-blue);
+  flex-shrink: 0;
 }
 
 /* Bottom Controls Bar */
@@ -222,7 +228,7 @@
   align-items: center;
   gap: 0.85rem;
   flex: 1;
-  min-width: 220px;
+  min-width: min(220px, 100%);
 }
 
 .angle-scrubber-slider {
@@ -378,7 +384,7 @@
 
 @media (max-width: 520px) {
   .viewer-specs-strip {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .spec-strip-action {
@@ -390,6 +396,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  min-inline-size: 0;
 }
 
 .spec-strip-label {

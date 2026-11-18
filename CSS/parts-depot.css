@@ -19,6 +19,7 @@
 /* Search & Radio Filter Toolbar */
 .parts-toolbar {
   background-color: var(--color-surface-card);
+  min-inline-size: 0;
   border: 1px solid var(--color-sand-shadow);
   border-radius: var(--radius-md);
   padding: 1.15rem 1.35rem;
@@ -205,22 +206,23 @@
 /* Responsive Component Grid */
 .parts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(265px, 100%), 1fr));
   gap: 1.35rem;
 }
 
 @media (max-width: 600px) {
   .parts-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 /* Component Card - Clean Resting State with Hover Detail Reveal */
 .part-card {
   background-color: var(--color-surface-card);
+  min-inline-size: 0;
   border: 1px solid rgba(18, 52, 59, 0.16);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow: clip;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-subtle);
