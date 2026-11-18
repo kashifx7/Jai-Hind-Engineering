@@ -1,13 +1,11 @@
 /**
  * JAI HIND ENGINEERING WORKS - MAIN UI CONTROLLER
  * Handles:
- * - Mobile Navigation Drawer & Backdrop Focus
- * - Scroll-down Hide / Scroll-up Show Navbar (Modern Web Guidance)
- * - Direct Factory WhatsApp Inquiry Form
- * - Live Parts & Hardware Catalog Search & Category Filters
- * - Quotation Modal (<dialog>) with Custom Dimension Calculator
- * - Intersection Observer Active Scroll Links
- * - Image Lightbox Viewer
+ * - Compact scroll-hide / scroll-up reveal header
+ * - Accessible mobile contact drawer
+ * - Live components catalog search & native radio filtering
+ * - Direct inquiry & Custom fabrication quote modal (<dialog> with light-dismiss fallback)
+ * - Custom dimension estimator & component photo lightbox
  */
 
 (function () {
@@ -17,13 +15,10 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     initScrollHeader();
-    initMobileNav();
-    initDirectInquiryForm();
+    initMobileDrawer();
     initPartsCatalog();
     initDirectInquiryForm();
     initQuoteModal();
-    initScrollSpy();
-    initLightbox();
     initDimensionCalculator();
     initLightbox();
   });
@@ -129,143 +124,7 @@
   }
 
   // =========================================================================
-  // 1. SCROLL-DOWN HIDE / SCROLL-UP SHOW HEADER (Modern Web Guidance)
-  // Maximize content reading area and eliminate noise on mobile
-  // =========================================================================
-  function initScrollHeader() {
-    const header = document.getElementById('site-header');
-    if (!header) return;
-
-    let lastY = window.scrollY;
-    let ticking = false;
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          // Clamp so rubber-band overscroll at top/bottom doesn't flip direction
-          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          const currentY = Math.max(0, Math.min(window.scrollY, maxScroll));
-
-          const drawerOpen = document.querySelector('.mobile-drawer.open');
-          const isModalOpen = document.querySelector('dialog[open]');
-
-          // Do not hide header if mobile drawer or dialog modal is open
-          if (!drawerOpen && !isModalOpen) {
-            if (currentY > lastY && currentY > 70) {
-              // Scrolling DOWN: hide header
-              header.classList.add('header-hidden');
-            } else if (currentY < lastY || currentY <= 30) {
-              // Scrolling UP or at top: reveal header
-              header.classList.remove('header-hidden');
-            }
-          }
-
-          lastY = currentY;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  // =========================================================================
-  // 2. ACCESSIBLE MOBILE NAVIGATION DRAWER
-  // =========================================================================
-  function initMobileNav() {
-    const toggleBtn = document.getElementById('mobile-nav-toggle');
-    const drawer = document.getElementById('mobile-drawer');
-    const backdrop = document.getElementById('drawer-backdrop');
-    const closeBtn = document.getElementById('drawer-close-btn');
-
-    if (!toggleBtn || !drawer || !backdrop) return;
-
-    function openDrawer() {
-      drawer.classList.add('open');
-      backdrop.classList.add('active');
-      toggleBtn.setAttribute('aria-expanded', 'true');
-      drawer.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden'; // Lock background scroll on mobile
-    }
-
-    function closeDrawer() {
-      drawer.classList.remove('open');
-      backdrop.classList.remove('active');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      drawer.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = drawer.classList.contains('open');
-      if (isOpen) {
-        closeDrawer();
-      } else {
-        openDrawer();
-      }
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeDrawer();
-      });
-    }
-
-    backdrop.addEventListener('click', closeDrawer);
-
-    // Close on clicking any link or action inside drawer
-    drawer.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('click', () => {
-        closeDrawer();
-      });
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) {
-        closeDrawer();
-      }
-    });
-  }
-
-  // =========================================================================
-  // 3. DIRECT ON-PAGE FACTORY INQUIRY FORM
-  // Sends inquiry directly to WhatsApp with prefilled message
-  // =========================================================================
-  function initDirectInquiryForm() {
-    const form = document.getElementById('main-inquiry-form');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('contact-name')?.value.trim() || '';
-      const phone = document.getElementById('contact-phone')?.value.trim() || '';
-      const product = document.getElementById('contact-product')?.value || '';
-      const city = document.getElementById('contact-city')?.value.trim() || '';
-      const message = document.getElementById('contact-message')?.value.trim() || '';
-
-      const waText =
-        `*DIRECT INQUIRY: JAI HIND ENGINEERING WORKS*\n` +
-        `-----------------------------------------\n` +
-        `*Client/Business:* ${name}\n` +
-        `*Phone Number:* ${phone}\n` +
-        `*Product Category:* ${product}\n` +
-        `*Delivery City:* ${city}\n` +
-        (message ? `*Requirements/Dimensions:* ${message}\n` : '') +
-        `-----------------------------------------\n` +
-        `Sent from Official Factory Web Portal`;
-
-      const encoded = encodeURIComponent(waText);
-      const waUrl = `https://wa.me/${FACTORY_WHATSAPP}?text=${encoded}`;
-
-      window.open(waUrl, '_blank');
-    });
-  }
-
-  // =========================================================================
-  // 4. PARTS & HARDWARE CATALOG (LIVE SEARCH & FILTER)
+  // 3. SIMILAR PRODUCTS & COMPONENTS CATALOG (SEARCH + RADIO FILTERS)
   // =========================================================================
   function initPartsCatalog() {
     const searchInput = document.getElementById('parts-search-input');
@@ -302,16 +161,15 @@
       }
     }
 
-    // Category Pill Click
-    categoryPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        categoryPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        activeCategory = pill.getAttribute('data-category') || 'all';
-        filterParts();
+    // Apply initial filter state in case form controls were restored by browser
+    filterParts();
 
-        // Scroll pill into view smoothly on mobile
-        pill.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    categoryRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          activeCategory = radio.value || 'all';
+          filterParts();
+        }
       });
     });
 
@@ -330,10 +188,10 @@
       });
     });
 
-    // Tap card on touch screens to reveal/toggle specs cleanly
+    // Touch tap fallback toggle for revealing specs smoothly without interfering with actions
     partCards.forEach(card => {
       card.addEventListener('click', (e) => {
-        if (e.target.closest('.part-btn')) return;
+        if (e.target.closest('button') || e.target.closest('img')) return;
         const wasActive = card.classList.contains('is-active');
         partCards.forEach(c => c.classList.remove('is-active'));
         if (!wasActive) {
@@ -344,7 +202,38 @@
   }
 
   // =========================================================================
-  // 5. QUOTE & CUSTOM FABRICATION MODAL (<dialog>)
+  // 4. DIRECT FACTORY CONTACT FORM (#main-inquiry-form)
+  // =========================================================================
+  function initDirectInquiryForm() {
+    const form = document.getElementById('main-inquiry-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('contact-name')?.value.trim() || '';
+      const phone = document.getElementById('contact-phone')?.value.trim() || '';
+      const product = document.getElementById('contact-product')?.value || '';
+      const city = document.getElementById('contact-city')?.value.trim() || '';
+      const message = document.getElementById('contact-message')?.value.trim() || '';
+
+      const payload =
+        `*DIRECT INQUIRY: JAI HIND ENGINEERING WORKS*\n` +
+        `-----------------------------------------\n` +
+        `*Client / Business:* ${name}\n` +
+        `*Phone Number:* ${phone}\n` +
+        `*Product Category:* ${product}\n` +
+        `*Delivery City:* ${city}\n` +
+        (message ? `*Requirements:* ${message}\n` : '') +
+        `-----------------------------------------\n` +
+        `Sent from Workshop Website`;
+
+      openWhatsAppInquiry(payload);
+    });
+  }
+
+  // =========================================================================
+  // 5. CUSTOM QUOTE MODAL (<dialog>)
   // =========================================================================
   const quoteDialog = document.getElementById('quote-modal');
   const quoteForm = document.getElementById('quote-form');
@@ -367,23 +256,7 @@
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const productType = btn.getAttribute('data-product-type');
-        if (productType) {
-          const select = document.getElementById('quote-product-type');
-          if (select) {
-            // Find option matching or fallback
-            let found = false;
-            for (let opt of select.options) {
-              if (opt.value === productType || productType.includes(opt.value)) {
-                select.value = opt.value;
-                found = true;
-                break;
-              }
-            }
-            if (!found) {
-              select.value = 'Complete Factory Custom Unit';
-            }
-          }
-        }
+        setProductSelectValue(document.getElementById('quote-product-type'), productType);
         quoteDialog.showModal();
       });
     });
@@ -407,25 +280,20 @@
         const material = document.getElementById('quote-material')?.value || 'SS-304';
         const notes = document.getElementById('quote-notes')?.value.trim() || '';
 
-        // Build WhatsApp text message
         const message =
-          `*CUSTOM FABRICATION QUOTE REQUEST*\n` +
-          `*Jai Hind Engineering Works*\n` +
+          `*CUSTOM QUOTE REQUEST: JAI HIND ENGINEERING WORKS*\n` +
           `-----------------------------------\n` +
-          `*Client Name:* ${name}\n` +
-          `*Phone Number:* ${phone}\n` +
+          `*Client / Business:* ${name}\n` +
+          `*Phone:* ${phone}\n` +
           `*Delivery City:* ${location}\n` +
-          `*Equipment Required:* ${product}\n` +
-          `*Dimensions / Sizing:* ${dimensions}\n` +
+          `*Product Line:* ${product}\n` +
+          `*Dimensions:* ${dimensions}\n` +
           `*Steel Grade:* ${material}\n` +
-          (notes ? `*Custom Notes:* ${notes}\n` : '') +
+          (notes ? `*Notes / Part SKU:* ${notes}\n` : '') +
           `-----------------------------------\n` +
-          `Transmitted from Official Web Portal`;
+          `Sent from Workshop Quote Desk`;
 
-        const encodedMsg = encodeURIComponent(message);
-        const waUrl = `https://wa.me/${FACTORY_WHATSAPP}?text=${encodedMsg}`;
-
-        window.open(waUrl, '_blank');
+        openWhatsAppInquiry(message);
         quoteDialog.close();
       });
     }
@@ -446,7 +314,7 @@
   }
 
   // =========================================================================
-  // 6. DIMENSION CALCULATOR FOR CUSTOM FABRICATIONS
+  // 6. DIMENSION ESTIMATOR INSIDE QUOTE MODAL
   // =========================================================================
   function initDimensionCalculator() {
     const lenInput = document.getElementById('calc-length');
@@ -467,10 +335,11 @@
         const liters = (cft * 28.3168).toFixed(0);
         const runningFeet = (l / 12).toFixed(1);
 
-        calcOutput.innerHTML = `<strong>Estimated Spec:</strong> Approx <strong>${liters} Liters</strong> (${cft} CFT) volume • <strong>${runningFeet} ft</strong> running display length. In-house tooling available for this custom size.`;
+        calcOutput.innerHTML = `Estimated Spec: Approx <strong>${liters} Liters</strong> (${cft} CFT) &bull; <strong>${runningFeet} ft</strong> running length.`;
 
-        if (summaryInput && (!summaryInput.value || summaryInput.value.includes('in /'))) {
-          summaryInput.value = `${l}"L × ${w}"W × ${h}"H (${runningFeet} ft / ${liters}L)`;
+        if (summaryInput && (!summaryInput.value || summaryInput.dataset.autoFilled === 'true')) {
+          summaryInput.value = `${l}"L x ${w}"W x ${h}"H (${runningFeet} ft / ${liters}L)`;
+          summaryInput.dataset.autoFilled = 'true';
         }
       } else {
         calcOutput.textContent = 'Enter dimensions in inches to estimate interior volume & running feet.';
@@ -489,37 +358,7 @@
   }
 
   // =========================================================================
-  // 7. SCROLLSPY (ACTIVE NAV HIGHLIGHT)
-  // =========================================================================
-  function initScrollSpy() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link, .drawer-nav-link');
-
-    if (!sections.length || !navLinks.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === `#${id}`) {
-              link.classList.add('active');
-            } else {
-              link.classList.remove('active');
-            }
-          });
-        }
-      });
-    }, {
-      rootMargin: '-20% 0px -65% 0px'
-    });
-
-    sections.forEach(section => observer.observe(section));
-  }
-
-  // =========================================================================
-  // 8. IMAGE LIGHTBOX (ZOOM IN INSPECTION)
+  // 7. COMPONENT IMAGE LIGHTBOX (<dialog>)
   // =========================================================================
   function initLightbox() {
     const zoomableImages = document.querySelectorAll('.part-media img');

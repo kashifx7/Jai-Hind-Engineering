@@ -1,13 +1,12 @@
-
 name: Deploy to GitHub Pages
-
 
 on:
   push:
     branches:
-
+      - main
       - feature-1
-
+      - theme-apple
+      - orid2
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages

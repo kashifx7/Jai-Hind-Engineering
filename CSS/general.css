@@ -65,7 +65,6 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 20px);
   scroll-padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
-
   font-size: 16px;
   color-scheme: light;
 }
@@ -108,13 +107,6 @@ button, a, input, select, textarea, summary, label {
 @media (max-width: 640px) {
   .container {
     padding-inline: 1.125rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .container {
-    padding-left: 1.15rem;
-    padding-right: 1.15rem;
   }
 }
 
@@ -167,7 +159,6 @@ img, video {
 }
 
 /* Editorial Section Header */
-
 .section-header {
   max-width: 68ch;
   margin-inline: auto;
