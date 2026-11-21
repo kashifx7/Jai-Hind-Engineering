@@ -142,6 +142,10 @@
   color: #9ca3af;
 }
 
+.footer-bottom-bar > div {
+  min-inline-size: 0;
+}
+
 /* Understated Industrial Trade Desk WhatsApp Dock */
 .floating-whatsapp {
   position: fixed;
@@ -191,6 +195,7 @@
     width: 48px;
     height: 48px;
     padding: 0;
+    border-radius: 50%;
     justify-content: center;
     right: max(0.85rem, env(safe-area-inset-right, 0px));
     bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));

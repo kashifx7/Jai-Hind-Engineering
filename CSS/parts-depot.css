@@ -285,6 +285,7 @@
 }
 
 .part-body {
+  min-inline-size: 0;
   padding: 1.05rem 1.15rem 1.15rem;
   display: flex;
   flex-direction: column;
@@ -292,9 +293,11 @@
 }
 
 .part-header-row {
+  min-inline-size: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.45rem;
   margin-block-end: 0.35rem;
 }
@@ -319,6 +322,7 @@
 
 /* Smooth Non-Clipping Grid-Row Accordion Reveal on Hover/Focus */
 .part-details-drawer {
+  min-inline-size: 0;
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
@@ -326,6 +330,7 @@
 }
 
 .part-details-inner {
+  min-inline-size: 0;
   overflow: hidden;
   min-height: 0;
 }

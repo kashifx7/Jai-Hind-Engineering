@@ -181,6 +181,10 @@
 
 @media (max-width: 480px) {
   .header-inner {
+    gap: 0.45rem;
+  }
+
+  .brand-link {
     gap: 0.5rem;
   }
 
@@ -191,12 +195,28 @@
   }
 
   .brand-name {
-    font-size: 1.02rem;
+    font-size: 0.94rem;
+    line-height: 1.05;
+  }
+
+  .header-actions {
+    gap: 0.45rem;
   }
 
   .btn-minimal-quote {
     padding: 0.35rem 0.65rem;
     font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-name {
+    font-size: 0.86rem;
+  }
+
+  .btn-minimal-quote {
+    padding: 0.32rem 0.55rem;
+    font-size: 0.74rem;
   }
 }
 
@@ -265,10 +285,12 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  min-inline-size: 0;
 }
 
 .drawer-brand .brand-name {
   font-size: 1.12rem;
+  min-inline-size: 0;
 }
 
 .drawer-close-btn {
@@ -277,6 +299,9 @@
   color: #ffffff;
   width: 40px;
   height: 40px;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
   border-radius: var(--radius-sm);
   display: inline-flex;
   align-items: center;
@@ -287,6 +312,7 @@
 .drawer-body {
   padding: 1.5rem 1.25rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -311,6 +337,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.55rem;
+  min-inline-size: 0;
   font-size: 0.84rem;
   color: var(--hw-iron);
   text-decoration: none;
@@ -319,6 +346,11 @@
   border: 1px solid var(--hw-border);
   border-radius: var(--radius-sm);
   margin-top: 0.4rem;
+}
+
+.drawer-phone-contact span {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 }
 
 .drawer-phone-contact svg {

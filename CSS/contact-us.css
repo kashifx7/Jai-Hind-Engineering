@@ -45,6 +45,7 @@
   align-items: flex-start;
   gap: 1rem;
   margin-block-end: 1.35rem;
+  min-inline-size: 0;
 }
 
 .contact-block:last-child {
@@ -101,6 +102,7 @@
 }
 
 .factory-location-card {
+  min-inline-size: 0;
   background-color: var(--hw-slate);
   color: var(--hw-on-dark);
   border: 1px solid #374151;
@@ -257,7 +259,7 @@ dialog.modal-dialog {
   box-shadow: var(--shadow-elevated);
   padding: 0;
   color: var(--hw-iron);
-  overflow: hidden;
+  overflow: clip;
 }
 
 dialog.modal-dialog::backdrop {
@@ -307,6 +309,19 @@ dialog.modal-dialog::backdrop {
   background-color: var(--hw-surface-alt);
 }
 
+@media (max-width: 600px) {
+  .modal-body {
+    padding: 1.1rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .modal-close-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
 .calculator-preview-box {
   background-color: var(--hw-surface);
   border: 1px dashed var(--hw-border-strong);
@@ -337,8 +352,9 @@ dialog.lightbox-dialog::backdrop {
 
 .lightbox-close-btn {
   position: absolute;
-  top: -44px;
-  right: 0;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
   background-color: var(--hw-iron);
   color: #ffffff;
   border: 1px solid var(--hw-orange-accent);

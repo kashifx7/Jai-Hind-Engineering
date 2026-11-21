@@ -129,7 +129,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .cad-model-viewer-element {
@@ -229,6 +229,8 @@
 
 .angle-scrubber-slider {
   flex: 1;
+  min-inline-size: 0;
+  width: 100%;
   height: 6px;
   accent-color: var(--hw-orange);
   cursor: pointer;
@@ -315,6 +317,8 @@
   display: flex;
   align-items: center;
   gap: 0.45rem;
+  flex-wrap: wrap;
+  min-inline-size: 0;
 }
 
 .control-icon-btn {
@@ -384,12 +388,22 @@
 }
 
 @media (max-width: 520px) {
+  .viewer-topbar,
+  .viewer-controls-bar,
+  .viewer-specs-strip {
+    padding: 0.85rem 1rem;
+  }
+
   .viewer-specs-strip {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .spec-strip-action {
     grid-column: span 1;
+  }
+
+  .spec-strip-action .btn {
+    width: 100%;
   }
 }
 
@@ -398,6 +412,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.18rem;
+}
+
+.spec-strip-action {
+  min-inline-size: 0;
 }
 
 .spec-strip-label {
@@ -414,15 +432,22 @@
   font-size: 0.92rem;
   font-weight: 600;
   color: #ffffff;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 768px) {
   .viewer-stage {
-    height: 380px;
+    height: 360px;
   }
 
   .controls-main-row {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .viewer-stage {
+    height: 320px;
   }
 }
